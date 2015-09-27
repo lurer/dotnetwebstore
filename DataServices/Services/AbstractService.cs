@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.ObjectServices
+namespace DataServices.Services
 {
     public abstract class AbstractService<T, R> where T : class
     {
@@ -31,7 +31,7 @@ namespace BLL.ObjectServices
             using (var context = new DataContext())
             {
                 var dbObj = context.Set<T>().Find(id);
-                return transfromDbToBusiness(dbObj);
+                return transFromDbToBusiness(dbObj);
             };
         }
 
@@ -50,7 +50,7 @@ namespace BLL.ObjectServices
 
                 foreach (var dbObj in dbList)
                 {
-                    busList.Add(transfromDbToBusiness(dbObj));
+                    busList.Add(transFromDbToBusiness(dbObj));
                 }
             }
             return busList;
@@ -66,7 +66,7 @@ namespace BLL.ObjectServices
         public abstract void Update(R obj);
               
 
-        internal abstract R transfromDbToBusiness(T dbObj);
+        internal abstract R transFromDbToBusiness(T dbObj);
 
         internal abstract T transFromBusinessToDb(R obj);
     }

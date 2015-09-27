@@ -13,7 +13,7 @@ namespace DAL.DbModels
         
         public int Amount { get; set; }
         public double Discount { get; set; }
-        public T Item { get; set; }
+        public DbItem Item { get; set; }
               
     }
 }

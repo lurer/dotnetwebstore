@@ -6,7 +6,7 @@ using System.Web;
 
 namespace DAL.DbModels
 {
-    public class T
+    public class DbItem
     { 
         [Key]
         public int ItemID { get; set;}

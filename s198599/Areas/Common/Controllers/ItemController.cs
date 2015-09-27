@@ -8,18 +8,17 @@ using System.Web;
 using System.Web.Mvc;
 using BLL;
 using BOL.Models;
-using BLL.ObjectServices;
+using BLL.BussinessTransactions;
 
 namespace s198599.Areas.Common.Controllers
 {
     public class ItemController : Controller
     {
-        private DataContext db = new DataContext();
 
         // GET: Common/Item
         public ActionResult Index()
         {
-            return View(new ItemService().GetList());
+            return View(new ItemTransaction().GetList());
         }
 
         // GET: Common/Item/Details/5
@@ -29,7 +28,7 @@ namespace s198599.Areas.Common.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items1.Find(id);
+            Item item = new ItemTransaction().GetById(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -52,8 +51,7 @@ namespace s198599.Areas.Common.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Items1.Add(item);
-                db.SaveChanges();
+                new ItemTransaction().Insert(item);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +65,7 @@ namespace s198599.Areas.Common.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items1.Find(id);
+            Item item = new ItemTransaction().GetById(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -84,8 +82,7 @@ namespace s198599.Areas.Common.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(item).State = EntityState.Modified;
-                db.SaveChanges();
+                new ItemTransaction().Update(item);
                 return RedirectToAction("Index");
             }
             return View(item);
@@ -98,7 +95,7 @@ namespace s198599.Areas.Common.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items1.Find(id);
+            Item item = new ItemTransaction().GetById(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -111,9 +108,7 @@ namespace s198599.Areas.Common.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Item item = db.Items1.Find(id);
-            db.Items1.Remove(item);
-            db.SaveChanges();
+            new ItemTransaction().Delete(id);
             return RedirectToAction("Index");
         }
 
@@ -121,7 +116,7 @@ namespace s198599.Areas.Common.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
             }
             base.Dispose(disposing);
         }

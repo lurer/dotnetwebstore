@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BLL;
 using BOL.Models;
-using BLL.ObjectServices;
+using BLL.BussinessTransactions;
 
 namespace s198599.Areas.Customer.Controllers
 {
@@ -16,7 +16,7 @@ namespace s198599.Areas.Customer.Controllers
     {
         public ActionResult Index()
         {
-            return View(new CustomerService().GetList());
+            return View(new CustomerTransaction().GetList());
         }
 
         // GET: Customer/Customers/Details/5
@@ -26,7 +26,7 @@ namespace s198599.Areas.Customer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOL.Models.Customer customer = new CustomerService().GetById(id);
+            BOL.Models.Customer customer = new CustomerTransaction().GetById(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -49,7 +49,7 @@ namespace s198599.Areas.Customer.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var customerService = new CustomerService())
+                using (var customerService = new CustomerTransaction())
                 {
                     customerService.Insert(customer);
                 }
@@ -67,7 +67,7 @@ namespace s198599.Areas.Customer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOL.Models.Customer customer = new CustomerService().GetById(id);
+            BOL.Models.Customer customer = new CustomerTransaction().GetById(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -84,7 +84,7 @@ namespace s198599.Areas.Customer.Controllers
         {
             if (ModelState.IsValid)
             {
-                new CustomerService().Update(customer);
+                new CustomerTransaction().Update(customer);
 
                 return RedirectToAction("Index");
             }
@@ -98,7 +98,7 @@ namespace s198599.Areas.Customer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOL.Models.Customer customer = new CustomerService().GetById(id);
+            BOL.Models.Customer customer = new CustomerTransaction().GetById(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -111,7 +111,7 @@ namespace s198599.Areas.Customer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            new CustomerService().Delete(id);
+            new CustomerTransaction().Delete(id);
             return RedirectToAction("Index");
         }
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.ObjectServices
+namespace BLL.BussinessTransactions
 {
-    public interface IService<T> : IDisposable
+    public interface ITransaction<T> : IDisposable
     {
         List<T> GetList();
         T GetById(int? id);
