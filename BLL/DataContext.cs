@@ -11,7 +11,7 @@ namespace BLL
 {
     public class DataContext : DbContext
     {
-        public DbSet<DbItem> Items {get; set; }
+        public DbSet<T> Items {get; set; }
         public DbSet<DbOrderLine> OrderLines { get; set; }
         public DbSet<DbOrder> Orders { get; set; }
         public DbSet<DbPostAddress> PostAddresses { get; set; }
@@ -28,7 +28,7 @@ namespace BLL
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
-
+        public System.Data.Entity.DbSet<BOL.Models.Item> Items1 { get; set; }
     }
 
 }

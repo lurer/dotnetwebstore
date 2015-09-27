@@ -65,15 +65,7 @@ namespace BLL.ObjectServices
             //DataContext context = new DataContext();
             
             using (var context = new DataContext()){
-                var newCustomer = new DbCustomer()
-                {
-                    FirstName = inCustomer.FirstName,
-                    LastName = inCustomer.LastName,
-                    Address = inCustomer.Address,
-                    PostCode = inCustomer.PostCode,
-                    Email = inCustomer.Email,
-                    Telephone = inCustomer.Telephone
-                };
+                var newCustomer = transformBusinessToDbNoPost(inCustomer);
 
                 if(context.PostAddresses.Find(inCustomer.PostCode) == null)
                 {

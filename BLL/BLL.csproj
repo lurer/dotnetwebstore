@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
+    <Compile Include="ObjectServices\AbstractService.cs" />
+    <Compile Include="ObjectServices\ItemService.cs" />
     <Compile Include="ObjectServices\IService.cs" />
     <Compile Include="ObjectServices\CustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

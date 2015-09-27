@@ -10,9 +10,10 @@ namespace DAL.DbModels
     {
         [Key]
         public int OrderLineID { get; set; }
-        public int ItemID { get; set; }
+        
         public int Amount { get; set; }
         public double Discount { get; set; }
-        public DbItem Item { get; set; }
+        public T Item { get; set; }
+              
     }
 }

@@ -13,7 +13,7 @@ namespace BOL.Models
         public Customer User { get; set; }
         public DateTime DateTime { get; set; }
         public List<OrderLine> Items { get; set; }
-
+        public double OrderPriceTotal { get; set; }
         
     }
 }

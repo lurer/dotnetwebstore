@@ -120,6 +120,11 @@
     <Content Include="Areas\Customer\Views\Customer\Details.cshtml" />
     <Content Include="Areas\Customer\Views\Customer\Edit.cshtml" />
     <Content Include="Areas\Customer\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Common\Views\Item\Create.cshtml" />
+    <Content Include="Areas\Common\Views\Item\Delete.cshtml" />
+    <Content Include="Areas\Common\Views\Item\Details.cshtml" />
+    <Content Include="Areas\Common\Views\Item\Edit.cshtml" />
+    <Content Include="Areas\Common\Views\Item\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -146,6 +151,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Common\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Common\Controllers\ItemController.cs" />
     <Compile Include="Areas\Customer\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Security\SecurityAreaRegistration.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
