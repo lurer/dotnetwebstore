@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace DAL.DbModels
     public class DbItem
     { 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ItemID { get; set;}
         public string ItemCode { get; set; }
         public string ItemDesc { get; set; }

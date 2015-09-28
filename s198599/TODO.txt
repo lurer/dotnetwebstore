@@ -1,12 +1,12 @@
 ﻿
 - User må ha passordfelt
 - Item og User Views må oppdateres
-
+	- Dropdown-lister i Administrasjonsvisning. Ajax-kall
 - Implementere Roller og pålogging
 - Validering
 - Få med Category og bilder i Item
 
 
 Mulige objekter
-- Basket
+- Basket - Session-basert
 - 
