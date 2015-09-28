@@ -5,9 +5,9 @@ using System.Web;
 
 namespace BOL.Models
 {
-    public class Customer
+    public class User
     {
-        public int CustomerID { get; set; }
+        public int UserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -15,6 +15,7 @@ namespace BOL.Models
         public string Address { get; set; }
         public string PostCode { get; set; }
         public string PostAddress { get; set; }
+
 
     }
 }

@@ -129,6 +129,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\s198599.mdf" />
+    <Content Include="App_Data\s198599_log.ldf">
+      <DependentUpon>s198599.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -144,11 +148,11 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Areas\Common\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Customer\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Customer\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Customer\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Customer\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Common\Views\Item\Create.cshtml" />
     <Content Include="Areas\Common\Views\Item\Delete.cshtml" />
     <Content Include="Areas\Common\Views\Item\Details.cshtml" />
@@ -189,7 +193,7 @@
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Common\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\Controllers\ItemController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Customer\Controllers\OrderController.cs" />
     <Compile Include="Areas\Security\SecurityAreaRegistration.cs" />
     <Compile Include="Areas\Customer\CustomerAreaRegistration.cs" />
@@ -217,7 +221,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Common\Models\" />

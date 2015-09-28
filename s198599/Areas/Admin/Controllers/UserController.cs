@@ -12,106 +12,106 @@ using BLL.BussinessTransactions;
 
 namespace s198599.Areas.Admin.Controllers
 {
-    public class CustomerController : Controller
+    public class UserController : Controller
     {
         public ActionResult Index()
         {
-            return View(new CustomerTransaction().GetList());
+            return View(new UserTransaction().GetList());
         }
 
-        // GET: Customer/Customers/Details/5
+        // GET: User/Users/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOL.Models.Customer customer = new CustomerTransaction().GetById(id);
-            if (customer == null)
+            User User = new UserTransaction().GetById(id);
+            if (User == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(User);
         }
 
-        // GET: Customer/Customers/Create
+        // GET: User/Users/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Customer/Customers/Create
+        // POST: User/Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerID,FirstName,LastName,Address,PostCode,PostAddress, Email, Telephone")] BOL.Models.Customer customer)
+        public ActionResult Create([Bind(Include = "UserID,FirstName,LastName,Address,PostCode,PostAddress, Email, Telephone")] User User)
         {
             if (ModelState.IsValid)
             {
-                using (var customerService = new CustomerTransaction())
+                using (var UserService = new UserTransaction())
                 {
-                    customerService.Insert(customer);
+                    UserService.Insert(User);
                 }
 
                 return RedirectToAction("Index");
             }
 
-            return View(customer);
+            return View(User);
         }
 
-        // GET: Customer/Customers/Edit/5
+        // GET: User/Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOL.Models.Customer customer = new CustomerTransaction().GetById(id);
-            if (customer == null)
+            BOL.Models.User User = new UserTransaction().GetById(id);
+            if (User == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(User);
         }
 
-        // POST: Customer/Customers/Edit/5
+        // POST: User/Users/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerID,FirstName,LastName,Address,PostCode,PostAddress, Email, Telephone")] BOL.Models.Customer customer)
+        public ActionResult Edit([Bind(Include = "UserID,FirstName,LastName,Address,PostCode,PostAddress, Email, Telephone")] BOL.Models.User User)
         {
             if (ModelState.IsValid)
             {
-                new CustomerTransaction().Update(customer);
+                new UserTransaction().Update(User);
 
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            return View(User);
         }
 
-        // GET: Customer/Customers/Delete/5
+        // GET: User/Users/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOL.Models.Customer customer = new CustomerTransaction().GetById(id);
-            if (customer == null)
+            BOL.Models.User User = new UserTransaction().GetById(id);
+            if (User == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(User);
         }
 
-        // POST: Customer/Customers/Delete/5
+        // POST: User/Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            new CustomerTransaction().Delete(id);
+            new UserTransaction().Delete(id);
             return RedirectToAction("Index");
         }
 

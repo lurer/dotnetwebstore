@@ -1,4 +1,4 @@
-﻿@model BOL.Models.Customer
+﻿@model BOL.Models.User
 
 @{
     ViewBag.Title = "Edit";
@@ -13,10 +13,10 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Customer</h4>
+        <h4>User</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.CustomerID)
+        @Html.HiddenFor(model => model.UserID)
 
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })

@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BussinessTransactions\ItemTransaction.cs" />
-    <Compile Include="BussinessTransactions\CustomerTransaction.cs" />
+    <Compile Include="BussinessTransactions\UserTransaction.cs" />
     <Compile Include="BussinessTransactions\ITransaction.cs" />
     <Compile Include="BussinessTransactions\OrderTransaction.cs" />
     <Compile Include="DataContext.cs" />

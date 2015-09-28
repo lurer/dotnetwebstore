@@ -1,10 +1,9 @@
 ﻿
-- Sjekke opp Roller og pålogging
-- Sjekke opp Category
+- Implementere Roller og pålogging
 - Validering
+- Få med Category og bilder i Item
 
 
 Mulige objekter
 - Basket
-- Role
 - 

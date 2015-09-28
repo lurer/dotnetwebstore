@@ -6,10 +6,10 @@ using System.Web;
 
 namespace DAL.DbModels
 {
-    public class DbCustomer
+    public class DbUser
     {
         [Key]
-        public int CustomerID { get; set; }
+        public int UserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -17,6 +17,6 @@ namespace DAL.DbModels
         public string Address { get; set; }
         public string PostCode { get; set; }
         public virtual DbPostAddress PostAddress { get; set; }
-
+        public virtual List<DbRole> Role { get; set; }
     }
 }

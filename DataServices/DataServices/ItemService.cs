@@ -36,12 +36,12 @@ namespace DataServices
 
         internal override DbItem transFromBusinessToDb(Item obj)
         {
-            return new ItemAdapter().TransFromBusinessToDb(obj);
+            return new ItemConverter().TransFromBusinessToDb(obj);
         }
 
         internal override Item transFromDbToBusiness(DbItem dbObj)
         {
-            return new ItemAdapter().TransFromDbToBusiness(dbObj);
+            return new ItemConverter().TransFromDbToBusiness(dbObj);
         }
     }
 }

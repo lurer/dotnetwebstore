@@ -10,7 +10,7 @@ namespace DAL.DbModels
     {
         [Key]
         public int OrderNumber { get; set; }
-        public virtual DbCustomer Customer { get; set; }
+        public virtual DbUser User { get; set; }
         public DateTime DateTime { get; set; }
         public virtual List<DbOrderLine> Items { get; set; }
 

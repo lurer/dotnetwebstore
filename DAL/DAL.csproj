@@ -71,7 +71,8 @@
     <Compile Include="DbModels\DbOrderLine.cs" />
     <Compile Include="DbModels\DbPostAddress.cs" />
     <Compile Include="DbModels\DbReceipt.cs" />
-    <Compile Include="DbModels\DbCustomer.cs" />
+    <Compile Include="DbModels\DbUser.cs" />
+    <Compile Include="DbModels\DbRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

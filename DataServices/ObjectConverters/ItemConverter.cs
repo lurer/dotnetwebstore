@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ObjectConverters
 {
-    public class ItemAdapter : AbstractAdapter<DbItem, Item>
+    public class ItemConverter : AbstractConverter<DbItem, Item>
     {
         public override DbItem TransFromBusinessToDb(Item obj)
         {

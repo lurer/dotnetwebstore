@@ -45,11 +45,11 @@
   <ItemGroup>
     <Compile Include="DataContext.cs" />
     <Compile Include="DataServices\AbstractService.cs" />
-    <Compile Include="DataServices\CustomerService.cs" />
+    <Compile Include="DataServices\UserService.cs" />
     <Compile Include="DataServices\ItemService.cs" />
     <Compile Include="DataServices\OrderService.cs" />
     <Compile Include="ObjectConverters\AbstractConverter.cs" />
-    <Compile Include="ObjectConverters\CustomerConverter.cs" />
+    <Compile Include="ObjectConverters\UserConverter.cs" />
     <Compile Include="ObjectConverters\ItemConverter.cs" />
     <Compile Include="ObjectConverters\OrderConverter.cs" />
     <Compile Include="ObjectConverters\OrderLineConverter.cs" />

@@ -16,7 +16,8 @@ namespace DataServices
         public DbSet<DbOrder> Orders { get; set; }
         public DbSet<DbPostAddress> PostAddresses { get; set; }
         public DbSet<DbReceipt> Receipts { get; set; }
-        public DbSet<DbCustomer> Customer { get; set; }
+        public DbSet<DbUser> Users { get; set; }
+        public DbSet<DbRole> Roles { get; set; }
 
         public DataContext() : base("name=DataContext")
         {

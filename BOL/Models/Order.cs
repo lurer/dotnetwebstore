@@ -10,7 +10,7 @@ namespace BOL.Models
     {
         [Key]
         public int OrderNumber { get; set; }
-        public Customer Customer { get; set; }
+        public User User { get; set; }
         public DateTime DateTime { get; set; }
         public List<OrderLine> Items { get; set; }
         public double OrderPriceTotal { get; set; }

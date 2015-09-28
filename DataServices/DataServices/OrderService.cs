@@ -39,12 +39,12 @@ namespace DataServices
 
         internal override DbOrder transFromBusinessToDb(Order obj)
         {
-            return new OrderAdapter().TransFromBusinessToDb(obj);
+            return new OrderConverter().TransFromBusinessToDb(obj);
         }
 
         internal override Order transFromDbToBusiness(DbOrder dbObj)
         {
-            return new OrderAdapter().TransFromDbToBusiness(dbObj);
+            return new OrderConverter().TransFromDbToBusiness(dbObj);
         }
     }
 }

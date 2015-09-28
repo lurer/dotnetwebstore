@@ -12,6 +12,6 @@ namespace DAL.DbModels
         public string PostCode { get; set; }
         public string PostAddres { get; set; }
 
-        public virtual List<DbCustomer> Users { get; set; }
+        public virtual List<DbUser> Users { get; set; }
     }
 }

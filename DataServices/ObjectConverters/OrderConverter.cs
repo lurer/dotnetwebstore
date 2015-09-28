@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace ObjectConverters
 {
-    public class OrderAdapter : AbstractAdapter<DbOrder, Order>
+    public class OrderConverter : AbstractConverter<DbOrder, Order>
     {
         public override DbOrder TransFromBusinessToDb(Order obj)
         {
             var dbOrder = new DbOrder()
             {
-                Customer = new CustomerAdapter().TransFromBusinessToDb(obj.Customer),
+                User = new UserConverter().TransFromBusinessToDb(obj.User),
                 DateTime = obj.DateTime
             };
 
@@ -32,7 +32,7 @@ namespace ObjectConverters
             var order = new Order()
             {
                 OrderNumber = dbObj.OrderNumber,
-                Customer = new CustomerAdapter().TransFromDbToBusiness(dbObj.Customer),
+                User = new UserConverter().TransFromDbToBusiness(dbObj.User),
                 DateTime = dbObj.DateTime
             };
             

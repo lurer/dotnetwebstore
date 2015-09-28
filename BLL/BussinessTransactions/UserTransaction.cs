@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace BLL.BussinessTransactions
 {
-    public class CustomerTransaction : ITransaction<Customer>
+    public class UserTransaction : ITransaction<User>
     {
-        private CustomerService service;
+        private UserService service;
 
-        public CustomerTransaction()
+        public UserTransaction()
         {
-            service = new CustomerService();
+            service = new UserService();
         }
 
         public void Delete(int id)
@@ -27,22 +27,22 @@ namespace BLL.BussinessTransactions
             //throw new NotImplementedException();
         }
 
-        public Customer GetById(int? id)
+        public User GetById(int? id)
         {
             return service.GetById(id);
         }
 
-        public Customer GetByStringId(string id)
+        public User GetByStringId(string id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Customer> GetList()
+        public List<User> GetList()
         {
             return service.GetList();
         }
 
-        public void Insert(Customer obj)
+        public void Insert(User obj)
         {
             service.Insert(obj);
         }
@@ -52,7 +52,7 @@ namespace BLL.BussinessTransactions
             throw new NotImplementedException();
         }
 
-        public void Update(Customer obj)
+        public void Update(User obj)
         {
             service.Update(obj);
         }
