@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DataServices.Adapters
+namespace ObjectConverters
 {
     public class CustomerAdapter : AbstractAdapter<DbCustomer, Customer>
     {

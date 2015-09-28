@@ -10,7 +10,7 @@ using BLL;
 using BOL.Models;
 using BLL.BussinessTransactions;
 
-namespace s198599.Areas.Customer.Controllers
+namespace s198599.Areas.Admin.Controllers
 {
     public class CustomerController : Controller
     {

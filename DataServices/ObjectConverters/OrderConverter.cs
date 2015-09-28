@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataServices.Adapters
+namespace ObjectConverters
 {
     public class OrderAdapter : AbstractAdapter<DbOrder, Order>
     {

@@ -8,7 +8,7 @@ namespace BOL.Models
 {
     public class Order
     {
-        
+        [Key]
         public int OrderNumber { get; set; }
         public Customer Customer { get; set; }
         public DateTime DateTime { get; set; }

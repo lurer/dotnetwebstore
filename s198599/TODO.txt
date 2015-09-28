@@ -1,0 +1,10 @@
+﻿
+- Sjekke opp Roller og pålogging
+- Sjekke opp Category
+- Validering
+
+
+Mulige objekter
+- Basket
+- Role
+- 

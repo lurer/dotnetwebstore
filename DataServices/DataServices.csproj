@@ -43,16 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\AbstractAdapter.cs" />
-    <Compile Include="Adapters\CustomerAdapter.cs" />
-    <Compile Include="Adapters\ItemAdapter.cs" />
-    <Compile Include="Adapters\OrderAdapter.cs" />
-    <Compile Include="Adapters\OrderLineAdapter.cs" />
     <Compile Include="DataContext.cs" />
-    <Compile Include="Services\AbstractService.cs" />
-    <Compile Include="Services\CustomerService.cs" />
-    <Compile Include="Services\OrderService.cs" />
-    <Compile Include="Services\ItemService.cs" />
+    <Compile Include="DataServices\AbstractService.cs" />
+    <Compile Include="DataServices\CustomerService.cs" />
+    <Compile Include="DataServices\ItemService.cs" />
+    <Compile Include="DataServices\OrderService.cs" />
+    <Compile Include="ObjectConverters\AbstractConverter.cs" />
+    <Compile Include="ObjectConverters\CustomerConverter.cs" />
+    <Compile Include="ObjectConverters\ItemConverter.cs" />
+    <Compile Include="ObjectConverters\OrderConverter.cs" />
+    <Compile Include="ObjectConverters\OrderLineConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

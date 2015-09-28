@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataServices.Services
+namespace DataServices
 {
     public abstract class AbstractService<T, R> where T : class
     {

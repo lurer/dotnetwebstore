@@ -1,7 +1,7 @@
 ﻿using BOL.Models;
 using DAL;
 using DAL.DbModels;
-using DataServices.Adapters;
+using ObjectConverters;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataServices.Services
+namespace DataServices
 {
     public class CustomerService : AbstractService<DbCustomer, Customer>
     {

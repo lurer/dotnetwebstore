@@ -1,7 +1,7 @@
 ﻿using BOL.Models;
 using DAL;
 using DAL.DbModels;
-using DataServices.Adapters;
+using ObjectConverters;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,10 +11,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DataServices.Services
+namespace DataServices
 {
     public class OrderService : AbstractService<DbOrder, Order>
     {
+
+
         public override void Insert(Order inObj)
         {
             DbOrder dbOrder = transFromBusinessToDb(inObj);

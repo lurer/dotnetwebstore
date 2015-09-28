@@ -18,7 +18,7 @@ namespace DataServices
         public DbSet<DbReceipt> Receipts { get; set; }
         public DbSet<DbCustomer> Customer { get; set; }
 
-        public DataContext() : base("DataContext")
+        public DataContext() : base("name=DataContext")
         {
             Database.CreateIfNotExists();
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataServices.Adapters
+namespace ObjectConverters
 {
     public abstract class AbstractAdapter<T, R> where T : class
     {
