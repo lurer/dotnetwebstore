@@ -18,6 +18,7 @@ namespace DataServices
         public DbSet<DbReceipt> Receipts { get; set; }
         public DbSet<DbUser> Users { get; set; }
         public DbSet<DbRole> Roles { get; set; }
+        public DbSet<DbItemCategory> Category { get; set; }
 
         public DataContext() : base("name=DataContext")
         {

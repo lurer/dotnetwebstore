@@ -1,4 +1,7 @@
 ﻿
+- User må ha passordfelt
+- Item og User Views må oppdateres
+
 - Implementere Roller og pålogging
 - Validering
 - Få med Category og bilder i Item

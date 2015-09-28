@@ -15,12 +15,16 @@ namespace ObjectConverters
             DbItem dbItem = new DbItem()
             {
                 ItemID = obj.ItemID,
-                ItemNumber = obj.ItemNumber,
+                ItemCode = obj.ItemCode,
                 ItemDesc = obj.ItemDesc,
                 InStock = obj.InStock,
-                Price = obj.Price
+                Price = obj.Price,
+                Category = obj.Category,
+                ImgPath = obj.ImgPath
             };
+
             return dbItem;
+
         }
 
         public override Item TransFromDbToBusiness(DbItem dbObj)
@@ -28,12 +32,15 @@ namespace ObjectConverters
             Item newItem = new Item()
             {
                 ItemID = dbObj.ItemID,
-                ItemNumber = dbObj.ItemNumber,
+                ItemCode = dbObj.ItemCode,
                 ItemDesc = dbObj.ItemDesc,
                 InStock = dbObj.InStock,
-                Price = dbObj.Price
+                Price = dbObj.Price,
+                Category = dbObj.Category,
+                ImgPath = dbObj.ImgPath
             };
             return newItem;
+
         }
     }
 }

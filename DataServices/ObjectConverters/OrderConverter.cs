@@ -18,7 +18,7 @@ namespace ObjectConverters
                 DateTime = obj.DateTime
             };
 
-            var adapter = new OrderLineAdapter();
+            var adapter = new OrderLineConverter();
             dbOrder.Items = new List<DbOrderLine>();
             foreach (var newLine in obj.Items)
             {
@@ -36,7 +36,7 @@ namespace ObjectConverters
                 DateTime = dbObj.DateTime
             };
             
-            var adapter = new OrderLineAdapter();
+            var adapter = new OrderLineConverter();
             order.Items = new List<OrderLine>();
             foreach (var newLine in dbObj.Items)
             {

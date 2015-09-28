@@ -129,10 +129,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\s198599.mdf" />
-    <Content Include="App_Data\s198599_log.ldf">
-      <DependentUpon>s198599.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -164,6 +160,16 @@
     <Content Include="Areas\Customer\Views\Order\Details.cshtml" />
     <Content Include="Areas\Customer\Views\Order\Edit.cshtml" />
     <Content Include="Areas\Customer\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ItemCategories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ItemCategories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ItemCategories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ItemCategories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ItemCategories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Readme.txt" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -190,6 +196,8 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ItemCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
     <Compile Include="Areas\Common\Controllers\HomeController.cs" />
     <Compile Include="Areas\Common\Controllers\ItemController.cs" />
@@ -221,6 +229,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Common\Models\" />

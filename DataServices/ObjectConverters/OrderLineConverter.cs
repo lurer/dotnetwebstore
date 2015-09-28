@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ObjectConverters
 {
-    public class OrderLineAdapter : AbstractConverter<DbOrderLine, OrderLine>
+    public class OrderLineConverter : AbstractConverter<DbOrderLine, OrderLine>
     {
         public override DbOrderLine TransFromBusinessToDb(OrderLine obj)
         {

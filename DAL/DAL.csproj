@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbModels\DbItem.cs" />
+    <Compile Include="DbModels\DbItemCategory.cs" />
     <Compile Include="DbModels\DbOrder.cs" />
     <Compile Include="DbModels\DbOrderLine.cs" />
     <Compile Include="DbModels\DbPostAddress.cs" />

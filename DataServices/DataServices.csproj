@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="DataContext.cs" />
     <Compile Include="DataServices\AbstractService.cs" />
+    <Compile Include="DataServices\CategoryService.cs" />
+    <Compile Include="DataServices\RoleService.cs" />
     <Compile Include="DataServices\UserService.cs" />
     <Compile Include="DataServices\ItemService.cs" />
     <Compile Include="DataServices\OrderService.cs" />

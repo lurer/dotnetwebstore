@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace BOL.Models
 {
-    public class Role
+    public class ItemCategory
     {
         [Key]
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
     }
 }

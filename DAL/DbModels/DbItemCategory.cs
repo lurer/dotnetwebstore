@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BOL.Models
+namespace DAL.DbModels
 {
-    public class Role
+    public class DbItemCategory
     {
         [Key]
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
     }
 }

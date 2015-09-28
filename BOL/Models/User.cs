@@ -16,6 +16,7 @@ namespace BOL.Models
         public string PostCode { get; set; }
         public string PostAddress { get; set; }
 
+        public int Role { get; set; }
 
     }
 }
