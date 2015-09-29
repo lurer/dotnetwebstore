@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
 
-namespace LoginService
+namespace AuthenticationServices
 {
     public class WebstoreMembershipProvider : MembershipProvider
     {

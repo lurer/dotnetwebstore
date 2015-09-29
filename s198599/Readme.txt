@@ -9,7 +9,7 @@ Det vil si at det er flere prosjektet i løsningen som har et veldig snevert fok
  - Følge det jeg mener/tror er normen i arbeidslivet.
 
 Oppbyggning av løsningen:
-- MVC-prosjektet skal ikke vite om annet enn Business-objekter(BOL) og BLL-laget.
+- MVC-prosjektet skal ikke vite om annet enn Business-objekter(BOL), BLL-laget og DataServices.
 - BLL-prosjektet opererer via DataServices-prosjektet for å gjøre CRUD. 
 	Referanse til BOL, DAL og DataServices. (Les om utfordringen nedenfor)
 - DataServices-prosjektet tar i mot Business-objekter og lagrer dem via Entity Framework. Samme andre veien. Referanser til BOL og DAL
@@ -21,6 +21,8 @@ Nøkkelfunksjonalitet:
 - CRUD av Business-objekter er "oneliners" i controllerne
 - Utstrakt bruk av abstrakte klasser, interfaces og Generiske metoder i BLL og DataServices for å gjenbruke kode og holde vedlikehold til et minimum.
 - Veldig klar "separation of concern". Det er ingen tvetydighet hva et objekt skal gjøre og hvordan det gjøres.
+- Passord Hashes vis BLL.PasswordUtility før det lagres i databasen. 
+- Sider er tilgjenglige/utilgjenglige avhengig av hvilken rolle brukeren har.
 
 
 Utfordringer:

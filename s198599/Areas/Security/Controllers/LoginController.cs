@@ -1,8 +1,10 @@
-﻿using BOL.Models;
+﻿using BLL.AuthenticationServices;
+using BOL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -14,14 +16,17 @@ namespace s198599.Areas.Security.Controllers
         // GET: Security/Login
         public ActionResult Index()
         {
+            
             return View();
         }
 
         [HttpPost]
         public ActionResult SignIn(User user)
         {
-            try { 
-                if (Membership.ValidateUser(user.Email, user.Password))
+            try {
+                
+
+                if (PasswordUtility.CheckUsedPasswordAgainstHashed(user.Email, user.Password))
                 {
                     FormsAuthentication.SetAuthCookie(user.Email, false);
                     Session.Add("UserId", user.UserID);
