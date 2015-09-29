@@ -6,110 +6,110 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BLL;
 using BOL.Models;
-using DataServices;
 using BLL.BussinessTransactions;
 
 namespace s198599.Areas.Admin.Controllers
 {
     [Authorize(Roles = "A")]
-    public class ItemCategoriesController : Controller
+    public class ItemController : Controller
     {
-        
-        // GET: Admin/ItemCategories
+
+        // GET: Common/Item
         public ActionResult Index()
         {
-            return View(new CategoryTransaction().GetList());
+            return View(new ItemTransaction().GetList());
         }
 
-        // GET: Admin/ItemCategories/Details/5
+        // GET: Common/Item/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemCategory itemCategory = new CategoryTransaction().GetById(id);
-            if (itemCategory == null)
+            Item item = new ItemTransaction().GetById(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(itemCategory);
+            return View(item);
         }
 
-        // GET: Admin/ItemCategories/Create
+        // GET: Common/Item/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/ItemCategories/Create
+        // POST: Common/Item/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoryId,CategoryName")] ItemCategory itemCategory)
+        public ActionResult Create([Bind(Include = "ItemID,ItemNumber,ItemDesc,InStock,Price")] Item item)
         {
             if (ModelState.IsValid)
             {
-                new CategoryTransaction().Insert(itemCategory);
+                new ItemTransaction().Insert(item);
                 return RedirectToAction("Index");
             }
 
-            return View(itemCategory);
+            return View(item);
         }
 
-        // GET: Admin/ItemCategories/Edit/5
+        // GET: Common/Item/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemCategory itemCategory = new CategoryTransaction().GetById(id);
-            if (itemCategory == null)
+            Item item = new ItemTransaction().GetById(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(itemCategory);
+            return View(item);
         }
 
-        // POST: Admin/ItemCategories/Edit/5
+        // POST: Common/Item/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CategoryId,CategoryName")] ItemCategory itemCategory)
+        public ActionResult Edit([Bind(Include = "ItemID,ItemNumber,ItemDesc,InStock,Price")] Item item)
         {
             if (ModelState.IsValid)
             {
-                new CategoryTransaction().Update(itemCategory);
+                new ItemTransaction().Update(item);
                 return RedirectToAction("Index");
             }
-            return View(itemCategory);
+            return View(item);
         }
 
-        // GET: Admin/ItemCategories/Delete/5
+        // GET: Common/Item/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemCategory itemCategory = new CategoryTransaction().GetById(id);
-            if (itemCategory == null)
+            Item item = new ItemTransaction().GetById(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(itemCategory);
+            return View(item);
         }
 
-        // POST: Admin/ItemCategories/Delete/5
+        // POST: Common/Item/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            new CategoryTransaction().Delete(id);
+            new ItemTransaction().Delete(id);
             return RedirectToAction("Index");
         }
 

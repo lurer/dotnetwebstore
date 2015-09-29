@@ -56,5 +56,10 @@ namespace BLL.BussinessTransactions
         {
             service.Update(obj);
         }
+
+        public User getUserByEmail(string emailAdr)
+        {
+            return service.getUserByEmail(emailAdr);
+        }
     }
 }

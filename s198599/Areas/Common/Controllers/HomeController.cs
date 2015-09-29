@@ -7,6 +7,7 @@ using BOL.Models;
 
 namespace s198599.Areas.Common.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         // GET: Common/Home

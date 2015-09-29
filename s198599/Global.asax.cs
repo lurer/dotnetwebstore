@@ -13,6 +13,7 @@ namespace s198599
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalFilters.Filters.Add(new AuthorizeAttribute());
         }
     }
 }

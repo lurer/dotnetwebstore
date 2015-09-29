@@ -58,5 +58,11 @@ namespace DataServices
         {
             return new UserConverter().TransFromDbToBusiness(dbUser);
         }
+
+        public User getUserByEmail(string emailAdr)
+        {
+            DbUser dbUser = new DataContext().Users.ToList().Where(x => x.Email == emailAdr).FirstOrDefault();
+            return transFromDbToBusiness(dbUser);
+        }
     }
 }

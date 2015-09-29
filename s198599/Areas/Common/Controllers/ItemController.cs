@@ -12,6 +12,7 @@ using BLL.BussinessTransactions;
 
 namespace s198599.Areas.Common.Controllers
 {
+    [AllowAnonymous]
     public class ItemController : Controller
     {
 
@@ -36,81 +37,7 @@ namespace s198599.Areas.Common.Controllers
             return View(item);
         }
 
-        // GET: Common/Item/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: Common/Item/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemID,ItemNumber,ItemDesc,InStock,Price")] Item item)
-        {
-            if (ModelState.IsValid)
-            {
-                new ItemTransaction().Insert(item);
-                return RedirectToAction("Index");
-            }
-
-            return View(item);
-        }
-
-        // GET: Common/Item/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Item item = new ItemTransaction().GetById(id);
-            if (item == null)
-            {
-                return HttpNotFound();
-            }
-            return View(item);
-        }
-
-        // POST: Common/Item/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ItemID,ItemNumber,ItemDesc,InStock,Price")] Item item)
-        {
-            if (ModelState.IsValid)
-            {
-                new ItemTransaction().Update(item);
-                return RedirectToAction("Index");
-            }
-            return View(item);
-        }
-
-        // GET: Common/Item/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Item item = new ItemTransaction().GetById(id);
-            if (item == null)
-            {
-                return HttpNotFound();
-            }
-            return View(item);
-        }
-
-        // POST: Common/Item/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            new ItemTransaction().Delete(id);
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

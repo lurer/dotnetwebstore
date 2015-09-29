@@ -12,6 +12,7 @@ using BLL.BussinessTransactions;
 
 namespace s198599.Areas.Customer.Controllers
 {
+    [Authorize(Roles ="A")]
     public class OrderController : Controller
     {
         

@@ -33,12 +33,12 @@ namespace DataServices.DataServices
 
         internal override DbRole transFromBusinessToDb(Role obj)
         {
-            throw new NotImplementedException();
+            return new DbRole { RoleName = obj.RoleName };
         }
 
         internal override Role transFromDbToBusiness(DbRole dbObj)
         {
-            throw new NotImplementedException();
+            return new Role { RoleId = dbObj.RoleId, RoleName = dbObj.RoleName };
         }
     }
 }

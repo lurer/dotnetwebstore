@@ -21,11 +21,31 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+
                     <li>@Html.ActionLink("Home", "Index", "Home", new { Area = "Common" }, null)</li>
                     <li>@Html.ActionLink("Products", "Index", "Item", new { Area = "Common" }, null)</li>
-                    <li>@Html.ActionLink("Users", "Index", "User", new { Area = "Admin" }, null)</li>
-                    <li>@Html.ActionLink("Orders", "Index", "Order", new { Area = "Customer" }, null)</li>
-                        
+                    <li>@Html.ActionLink("Register", "Index", "Register", new { Area = "Security" }, null)</li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        if (User.IsInRole("A"))
+                        {
+                            <li>@Html.ActionLink("All Orders", "Index", "Order", new { Area = "Customer" }, null)</li>
+                            <li>@Html.ActionLink("Manage Users", "Index", "User", new { Area = "Admin" }, null)</li>
+                            <li>@Html.ActionLink("Manage Roles", "Index", "Roles", new { Area = "Admin" }, null)</li>
+                            <li>@Html.ActionLink("Manage Items", "Index", "Item", new { Area = "Admin" }, null)</li>
+                        }
+                        else if (User.IsInRole("A") || User.IsInRole("C"))
+                        {
+                            <li>@Html.ActionLink("Sign out", "SignOut", "Login", new { Area = "Security" }, null)</li>
+                            <li><a href="/Customer/MyUser/">Logged in: @User.Identity.Name</a></li>
+                        }
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Sign in", "Index", "Login", new { Area = "Security" }, null)</li>
+                    }
                 </ul>
             </div>
         </div>

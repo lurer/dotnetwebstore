@@ -12,6 +12,7 @@ using BLL.BussinessTransactions;
 
 namespace s198599.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "A")]
     public class UserController : Controller
     {
         public ActionResult Index()
