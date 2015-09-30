@@ -6,7 +6,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/customcss.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,7 +26,7 @@
 
                     <li>@Html.ActionLink("Home", "Index", "Home", new { Area = "Common" }, null)</li>
                     <li>@Html.ActionLink("Products", "Index", "Item", new { Area = "Common" }, null)</li>
-                    <li>@Html.ActionLink("Register", "Index", "Register", new { Area = "Security" }, null)</li>
+                    
 
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -36,15 +38,27 @@
                             <li>@Html.ActionLink("Manage Roles", "Index", "Roles", new { Area = "Admin" }, null)</li>
                             <li>@Html.ActionLink("Manage Items", "Index", "Item", new { Area = "Admin" }, null)</li>
                         }
-                        else if (User.IsInRole("A") || User.IsInRole("C"))
-                        {
-                            <li>@Html.ActionLink("Sign out", "SignOut", "Login", new { Area = "Security" }, null)</li>
-                            <li><a href="/Customer/MyUser/">Logged in: @User.Identity.Name</a></li>
-                        }
+                        
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+                                    @User.Identity.Name
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/Customer/MyUser/">My account</a></li>
+                                    <li><a href="/Security/Login/SignOut">Sign out</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+
+
                     }
                     else
                     {
                         <li>@Html.ActionLink("Sign in", "Index", "Login", new { Area = "Security" }, null)</li>
+                        <li>@Html.ActionLink("Register", "Index", "Register", new { Area = "Security" }, null)</li>
                     }
                 </ul>
             </div>

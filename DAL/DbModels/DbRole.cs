@@ -11,7 +11,9 @@ namespace DAL.DbModels
     public class DbRole
     {
         [Key]
-        public string RoleId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int RoleId { get; set; }
+        public string RoleStringId { get; set; }
         public string RoleName { get; set; }
     }
 }

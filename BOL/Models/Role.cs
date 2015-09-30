@@ -10,7 +10,14 @@ namespace BOL.Models
     public class Role
     {
         [Key]
-        public string RoleId { get; set; }
+        public int RoleId { get; set; }
+
+        [Required(ErrorMessage ="Please enter a one letter representation of the role"), RegularExpression(@"^[A-Z]{1}$")]
+        [Display(Name ="Role Id")]
+        public string RoleStringId { get; set; }
+
+        [Required(ErrorMessage ="Please enter the name of the role, like Admin, Customer etc")]
+        [Display(Name ="Role name")]
         public string RoleName { get; set; }
     }
 }

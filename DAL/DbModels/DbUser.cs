@@ -21,6 +21,7 @@ namespace DAL.DbModels
         public string PostCode { get; set; }
 
         public virtual DbPostAddress PostAddress { get; set; }
-        public string RoleId { get; set; }
+        public string RoleStringId { get; set; }
+        public int RoleId { get; set; }
     }
 }

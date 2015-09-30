@@ -11,6 +11,9 @@ namespace BOL.Models
     {
         [Key]
         public int CategoryId { get; set; }
+
+        [Required(ErrorMessage ="Please enter the Category name")]
+        [Display(Name ="Category name")]
         public string CategoryName { get; set; }
     }
 }

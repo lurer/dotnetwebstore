@@ -1,4 +1,6 @@
-﻿using DataServices;
+﻿using BOL.Models;
+using DAL.DbModels;
+using DataServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,13 +53,26 @@ namespace AuthenticationServices
         public override string[] GetRolesForUser(string username)
         {
             UserService service = new UserService();
-            string[] s = { service.GetList().Where(x => x.Email == username).FirstOrDefault().RoleId };
+            string[] s = { service.GetList().Where(x => x.Email == username).FirstOrDefault().RoleStringId };
             return s;
         }
 
         public override string[] GetUsersInRole(string roleName)
         {
-            throw new NotImplementedException();
+            var service = new UserService();
+            string[] usersFittingRole;
+            List<User> users = service.GetList().Where(x => x.RoleStringId == roleName).ToList(); 
+            if(users != null)
+            {
+                usersFittingRole = new string[users.Count];
+                int counter = 0;
+                foreach(var user in users)
+                {
+                    usersFittingRole[counter++] = user.Email;
+                }
+                return usersFittingRole;
+            }
+            return null;
         }
 
         public override bool IsUserInRole(string username, string roleName)

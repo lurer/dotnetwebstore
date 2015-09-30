@@ -142,6 +142,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\customcss.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -169,11 +170,6 @@
     <Content Include="Areas\Admin\Views\ItemCategories\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ItemCategories\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ItemCategories\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
     <Content Include="Areas\Security\Views\Login\Index.cshtml" />
     <Content Include="Areas\Security\Views\Register\Index.cshtml" />
     <Content Include="Areas\Customer\Views\MyUser\Index.cshtml" />
@@ -184,6 +180,11 @@
     <Content Include="Areas\Admin\Views\Item\Delete.cshtml" />
     <Content Include="Areas\Common\Views\Item\Index.cshtml" />
     <Content Include="Areas\Common\Views\Item\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Readme.txt" />
     <Content Include="Scripts\jquery-1.10.2.js" />

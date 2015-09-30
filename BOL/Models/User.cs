@@ -11,37 +11,36 @@ namespace BOL.Models
         public int UserID { get; set; }
 
 
-        [Required]
-        [MinLength(2)]
+        [Required(ErrorMessage = "Please enter your first name") MinLength(2)]
+        [Display(Name ="First name")]
         public string FirstName { get; set; }
 
-        [Required]
-        [MinLength(3)]
+        [Required(ErrorMessage ="Please enter your last name"), MinLength(3)]
+        [Display(Name = "Last name")]
         public string LastName { get; set; }
 
-        [Required]
-        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$")]
+        [Required(ErrorMessage ="Please enter a valid email address"), RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$")]
         public string Email { get; set; }
 
-        [Required]
-        [MinLength(5)]
+        [Required(ErrorMessage ="Password must be a minimum of 5 characters"), MinLength(5)]
         public string Password { get; set; }
         
         [StringLength(8)]
         public string Telephone { get; set; }
 
-        [Required]
-        [MinLength(5)]
+        [Required(ErrorMessage ="Please enter a valid address. Minimum 5 characters long"), MinLength(5)]
         public string Address { get; set; }
 
-        [Required]
-        [StringLength(4)]
+        [Required(ErrorMessage ="Please enter a valid post code. 4 digits long"), RegularExpression(@"^\d{4}$")]
+        [Display(Name ="Post code")]
         public string PostCode { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please enter a Post address")]
+        [Display(Name ="Post address")]
         public string PostAddress { get; set; }
 
-        public string RoleId { get; set; }
+        public string RoleStringId { get; set; }
+        public int RoleId { get; set; }
 
     }
 }

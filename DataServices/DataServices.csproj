@@ -53,6 +53,7 @@
     <Compile Include="DataServices\ItemService.cs" />
     <Compile Include="DataServices\OrderService.cs" />
     <Compile Include="ObjectConverters\AbstractConverter.cs" />
+    <Compile Include="ObjectConverters\RoleConverter.cs" />
     <Compile Include="ObjectConverters\UserConverter.cs" />
     <Compile Include="ObjectConverters\ItemConverter.cs" />
     <Compile Include="ObjectConverters\OrderConverter.cs" />

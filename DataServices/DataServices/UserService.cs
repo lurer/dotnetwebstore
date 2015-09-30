@@ -19,8 +19,11 @@ namespace DataServices
         {
             
             using (var context = new DataContext()){
-                var newUser = transFromBusinessToDb(inUser);
+                var dbUser = transFromBusinessToDb(inUser);
 
+                if(context.Users.ToList().Where(x=>x.Email == dbUser.Email).Count() > 0)
+                    return;
+                
                 if(context.PostAddresses.Find(inUser.PostCode) == null)
                 {
                     var PostAddress = new DbPostAddress()
@@ -28,10 +31,10 @@ namespace DataServices
                         PostCode = inUser.PostCode,
                         PostAddres = inUser.PostAddress
                     };
-                    newUser.PostAddress = PostAddress;
+                    dbUser.PostAddress = PostAddress;
                 }
 
-                context.Users.Add(newUser);
+                context.Users.Add(dbUser);
                 context.SaveChanges();
             }//using 
         }

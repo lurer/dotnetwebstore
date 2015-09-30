@@ -12,8 +12,6 @@ using BLL.BussinessTransactions;
 
 namespace s198599.Areas.Admin.Controllers
 {
- 
-    [Authorize(Roles ="A")]   
     public class RolesController : Controller
     {
         
@@ -50,7 +48,7 @@ namespace s198599.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RoleId,RoleName")] Role role)
+        public ActionResult Create([Bind(Include = "RoleId,RoleStringId,RoleName")] Role role)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +79,7 @@ namespace s198599.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RoleId,RoleName")] Role role)
+        public ActionResult Edit([Bind(Include = "RoleId,RoleStringId,RoleName")] Role role)
         {
             if (ModelState.IsValid)
             {

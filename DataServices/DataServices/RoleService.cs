@@ -1,5 +1,6 @@
 ﻿using BOL.Models;
 using DAL.DbModels;
+using ObjectConverters;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,7 +14,7 @@ namespace DataServices.DataServices
     {
         public override void Insert(Role inObj)
         {
-            DbRole dbRole = new DbRole{RoleName = inObj.RoleName};
+            DbRole dbRole = transFromBusinessToDb(inObj);
             using (var context = new DataContext())
             {
                 context.Roles.Add(dbRole);
@@ -23,7 +24,7 @@ namespace DataServices.DataServices
 
         public override void Update(Role obj)
         {
-            DbRole dbRole = new DbRole { RoleName = obj.RoleName };
+            DbRole dbRole = transFromBusinessToDb(obj);
             using (var context = new DataContext())
             {
                 context.Entry(dbRole).State = EntityState.Modified;
@@ -33,12 +34,12 @@ namespace DataServices.DataServices
 
         internal override DbRole transFromBusinessToDb(Role obj)
         {
-            return new DbRole { RoleName = obj.RoleName };
+            return new RoleConverter().TransFromBusinessToDb(obj);
         }
 
         internal override Role transFromDbToBusiness(DbRole dbObj)
         {
-            return new Role { RoleId = dbObj.RoleId, RoleName = dbObj.RoleName };
+            return new RoleConverter().TransFromDbToBusiness(dbObj);
         }
     }
 }
