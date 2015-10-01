@@ -15,14 +15,14 @@ namespace DataServices
     public class UserService : AbstractService<DbUser, User>
     {
 
-        public override void Insert(User inUser)
+        public override User Insert(User inUser)
         {
             
             using (var context = new DataContext()){
                 var dbUser = transFromBusinessToDb(inUser);
 
                 if(context.Users.ToList().Where(x=>x.Email == dbUser.Email).Count() > 0)
-                    return;
+                    return null;
                 
                 if(context.PostAddresses.Find(inUser.PostCode) == null)
                 {
@@ -36,10 +36,12 @@ namespace DataServices
 
                 context.Users.Add(dbUser);
                 context.SaveChanges();
+
+                return transFromDbToBusiness(dbUser);
             }//using 
         }
 
-        public override void Update(User obj)
+        public override User Update(User obj)
         {
             DbUser dbUser = transFromBusinessToDb(obj);
             dbUser.PostAddress = new DbPostAddress();
@@ -49,6 +51,7 @@ namespace DataServices
                 context.Entry(dbUser).State = EntityState.Modified;
                 context.SaveChanges();
             }
+            return transFromDbToBusiness(dbUser);
         }
 
 

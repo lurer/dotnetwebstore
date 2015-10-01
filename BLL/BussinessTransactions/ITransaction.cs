@@ -10,10 +10,10 @@ namespace BLL.BussinessTransactions
     {
         List<T> GetList();
         T GetById(int? id);
-        T GetByStringId(String id);
-        void Insert(T obj);
+        
+        T Insert(T obj);
         void Delete(int id);
-        void Update(T obj);
-        void Save();
+        T Update(T obj);
+
     }
 }

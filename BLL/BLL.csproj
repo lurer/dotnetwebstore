@@ -58,8 +58,8 @@
   <ItemGroup>
     <Compile Include="AuthenticationServices\PasswordUtility.cs" />
     <Compile Include="BussinessTransactions\CategoryTransaction.cs" />
+    <Compile Include="BussinessTransactions\ComplexTransactions.cs" />
     <Compile Include="BussinessTransactions\ItemTransaction.cs" />
-    <Compile Include="BussinessTransactions\LoginTransaction.cs" />
     <Compile Include="BussinessTransactions\UserRoleTransaction.cs" />
     <Compile Include="BussinessTransactions\UserTransaction.cs" />
     <Compile Include="BussinessTransactions\ITransaction.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="DataContext.cs" />
     <Compile Include="AuthenticationServices\WebstoreRoleProvider.cs" />
     <Compile Include="AuthenticationServices\WebstoreMembershipProvider.cs" />
+    <Compile Include="Initializer\InitializeDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,13 +87,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Scripts\jquery-2.1.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.1.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.js" />
-    <Content Include="Scripts\nugetexample.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

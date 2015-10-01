@@ -10,7 +10,7 @@ namespace DataServices.DataServices
 {
     public class CategoryService : AbstractService<DbItemCategory, ItemCategory>
     {
-        public override void Insert(ItemCategory inObj)
+        public override ItemCategory Insert(ItemCategory inObj)
         {
             DbItemCategory dbCategory = new DbItemCategory { CategoryName = inObj.CategoryName };
             using (var context = new DataContext())
@@ -18,26 +18,28 @@ namespace DataServices.DataServices
                 context.Category.Add(dbCategory);
                 context.SaveChanges();
             }
+            return transFromDbToBusiness(dbCategory);
         }
 
-        public override void Update(ItemCategory obj)
+        public override ItemCategory Update(ItemCategory obj)
         {
-            DbItemCategory dbCategory = new DbItemCategory { CategoryName = obj.CategoryName };
+            var dbCategory = transFromBusinessToDb(obj);
             using (var context = new DataContext())
             {
                 context.Entry(dbCategory).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }
+            return transFromDbToBusiness(dbCategory);
         }
 
         internal override DbItemCategory transFromBusinessToDb(ItemCategory obj)
         {
-            throw new NotImplementedException();
+            return new DbItemCategory { CategoryName = obj.CategoryName };
         }
 
         internal override ItemCategory transFromDbToBusiness(DbItemCategory dbObj)
         {
-            throw new NotImplementedException();
+            return new ItemCategory { CategoryId = dbObj.CategoryId, CategoryName = dbObj.CategoryName };
         }
     }
 }

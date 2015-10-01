@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BOL.Models;
-using DataServices;
+using BLL.DataServices;
 using BLL.BussinessTransactions;
 
 namespace s198599.Areas.Admin.Controllers
@@ -52,7 +52,7 @@ namespace s198599.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                new CategoryTransaction().Insert(itemCategory);
+                itemCategory =  new CategoryTransaction().Insert(itemCategory);
                 return RedirectToAction("Index");
             }
 
@@ -83,7 +83,7 @@ namespace s198599.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                new CategoryTransaction().Update(itemCategory);
+                itemCategory = new CategoryTransaction().Update(itemCategory);
                 return RedirectToAction("Index");
             }
             return View(itemCategory);

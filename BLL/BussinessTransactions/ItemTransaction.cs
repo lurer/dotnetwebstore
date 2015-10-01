@@ -32,29 +32,19 @@ namespace BLL.BussinessTransactions
             return service.GetById(id);
         }
 
-        public Item GetByStringId(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Item> GetList()
         {
             return service.GetList();
         }
 
-        public void Insert(Item obj)
+        public Item Insert(Item obj)
         {
-            service.Insert(obj);
+            return service.Insert(obj);
         }
 
-        public void Save()
+        public Item Update(Item obj)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Item obj)
-        {
-            service.Update(obj);
+            return service.Update(obj);
         }
     }
 }

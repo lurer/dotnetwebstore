@@ -17,7 +17,7 @@ namespace DataServices
     {
 
 
-        public override void Insert(Order inObj)
+        public override Order Insert(Order inObj)
         {
             DbOrder dbOrder = transFromBusinessToDb(inObj);
             using(var context = new DataContext())
@@ -25,9 +25,10 @@ namespace DataServices
                 context.Orders.Add(dbOrder);
                 context.SaveChanges();
             }
+            return transFromDbToBusiness(dbOrder);
         }
 
-        public override void Update(Order obj)
+        public override Order Update(Order obj)
         {
             DbOrder dbOrder = transFromBusinessToDb(obj);
             using(var context = new DataContext())
@@ -35,6 +36,7 @@ namespace DataServices
                 context.Entry(dbOrder).State = EntityState.Modified;
                 context.SaveChanges();
             }
+            return transFromDbToBusiness(dbOrder);
         }
 
         internal override DbOrder transFromBusinessToDb(Order obj)

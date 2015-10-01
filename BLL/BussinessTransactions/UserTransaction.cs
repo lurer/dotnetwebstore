@@ -32,29 +32,21 @@ namespace BLL.BussinessTransactions
             return service.GetById(id);
         }
 
-        public User GetByStringId(string id)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public List<User> GetList()
         {
             return service.GetList();
         }
 
-        public void Insert(User obj)
+        public User Insert(User obj)
         {
-            service.Insert(obj);
+            return service.Insert(obj);
         }
 
-        public void Save()
+        public User Update(User obj)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Update(User obj)
-        {
-            service.Update(obj);
+            return service.Update(obj);
         }
 
         public User getUserByEmail(string emailAdr)

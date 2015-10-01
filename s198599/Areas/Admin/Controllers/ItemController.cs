@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using BLL;
 using BOL.Models;
 using BLL.BussinessTransactions;
+using s198599.Areas.Admin.Models;
 
 namespace s198599.Areas.Admin.Controllers
 {
@@ -19,7 +20,7 @@ namespace s198599.Areas.Admin.Controllers
         // GET: Common/Item
         public ActionResult Index()
         {
-            return View(new ItemTransaction().GetList());
+             return View(new ItemTransaction().GetList());
         }
 
         // GET: Common/Item/Details/5
@@ -40,7 +41,15 @@ namespace s198599.Areas.Admin.Controllers
         // GET: Common/Item/Create
         public ActionResult Create()
         {
-            return View();
+            var categories = new CategoryTransaction().GetList();
+            IEnumerable<SelectListItem> categoryList = categories.ToList().Select(x => new SelectListItem()
+            {
+                Value = x.CategoryId.ToString(),
+                Text = x.CategoryName
+            });
+            var viewItem = new ItemViewPopulated();
+            viewItem.Categories = new SelectList(categoryList, "Value", "Text");
+            return View(viewItem);
         }
 
         // POST: Common/Item/Create
@@ -48,11 +57,22 @@ namespace s198599.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemID,ItemNumber,ItemDesc,InStock,Price")] Item item)
+        public ActionResult Create([Bind(Include = "ItemCode,ItemDesc,SelectedCategory,InStock,Price")] ItemViewPopulated item)
         {
             if (ModelState.IsValid)
             {
-                new ItemTransaction().Insert(item);
+
+                var domainItem = new Item()
+                {
+                    ItemCode = item.ItemCode,
+                    ItemDesc = item.ItemDesc,
+                    Category = item.SelectedCategory,
+                    InStock = item.InStock,
+                    Price = item.Price,
+                    ImgPath = item.ImgPath
+                };
+
+                new ItemTransaction().Insert(domainItem);
                 return RedirectToAction("Index");
             }
 
@@ -119,7 +139,7 @@ namespace s198599.Areas.Admin.Controllers
             {
                 //db.Dispose();
             }
-            base.Dispose(disposing);
+            //base.Dispose(disposing);
         }
     }
 }

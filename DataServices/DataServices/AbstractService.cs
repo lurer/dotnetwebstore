@@ -35,10 +35,6 @@ namespace DataServices
             };
         }
 
-        public T GetByStringId(string id)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<R> GetList()
         {
@@ -56,14 +52,10 @@ namespace DataServices
             return busList;
         }
 
-        public void Save()
-        {
-            //new DataContext().SaveChanges();
-        }
 
-        public abstract void Insert(R inObj);
+        public abstract R Insert(R inObj);
 
-        public abstract void Update(R obj);
+        public abstract R Update(R obj);
               
 
         internal abstract R transFromDbToBusiness(T dbObj);

@@ -14,7 +14,7 @@ namespace DataServices
 {
     public class ItemService : AbstractService<DbItem, Item>
     {
-        public override void Insert(Item inObj)
+        public override Item Insert(Item inObj)
         {
             DbItem dbItem = transFromBusinessToDb(inObj);
             using(var context = new DataContext())
@@ -22,9 +22,10 @@ namespace DataServices
                 context.Items.Add(dbItem);
                 context.SaveChanges();
             }
+            return transFromDbToBusiness(dbItem);
         }
 
-        public override void Update(Item obj)
+        public override Item Update(Item obj)
         {
             DbItem dbItem = transFromBusinessToDb(obj);
             using(var context = new DataContext())
@@ -32,6 +33,7 @@ namespace DataServices
                 context.Entry(dbItem).State = EntityState.Modified;
                 context.SaveChanges();
             }
+            return transFromDbToBusiness(dbItem);
         }
 
         internal override DbItem transFromBusinessToDb(Item obj)

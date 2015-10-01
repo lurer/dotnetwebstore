@@ -25,29 +25,24 @@ namespace BLL.BussinessTransactions
             return new CategoryService().GetById(id);
         }
 
-        public ItemCategory GetByStringId(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ItemCategory> GetList()
+        public IEnumerable<ItemCategory> GetList()
         {
             return new CategoryService().GetList();
         }
 
-        public void Insert(ItemCategory obj)
+        public ItemCategory Insert(ItemCategory obj)
         {
-            new CategoryService().Insert(obj);
+            return new CategoryService().Insert(obj);
         }
 
-        public void Save()
+        public ItemCategory Update(ItemCategory obj)
+        {
+            return new CategoryService().Update(obj);
+        }
+
+        List<ItemCategory> ITransaction<ItemCategory>.GetList()
         {
             throw new NotImplementedException();
-        }
-
-        public void Update(ItemCategory obj)
-        {
-            new CategoryService().Update(obj);
         }
     }
 }

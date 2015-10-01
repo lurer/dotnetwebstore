@@ -1,4 +1,5 @@
 ﻿
+
 - Item og User Views må oppdateres
 	- Dropdown-lister i Administrasjonsvisning. Ajax-kall
 - Validering

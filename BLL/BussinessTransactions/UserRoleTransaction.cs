@@ -26,29 +26,20 @@ namespace BLL.BussinessTransactions
             return new RoleService().GetById(id);
         }
 
-        public Role GetByStringId(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Role> GetList()
         {
             return new RoleService().GetList();
         }
 
-        public void Insert(Role obj)
+        public Role Insert(Role obj)
         {
-            new RoleService().Insert(obj);
+            return new RoleService().Insert(obj);
         }
 
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Update(Role obj)
+        public Role Update(Role obj)
         {
-            new RoleService().Update(obj);
+            return new RoleService().Update(obj);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace DataServices.DataServices
 {
     public class RoleService : AbstractService<DbRole, Role>
     {
-        public override void Insert(Role inObj)
+        public override Role Insert(Role inObj)
         {
             DbRole dbRole = transFromBusinessToDb(inObj);
             using (var context = new DataContext())
@@ -20,9 +20,10 @@ namespace DataServices.DataServices
                 context.Roles.Add(dbRole);
                 context.SaveChanges();
             }
+            return transFromDbToBusiness(dbRole);
         }
 
-        public override void Update(Role obj)
+        public override Role Update(Role obj)
         {
             DbRole dbRole = transFromBusinessToDb(obj);
             using (var context = new DataContext())
@@ -30,6 +31,7 @@ namespace DataServices.DataServices
                 context.Entry(dbRole).State = EntityState.Modified;
                 context.SaveChanges();
             }
+            return transFromDbToBusiness(dbRole);
         }
 
         internal override DbRole transFromBusinessToDb(Role obj)

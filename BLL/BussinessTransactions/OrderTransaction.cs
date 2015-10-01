@@ -25,29 +25,20 @@ namespace BLL.BussinessTransactions
             return new OrderService().GetById(id);
         }
 
-        public Order GetByStringId(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Order> GetList()
         {
             return new OrderService().GetList();
         }
 
-        public void Insert(Order obj)
+        public Order Insert(Order obj)
         {
-            new OrderService().Insert(obj);
+            return new OrderService().Insert(obj);
         }
 
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Update(Order obj)
+        public Order Update(Order obj)
         {
-            new OrderService().Update(obj);
+            return new OrderService().Update(obj);
         }
     }
 }
