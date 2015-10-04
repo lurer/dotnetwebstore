@@ -11,15 +11,16 @@ using BOL.Models;
 using BLL.BussinessTransactions;
 using s198599.Models;
 using s198599.Models.ViewModelConverters;
+using s198599.Areas.Customer.Controllers;
 
 namespace s198599.Areas.Common.Controllers
 {
     [AllowAnonymous]
-    public class ItemController : Controller
+    public class DisplayItemsController : Controller
     {
 
         // GET: Common/Item
-        public ActionResult Index()
+        public ActionResult ListAll()
         {
             var domainItems = new ItemTransaction().GetList();
             var viewItems = new List<ItemViewPopulated>();
@@ -46,11 +47,13 @@ namespace s198599.Areas.Common.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddItemToCart(int id)
+        public JsonResult AddItemToCart(int id)
         {
-            TempData["ItemId"] = id;
-            return RedirectToAction("AddItemToCart", "ShoppingCart", new  { Area="Customer"});
+            var mySessionID = Session["SessionID"] as string;
+            return new ShoppingCartController().AddItemToCart(id, mySessionID);
+            
         }
+
 
 
         protected override void Dispose(bool disposing)

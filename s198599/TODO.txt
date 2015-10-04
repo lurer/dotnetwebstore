@@ -1,4 +1,5 @@
-﻿::::::: Holder på med ShoppingCart::::::::::::::
+﻿Spørsmål: HVorfor er /Common/ListAll og Details ikke like når det gjelder filbane?
+
 
 ::::::: Partial views for Ordrehistorikk og for Basket::::::::::::
 

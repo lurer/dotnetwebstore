@@ -12,7 +12,7 @@ namespace BLL.ShoppingCartService
 
         private static ShoppingCartManager instance;
 
-        private List<ShoppingCart> shoppingCarts;
+        private static List<ShoppingCart> shoppingCarts;
 
         private ShoppingCartManager()
         {
@@ -36,12 +36,24 @@ namespace BLL.ShoppingCartService
 
         public ShoppingCart getMyShoppingCart(string sessionID)
         {
-            return shoppingCarts.ToList().Where(x => x.SessionID == sessionID).FirstOrDefault();
+            var cart =  shoppingCarts.ToList().Where(x => x.SessionID == sessionID).FirstOrDefault();
+            if(cart != null)
+            {
+                updateCartTotalPrice(cart);
+            }
+            
+            return cart;
         }
 
         public void deleteShopppingCart(string sessionID)
         {
             shoppingCarts.Remove(shoppingCarts.Find(x => x.SessionID == sessionID));
+        }
+
+
+        public void updateCartTotalPrice(ShoppingCart cart)
+        {
+            cart.PriceOfCart = cart.Items.Select(x => x.Price).Sum();
         }
     }
 }

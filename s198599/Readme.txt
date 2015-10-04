@@ -22,8 +22,12 @@ Nøkkelfunksjonalitet:
 - Utstrakt bruk av abstrakte klasser, interfaces og Generiske metoder i BLL og DataServices for å gjenbruke kode og holde vedlikehold til et minimum.
 - Veldig klar "separation of concern". Det er ingen tvetydighet hva et objekt skal gjøre og hvordan det gjøres.
 - GlobalInterceptor i BLL.AuthenticationServices "avskjærer" ALLE forespørsler og sjekker og gir SessionID til bruker.
-- Passord Hashes vis BLL.PasswordUtility før det lagres i databasen. 
+- Passord Hashes ved hjelp av BLL.PasswordUtility før det lagres i databasen. 
 - Sider er tilgjenglige/utilgjenglige avhengig av hvilken rolle brukeren har.
+- Ajax
+	- Kjøpefunksjonalitet og oppdatering av Handlekurv skjer via ajax-kall
+- Handlekurv/ShoppingCart bruker en unik SessionID som identifikasjon. BLL.AuthenticationServices.GlobalInterceptor passer på at alle 
+	sessions har en gyldig SessionID. 
 
 
 Utfordringer:

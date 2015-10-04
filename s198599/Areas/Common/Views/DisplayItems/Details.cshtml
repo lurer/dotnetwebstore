@@ -4,11 +4,18 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Html.Partial("_BasketPartialView")
 
-<h2>Details</h2>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(function () {
+        getUpdatedBasket('../../ShoppingCart/GetMyUpdatedCartJSON');
+    });
+</script>
+
+<h2>@Model.ItemDesc</h2>
 
 <div>
-    <h4>Item</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -62,6 +69,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Buy", "AddItemToCart", new { id = Model.ItemID }, htmlAttributes: new { @class = "btn btn-primary btn-xs" })
-    @Html.ActionLink("Back to List", "Index", "", htmlAttributes: new { @class = "btn btn-info btn-xs" })
+    <a href="" onclick="buyItem(@Model.ItemID); return false;" class="btn btn-primary btn-sm">Buy</a>
+    @Html.ActionLink("Back to List", "ListAll", "", htmlAttributes: new { @class = "btn btn-info btn-xs" })
 </p>

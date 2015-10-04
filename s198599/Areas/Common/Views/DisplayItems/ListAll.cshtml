@@ -5,23 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@Html.Partial("_BasketPartialView")
+
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script>
-
-    function buyItem(itemId) {
-
-        //alert(itemId);
-        $.post('@Url.Action("AddItemToCart", "Item")', { 'id' : itemId },
-            function(){
-
-            });
-        
-    }
-    
-
+    $(function () {
+        getUpdatedBasket('../ShoppingCart/GetMyUpdatedCartJSON');
+    });
 </script>
-
+<h2>Our products</h2>
 
 <table class="table">
     <tr>
@@ -68,7 +60,6 @@
         </td>
         <td>
             <a href="" onclick="buyItem(@item.ItemID); return false;" class="btn btn-primary btn-sm">Buy</a>
-            @Html.ActionLink("Buy", "AddItemToCart", new { id = item.ItemID }, htmlAttributes: new { @class = "btn btn-primary btn-sm"})
             @Html.ActionLink("Details", "Details", new { id = item.ItemID }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
             
         </td>
@@ -76,3 +67,5 @@
 }
 
 </table>
+
+
