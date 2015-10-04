@@ -1,4 +1,4 @@
-﻿@model BOL.Models.Item
+﻿@model s198599.Models.ItemViewPopulated
 
 @{
     ViewBag.Title = "Details";
@@ -44,11 +44,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Category)
+            @Html.DisplayNameFor(model => model.SelectedCategoryName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Category)
+            @Html.DisplayFor(model => model.SelectedCategoryName)
         </dd>
 
         <dt>
@@ -62,6 +62,6 @@
     </dl>
 </div>
 <p>
-    
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Buy", "AddItemToCart", new { id = Model.ItemID }, htmlAttributes: new { @class = "btn btn-primary btn-xs" })
+    @Html.ActionLink("Back to List", "Index", "", htmlAttributes: new { @class = "btn btn-info btn-xs" })
 </p>

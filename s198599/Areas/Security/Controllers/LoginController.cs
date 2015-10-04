@@ -29,6 +29,7 @@ namespace s198599.Areas.Security.Controllers
                 if (PasswordUtility.CheckUsedPasswordAgainstHashed(user.Email, user.Password))
                 {
                     FormsAuthentication.SetAuthCookie(user.Email, false);
+                   
                     Session.Add("UserId", user.UserID);
                     return RedirectToAction("Index", "Home", new { area = "Common" });
                 }
@@ -47,6 +48,7 @@ namespace s198599.Areas.Security.Controllers
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();
+            Session.Abandon();
             return RedirectToAction("Index", "Home", new { area = "Common" });
         }
     }

@@ -58,6 +58,7 @@
     <Compile Include="Models\PostAddress.cs" />
     <Compile Include="Models\Receipt.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

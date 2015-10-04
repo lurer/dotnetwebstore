@@ -20,6 +20,7 @@ namespace DAL.DbModels
         public string Address { get; set; }
         public string PostCode { get; set; }
 
+        public List<DbOrder> Orders { get; set; }
         public virtual DbPostAddress PostAddress { get; set; }
         public string RoleStringId { get; set; }
         public int RoleId { get; set; }

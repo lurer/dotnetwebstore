@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create","", htmlAttributes: new { @class = "btn btn-success btn-sm" })
 </p>
 <table class="table">
     <tr>
@@ -31,9 +31,9 @@
             @Html.DisplayFor(modelItem => item.OrderPriceTotal)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderNumber }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderNumber }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderNumber })
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderNumber }, htmlAttributes: new { @class = "btn btn-warning btn-sm" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.OrderNumber }, htmlAttributes: new { @class = "btn btn-info btn-sm" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderNumber }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
         </td>
     </tr>
 }

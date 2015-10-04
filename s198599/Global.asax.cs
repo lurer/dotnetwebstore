@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.AuthenticationServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,7 @@ namespace s198599
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalFilters.Filters.Add(new AuthorizeAttribute());
+            GlobalFilters.Filters.Add(new GlobalInterceptor());
         }
     }
 }

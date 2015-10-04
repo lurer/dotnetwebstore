@@ -22,6 +22,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "", htmlAttributes: new { @class = "btn btn-info btn-sm" })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId }, htmlAttributes: new { @class = "btn btn-warning btn-sm" }) 
+    
 </p>

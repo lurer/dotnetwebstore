@@ -42,5 +42,7 @@ namespace BOL.Models
         public string RoleStringId { get; set; }
         public int RoleId { get; set; }
 
+        public List<Order> Orders { get; set; }
+
     }
 }

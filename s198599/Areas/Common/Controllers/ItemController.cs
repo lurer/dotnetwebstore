@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using BLL;
 using BOL.Models;
 using BLL.BussinessTransactions;
+using s198599.Models;
+using s198599.Models.ViewModelConverters;
 
 namespace s198599.Areas.Common.Controllers
 {
@@ -19,7 +21,13 @@ namespace s198599.Areas.Common.Controllers
         // GET: Common/Item
         public ActionResult Index()
         {
-            return View(new ItemTransaction().GetList());
+            var domainItems = new ItemTransaction().GetList();
+            var viewItems = new List<ItemViewPopulated>();
+            foreach (var item in domainItems)
+            {
+                viewItems.Add(ItemViewConverter.convertToView(item));
+            }
+            return View(viewItems.AsEnumerable());
         }
 
         // GET: Common/Item/Details/5
@@ -34,9 +42,15 @@ namespace s198599.Areas.Common.Controllers
             {
                 return HttpNotFound();
             }
-            return View(item);
+            return View(ItemViewConverter.convertToView(item));
         }
 
+        [HttpPost]
+        public ActionResult AddItemToCart(int id)
+        {
+            TempData["ItemId"] = id;
+            return RedirectToAction("AddItemToCart", "ShoppingCart", new  { Area="Customer"});
+        }
 
 
         protected override void Dispose(bool disposing)
@@ -47,5 +61,7 @@ namespace s198599.Areas.Common.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

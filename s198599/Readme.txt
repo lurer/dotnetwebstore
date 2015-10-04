@@ -21,6 +21,7 @@ Nøkkelfunksjonalitet:
 - CRUD av Business-objekter er "oneliners" i controllerne
 - Utstrakt bruk av abstrakte klasser, interfaces og Generiske metoder i BLL og DataServices for å gjenbruke kode og holde vedlikehold til et minimum.
 - Veldig klar "separation of concern". Det er ingen tvetydighet hva et objekt skal gjøre og hvordan det gjøres.
+- GlobalInterceptor i BLL.AuthenticationServices "avskjærer" ALLE forespørsler og sjekker og gir SessionID til bruker.
 - Passord Hashes vis BLL.PasswordUtility før det lagres i databasen. 
 - Sider er tilgjenglige/utilgjenglige avhengig av hvilken rolle brukeren har.
 

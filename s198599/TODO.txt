@@ -1,11 +1,25 @@
-﻿
+﻿::::::: Holder på med ShoppingCart::::::::::::::
+
+::::::: Partial views for Ordrehistorikk og for Basket::::::::::::
 
 - Item og User Views må oppdateres
 	- Dropdown-lister i Administrasjonsvisning. Ajax-kall
 - Validering
 - Få med Category og bilder i Item
 - Må kunne liste ordrehistorikk per bruker, i "my page"
+- DbUser har ingen liste over sine ordre
+
 
 Mulige objekter
 - Basket - Session-basert
-- 
+	- Må generere unik basket UID
+	- Legge i session
+
+
+Use Case: Add Item to Cart
+- Controller tar mot Id'en til produktet
+	- Sjekker om produktet finnes på lager
+	- Oppretter en Shopping basket om den ikke finnes.
+	- Legger produktet til i Basket.
+	- Basket legges i Session
+	- Returnerer Boolean om det gikk i orden.

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace s198599.Areas.Admin.Models
+namespace s198599.Models
 {
     public class ItemViewPopulated
     {
@@ -27,11 +27,17 @@ namespace s198599.Areas.Admin.Models
         [Required(ErrorMessage = "Please enter the current price")]
         public double Price { get; set; }
 
+        [Display(Name = "Category")]
+        [Required(ErrorMessage = "Please choose a category from the list")]
         public int SelectedCategory { get; set; }
 
-      //  [Required(ErrorMessage = "Please choose a category from the list")]
+        [Display(Name ="Category")]
+        public string SelectedCategoryName { get; set; }
+
+        
         public SelectList Categories { get; set; }
 
         public string ImgPath { get; set; }
+
     }
 }
