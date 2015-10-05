@@ -13,7 +13,7 @@ namespace DAL.DbModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderNumber { get; set; }
 
-        [ForeignKey("DbUser")]
+        [ForeignKey("User")]
         public int UserID { get; set; }
         public virtual DbUser User { get; set; }
         public DateTime DateTime { get; set; }

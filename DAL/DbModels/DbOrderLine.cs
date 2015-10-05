@@ -16,7 +16,7 @@ namespace DAL.DbModels
         public int Amount { get; set; }
         public double Discount { get; set; }
 
-        [ForeignKey("DbItem")]
+        [ForeignKey("Item")]
         public int ItemId { get; set; }
         public virtual DbItem Item { get; set; }
               

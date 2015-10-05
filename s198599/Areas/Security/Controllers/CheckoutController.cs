@@ -59,7 +59,7 @@ namespace s198599.Areas.Security.Controllers
 
             new OrderTransaction().Insert(myOrder);
 
-            return RedirectToAction("Index", "Home", new { area = "Common" });
+            return RedirectToAction("Index", "MyUser", new { area = "Customer" });
         }
 
         public ActionResult ChangeAccount()

@@ -1,11 +1,5 @@
-﻿Spørsmål: 
-	- Hvorfor er /Common/ListAll og Details ikke like når det gjelder filbane? (under products / basket)
-	- Hvordan løser man best utfordringer med henvendelse til annen controller enn den som laget Viewet, eller videresending fra én controller til en annen,
-		og som så returnerer til samme view, eller til et annet.
-
-
-
- - Bilder i Item
+﻿- Ednring av User fungerer ikke etter flere attributter er lagt til
+- Bilder i Item
 - Må kunne liste ordrehistorikk per bruker, i "my page"
 - DbUser har ingen liste over sine ordre
 

@@ -16,7 +16,7 @@ namespace ObjectConverters
             {
                 Amount = obj.Amount,
                 Discount = obj.Discount,
-                Item = new ItemConverter().TransFromBusinessToDb(obj.Item)
+                ItemId = obj.Item.ItemID,
             };
             return dbLine;
             

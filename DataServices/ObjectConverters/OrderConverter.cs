@@ -1,5 +1,6 @@
 ﻿using BOL.Models;
 using DAL.DbModels;
+using DataServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace ObjectConverters
         {
             var dbOrder = new DbOrder()
             {
-                User = new UserConverter().TransFromBusinessToDb(obj.User),
+                UserID = obj.User.UserID,
                 DateTime = obj.DateTime
             };
 
@@ -38,10 +39,12 @@ namespace ObjectConverters
             
             var adapter = new OrderLineConverter();
             order.Items = new List<OrderLine>();
-            foreach (var newLine in dbObj.Items)
+            var context = new DataContext();
+            foreach (var dbItemNotComplete in dbObj.Items)
             {
-                order.Items.Add(adapter.TransFromDbToBusiness(newLine));
-                order.OrderPriceTotal += (newLine.Item.Price - newLine.Discount);
+                var dbItemComplete = context.OrderLines.ToList().Where(x => x.OrderLineID == dbItemNotComplete.OrderLineID).FirstOrDefault();
+                order.Items.Add(adapter.TransFromDbToBusiness(dbItemComplete));
+                order.OrderPriceTotal += (dbItemComplete.Item.Price - dbItemComplete.Discount);
             }
             return order;
         }
