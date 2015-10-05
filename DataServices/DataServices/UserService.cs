@@ -44,6 +44,17 @@ namespace DataServices
         public override User Update(User obj)
         {
             DbUser dbUser = transFromBusinessToDb(obj);
+/*            if(obj.Orders != null)
+            {
+                var orderConverter = new OrderConverter();
+                dbUser.Orders = new List<DbOrder>();
+                foreach(var inOrder in obj.Orders)
+                {
+                    dbUser.Orders.Add(orderConverter.TransFromBusinessToDb(inOrder));
+                }
+            } */
+
+
             dbUser.PostAddress = new DbPostAddress();
             dbUser.PostAddress.PostCode = obj.PostCode;
             dbUser.PostAddress.PostAddres = obj.PostAddress;

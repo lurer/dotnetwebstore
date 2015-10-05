@@ -18,11 +18,11 @@ namespace ObjectConverters
                 DateTime = obj.DateTime
             };
 
-            var adapter = new OrderLineConverter();
+            var orderLineConverter = new OrderLineConverter();
             dbOrder.Items = new List<DbOrderLine>();
             foreach (var newLine in obj.Items)
             {
-                dbOrder.Items.Add(adapter.TransFromBusinessToDb(newLine));
+                dbOrder.Items.Add(orderLineConverter.TransFromBusinessToDb(newLine));
             }
             return dbOrder;
         }

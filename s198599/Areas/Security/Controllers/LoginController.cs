@@ -21,6 +21,7 @@ namespace s198599.Areas.Security.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SignIn(User user)
         {
             try {

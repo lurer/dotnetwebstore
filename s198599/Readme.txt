@@ -32,6 +32,11 @@ Nøkkelfunksjonalitet:
 
 Utfordringer:
 - For å ha høyest mulig gjenbruk av kode så har AbstractService to generiske typer. R = businessmodel, T = dbmodell.
-	- Dette fungerer fint, men ikke uten at BLL får referanse til DAL. For at BLL skal kunne bruke "Serviceene" så må DAL være referenced.
+	- Dette fungerer fint, men ikke uten at BLL får referanse til DAL. For at BLL skal kunne bruke "Servicene" så må DAL være referenced.
 	- Alternativet ville være å implementere alle CRUD-operasjonene i hver Service, uten stor bruk av Generics.
 	- Jeg endte opp med fokus på gjenbruk av kode og BLL har referanse til DAL, noe jeg opprinnelig ønsket å unngå.
+- MVC-prosjektet er ikke så oversiktelig som ønskelig. Det har "ballet på seg" underveis, og fokus på gjenbruk av Views med Partial Views er ikke tatt bruk før mot slutten.
+- Role-løsningen til .NET liker strings. Ref BLL.AuthenticationServices.WebstoreRoleProvider.
+	- CRUD-operasjoner liker helst "int ID"
+	- Jeg har løst dette slik at Role-modellen bruker int for sin Key, men har også en String som representerer Id'ens int. 
+	- Det vil si at hver User har både en RoleId (int) og en RoleStringId i string-format.

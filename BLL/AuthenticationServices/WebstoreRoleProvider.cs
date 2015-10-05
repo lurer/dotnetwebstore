@@ -53,8 +53,15 @@ namespace AuthenticationServices
         public override string[] GetRolesForUser(string username)
         {
             UserService service = new UserService();
-            string[] s = { service.GetList().Where(x => x.Email == username).FirstOrDefault().RoleStringId };
-            return s;
+            try { 
+                string[] s = { service.GetList().Where(x => x.Email == username).FirstOrDefault().RoleStringId };
+                return s;
+            }
+            catch (Exception e)
+            {
+
+            }
+            return new string[] { };
         }
 
         public override string[] GetUsersInRole(string roleName)
