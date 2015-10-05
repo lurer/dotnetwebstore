@@ -34,18 +34,18 @@ namespace s198599.Areas.Security.Controllers
 
         public ActionResult CompleteOrder()
         {
-            //var userDb = new UserTransaction();
 
             var mySessionID = Session["SessionID"] as string;
-            var myCart = ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
-
             string myId = User.Identity.GetUserName();
+
+            ShoppingCart myCart = ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
             User myUser = new UserTransaction().getUserByEmail(myId);
 
             var myOrder = new Order();
             myOrder.User = myUser;
             myOrder.DateTime = DateTime.Now;
             myOrder.Items = new List<OrderLine>();
+
             foreach(var item in myCart.Items)
             {
                 var orderLine = new OrderLine()
@@ -57,10 +57,8 @@ namespace s198599.Areas.Security.Controllers
                 myOrder.Items.Add(orderLine);
             }
 
-            // myUser.Orders = new List<Order>();
-            //myUser.Orders.Add(myOrder);
-            //userDb.Update(myUser);
             new OrderTransaction().Insert(myOrder);
+
             return RedirectToAction("Index", "Home", new { area = "Common" });
         }
 
