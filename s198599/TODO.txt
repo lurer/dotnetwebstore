@@ -1,20 +1,13 @@
 ﻿Spørsmål: HVorfor er /Common/ListAll og Details ikke like når det gjelder filbane?
 
+Holder på med: Vise bruker ved Checkout - Fullføre Ordrebestilling
 
-::::::: Partial views for Ordrehistorikk og for Basket::::::::::::
 
-- Item og User Views må oppdateres
-	- Dropdown-lister i Administrasjonsvisning. Ajax-kall
-- Validering
-- Få med Category og bilder i Item
+
+
+ - Bilder i Item
 - Må kunne liste ordrehistorikk per bruker, i "my page"
 - DbUser har ingen liste over sine ordre
-
-
-Mulige objekter
-- Basket - Session-basert
-	- Må generere unik basket UID
-	- Legge i session
 
 
 Use Case: Add Item to Cart

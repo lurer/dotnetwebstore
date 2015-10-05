@@ -63,5 +63,21 @@ namespace s198599.Areas.Common.Controllers
 
             return this.Json(myCart);
         }
+
+
+        public ActionResult Delete(int? id)
+        {
+            var myCart = getMyCartFromManager();
+            if(myCart != null)
+                myCart.Items.Remove(myCart.Items.ToList().Where(x => x.ItemID == id).FirstOrDefault());
+            return RedirectToAction("GetMyCart");
+        }
+
+
+        private ShoppingCart getMyCartFromManager()
+        {
+            var mySessionID = Session["SessionID"] as string;
+            return ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
+        }
     }
 }

@@ -1,61 +1,94 @@
 ﻿@model BOL.Models.ShoppingCart
-
 @{
     ViewBag.Title = "GetMyCart";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
-@Html.Partial("_BasketPartialView")
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script>
+@{
+    if (Model != null && Model.Items.Count > 0)
+    {
+        <h2>Your Shopping cart</h2>
+        var it = Model.Items.FirstOrDefault();
 
-    function displayMyBasket(myBasket){
-        alert(JSON.stringify(myBasket));
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => it.ItemCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => it.ItemDesc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => it.InStock)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => it.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => it.ImgPath)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemDesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InStock)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImgPath)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ItemID }, new { @class= "btn btn-danger btn-xs"})
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }else
+    {
+        <h3>Your shopping cart is empty!</h3>
     }
 
 
-    $(function () {
-        var myurl = "GetMyUpdatedCartJSON";
-        
-        $.ajax({
-            url: myurl,
-            type: "POST",
-            cache: false,
-            success: function (myBasket) {
-                displayMyBasket(myBasket);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert("Temp debug: " + thrownError);
-            }
-        });
-    });
-</script>
+    if (User.Identity.IsAuthenticated)
+    {
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Your shopping cart</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.SessionID)
-
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+        if (User.IsInRole("C"))
+        {
+            <div class="pull-right">
+                @Html.ActionLink("Proceed to Checkout", "CheckingOut", "Checkout", new { Area = "Security" }, htmlAttributes: new { @class = "btn btn-info btn-sm" })
             </div>
-        </div>
-    </div>
+        }
+        else
+        {
+            <h3 class="alert-info">You can not buy using your admin account!</h3>
+        }
+
+    }
+    else
+    {
+        <h3>To proceed to checkout you must log in first.</h3>
+        <table>
+            <tr>
+                <td style="padding-right:20px;">@Html.ActionLink("Login", "Index", "Login", new { Area = "Security" }, new { @class = "btn btn-info btn-sm" })</td>
+                <td>@Html.ActionLink("Register", "Index", "Register", new { Area = "Security" }, new { @class = "btn btn-info btn-sm" })</td>
+            </tr>
+        </table>
+        
+        
+    }
+
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

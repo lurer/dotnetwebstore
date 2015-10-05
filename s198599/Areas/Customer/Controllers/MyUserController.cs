@@ -21,5 +21,19 @@ namespace s198599.Areas.Customer.Controllers
             return View(myUser);
             
         }
+
+        public JsonResult myUserAsJson()
+        {
+            string myId = User.Identity.GetUserName();
+            User myUser = new UserTransaction().getUserByEmail(myId);
+            return this.Json(myUser);
+        }
+
+        public ActionResult _UserPartialView()
+        {
+            string myId = User.Identity.GetUserName();
+            User myUser = new UserTransaction().getUserByEmail(myId);
+            return View(myUser);
+        }
     }
 }
