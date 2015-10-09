@@ -58,15 +58,15 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a href="/Customer/MyUser/">My account</a></li>
-                                    <li><a href="/Security/Login/SignOut">Sign out</a></li>
+                                    <li><a href="/Security/Security/SignOut">Sign out</a></li>
                                 </ul>
                             </div>
                         </li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Sign in", "Index", "Login", new { Area = "Security" }, null)</li>
-                        <li>@Html.ActionLink("Register", "Index", "Register", new { Area = "Security" }, null)</li>
+                        <li>@Html.ActionLink("Sign in", "Login", "Security", new { Area = "Security" }, null)</li>
+                        <li>@Html.ActionLink("Register", "Register", "Security", new { Area = "Security" }, null)</li>
                     }
                 </ul>
             </div>
