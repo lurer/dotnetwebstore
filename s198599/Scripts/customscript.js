@@ -5,6 +5,49 @@ function updateBasket(myBasket) {
     $('#priceItemsInCart').text(" " + myBasket["PriceOfCart"]);
 }
 
+function deleteSessionMessageDiv() {
+    var parent = document.getElementById("information_area");
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+//Skal fade ut Session-meldingen, og slette div'en 3 sek. etterpå
+function fadeOutSessionMessage() {
+    if ($('#information_bar') != null) {
+        $('#information_bar').fadeOut(3000);
+        setTimeout(deleteSessionMessageDiv, 3000);
+    }
+}
+
+//Hjelpemetode for å oppdatere status etter CRUD
+function feedbackMessage(type, message) {
+
+    var div_info = document.getElementById("information_bar");
+    if (!div_info) {
+        div_info = document.createElement("div");
+        div_info.id = "information_bar";
+        div_info.className = "alert";
+    }
+    div_info.appendChild(document.createTextNode(message));
+    switch (type) {
+        case "success":
+            div_info.className = div_info.className + " alert-success";
+            break;
+        case "info":
+            div_info.className = div_info.className + " alert-info";
+            break;
+        case "fail":
+            div_info.className = div_info.className + " alert-danger";
+            break;
+    }
+    $('#information_area').append(div_info);
+    fadeOutSessionMessage();
+
+}
+
+
+
 //Når man trykker på "Kjøp" skal denne kjøres. Den oppdaterer handlekurven etterpå
 function buyItem(itemId) {
    
@@ -16,9 +59,10 @@ function buyItem(itemId) {
         cache: false,
         success: function (myBasket) {
             updateBasket(myBasket);
+            feedbackMessage("success", "The product is added to your shopping cart!");
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            alert("Temp debugging. Adding Item ot Cart Failed" + thrownError);
+            feedbackMessage("fail", "Something went wrong. The Item is not added to your shopping cart!");
         }
     });
 
@@ -34,7 +78,7 @@ function getUpdatedBasket(myurl) {
             updateBasket(myBasket);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            alert("Temp debug: " + thrownError);
+            feedbackMessage("fail","Something went wrong. Your shopping cart is not updated");
         }
     });
 

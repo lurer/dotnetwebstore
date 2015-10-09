@@ -8,27 +8,36 @@ using System.Web;
 using System.Web.Mvc;
 using BLL;
 using BOL.Models;
-using BLL.BussinessTransactions;
+using BLL.BussinessObjectOperations;
 using s198599.Models;
 using s198599.Models.ViewModelConverters;
 using s198599.Areas.Customer.Controllers;
+using s198599.Controllers;
 
 namespace s198599.Areas.Common.Controllers
 {
     [AllowAnonymous]
-    public class DisplayItemsController : Controller
+    public class DisplayItemsController : BaseController
     {
 
         // GET: Common/Item
         public ActionResult ListAll()
         {
-            var domainItems = new ItemTransaction().GetList();
             var viewItems = new List<ItemViewPopulated>();
-            foreach (var item in domainItems)
-            {
-                viewItems.Add(ItemViewConverter.convertToView(item));
+            try { 
+                var domainItems = new ItemTransaction().GetList();
+                foreach (var item in domainItems)
+                    viewItems.Add(ItemViewConverter.convertToView(item));
+
+                return View(viewItems.AsEnumerable());
             }
-            return View(viewItems.AsEnumerable());
+            catch (Exception)
+            {
+                return SetSessionMessage(View(viewItems), "fail", "We could not retrieve products from the database");
+            }
+            
+
+
         }
 
         // GET: Common/Item/Details/5
@@ -51,7 +60,7 @@ namespace s198599.Areas.Common.Controllers
         {
             var mySessionID = Session["SessionID"] as string;
             return new ShoppingCartController().AddItemToCart(id, mySessionID);
-            
+
         }
 
 
@@ -64,7 +73,6 @@ namespace s198599.Areas.Common.Controllers
             }
             base.Dispose(disposing);
         }
-
 
     }
 }

@@ -1,6 +1,7 @@
-﻿using BLL.BussinessTransactions;
+﻿using BLL.BussinessObjectOperations;
 using BLL.ShoppingCartService;
 using BOL.Models;
+using s198599.Controllers;
 using s198599.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 namespace s198599.Areas.Common.Controllers
 {
     [AllowAnonymous]
-    public class ShoppingCartController : Controller
+    public class ShoppingCartController : BaseController
     {
         public JsonResult AddItemToCart(int id, string mySessionID)
         {
@@ -32,8 +33,10 @@ namespace s198599.Areas.Common.Controllers
                     myCart.Items.Add(newItem);
                     myCart.SessionID = mySessionID;
                     ShoppingCartManager.getInstance().updateCartTotalPrice(myCart);
+                    
                     return this.Json(myCart);
                 }
+                
             }
             return null;
             
@@ -68,8 +71,15 @@ namespace s198599.Areas.Common.Controllers
         public ActionResult Delete(int? id)
         {
             var myCart = getMyCartFromManager();
-            if(myCart != null)
-                myCart.Items.Remove(myCart.Items.ToList().Where(x => x.ItemID == id).FirstOrDefault());
+            if (myCart != null)
+            {
+                bool ok = myCart.Items.Remove(myCart.Items.ToList().Where(x => x.ItemID == id).FirstOrDefault());
+                if (ok)
+                    SetSessionMessage(View(), "info", "The product was removed from your shopping cart!");
+                else
+                    SetSessionMessage(View(), "fail", "Something went wrong. Please update your page!");
+
+            }
             return RedirectToAction("GetMyCart");
         }
 
@@ -79,5 +89,6 @@ namespace s198599.Areas.Common.Controllers
             var mySessionID = Session["SessionID"] as string;
             return ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
         }
+
     }
 }

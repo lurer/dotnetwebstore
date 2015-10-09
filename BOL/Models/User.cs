@@ -19,7 +19,7 @@ namespace BOL.Models
         [Display(Name = "Last name")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage ="Please enter a valid email address"), RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Please enter a valid email address")]
         public string Email { get; set; }
 
         [Required(ErrorMessage ="Password must be a minimum of 5 characters"), MinLength(5)]

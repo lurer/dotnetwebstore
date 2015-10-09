@@ -7,10 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BOL.Models;
-using BLL.DataServices;
-using BLL.BussinessTransactions;
+using BLL.DBOperations.DataServices;
+using BLL.BussinessObjectOperations;
 
-namespace s198599.Areas.Customer.Controllers
+namespace s198599.Areas.Admin.Controllers
 {
     [Authorize(Roles ="A")]
     public class OrderController : Controller

@@ -9,10 +9,9 @@ Det vil si at det er flere prosjektet i løsningen som har et veldig snevert fok
  - Følge det jeg mener/tror er normen i arbeidslivet.
 
 Oppbyggning av løsningen:
-- MVC-prosjektet skal ikke vite om annet enn Business-objekter(BOL), BLL-laget og DataServices.
-- BLL-prosjektet opererer via DataServices-prosjektet for å gjøre CRUD. 
-	Referanse til BOL, DAL og DataServices. (Les om utfordringen nedenfor)
-- DataServices-prosjektet tar i mot Business-objekter og lagrer dem via Entity Framework. Samme andre veien. Referanser til BOL og DAL
+- MVC-prosjektet skal ikke vite om annet enn Business-objekter(BOL) og BLL-laget.
+- BLL-prosjektet sine DataServices gjøre CRUD
+	Referanse til BOL, DAL
 - BOL-prosjektet har bare definisjonen av Business-objektene. Ingen referanser til andre prosjekter
 - DAL-prosjektet har bare definisjonen av Db-objektene. Ingen referanser til andre prosjekter.
 
@@ -28,6 +27,8 @@ Nøkkelfunksjonalitet:
 	- Kjøpefunksjonalitet og oppdatering av Handlekurv skjer via ajax-kall
 - Handlekurv/ShoppingCart bruker en unik SessionID som identifikasjon. BLL.AuthenticationServices.GlobalInterceptor passer på at alle 
 	sessions har en gyldig SessionID. 
+- BaseController er abstrakt Superklasse for alle kontrollere. Her har man noe metoder som brukes til å sende ActionResult med Session-beskjeder som fanger opp i Web.
+
 
 
 Utfordringer:

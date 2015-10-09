@@ -1,12 +1,13 @@
-﻿using BOL.Models;
-using DataServices;
+﻿using BLL.DBOperations.DataServices;
+using BOL.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.BussinessTransactions
+namespace BLL.BussinessObjectOperations
 {
     public class UserTransaction : ITransaction<User>
     {

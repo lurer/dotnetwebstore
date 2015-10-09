@@ -1,6 +1,7 @@
-﻿using BLL.BussinessTransactions;
+﻿using BLL.BussinessObjectOperations;
 using BOL.Models;
 using Microsoft.AspNet.Identity;
+using s198599.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,15 @@ using System.Web.Mvc;
 namespace s198599.Areas.Customer.Controllers
 {
     [Authorize]
-    public class MyUserController : Controller
+    public class MyUserController : BaseController
     {
         // GET: Customer/MyUser
         public ActionResult Index()
         {
             string myId = User.Identity.GetUserName();
             User myUser = new UserTransaction().getUserByEmail(myId);
+            if (myUser == null)
+                return SetSessionMessage(View(myUser), "fail", "Could not get information for your user");
             return View(myUser);
             
         }
@@ -50,7 +53,7 @@ namespace s198599.Areas.Customer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOL.Models.User User = new UserTransaction().GetById(id);
+            User User = new UserTransaction().GetById(id);
             if (User == null)
             {
                 return HttpNotFound();
@@ -65,11 +68,11 @@ namespace s198599.Areas.Customer.Controllers
         {
             if (ModelState.IsValid)
             {
-                new UserTransaction().Update(User);
-
-                return RedirectToAction("Index");
+                var updatedUser = new UserTransaction().Update(User);
+                if(updatedUser != null)
+                    return SetSessionMessage(RedirectToAction("Index"), "success", "Your user account information is updated");
             }
-            return View(User);
+            return SetSessionMessage(View(User), "fail", "Something went wrong. Please try again!");
         }
     }
 }

@@ -48,8 +48,7 @@
     <Reference Include="System.Web.Helpers">
       <HintPath>..\s198599\bin\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="System.Web.Mvc">
       <HintPath>..\s198599\bin\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -60,21 +59,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthenticationServices\GlobalInterceptor.cs" />
+    <Compile Include="AuthenticationServices\SessionInterceptor.cs" />
     <Compile Include="AuthenticationServices\PasswordUtility.cs" />
-    <Compile Include="BussinessTransactions\CategoryTransaction.cs" />
-    <Compile Include="BussinessTransactions\ComplexTransactions.cs" />
-    <Compile Include="BussinessTransactions\ItemTransaction.cs" />
-    <Compile Include="BussinessTransactions\UserRoleTransaction.cs" />
-    <Compile Include="BussinessTransactions\UserTransaction.cs" />
-    <Compile Include="BussinessTransactions\ITransaction.cs" />
-    <Compile Include="BussinessTransactions\OrderTransaction.cs" />
+    <Compile Include="BussinessObjectOperations\CategoryTransaction.cs" />
+    <Compile Include="BussinessObjectOperations\ComplexTransactions.cs" />
+    <Compile Include="BussinessObjectOperations\ItemTransaction.cs" />
+    <Compile Include="BussinessObjectOperations\UserRoleTransaction.cs" />
+    <Compile Include="BussinessObjectOperations\UserTransaction.cs" />
+    <Compile Include="BussinessObjectOperations\ITransaction.cs" />
+    <Compile Include="BussinessObjectOperations\OrderTransaction.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="AuthenticationServices\WebstoreRoleProvider.cs" />
     <Compile Include="AuthenticationServices\WebstoreMembershipProvider.cs" />
+    <Compile Include="DBOperations\DataServices\AbstractService.cs" />
+    <Compile Include="DBOperations\DataServices\CategoryService.cs" />
+    <Compile Include="DBOperations\DataServices\ItemService.cs" />
+    <Compile Include="DBOperations\DataServices\OrderService.cs" />
+    <Compile Include="DBOperations\DataServices\RoleService.cs" />
+    <Compile Include="DBOperations\DataServices\ShoppingCartService.cs" />
+    <Compile Include="DBOperations\DataServices\UserService.cs" />
     <Compile Include="Initializer\InitializeDb.cs" />
+    <Compile Include="DBOperations\ObjectConverters\AbstractConverter.cs" />
+    <Compile Include="DBOperations\ObjectConverters\ItemConverter.cs" />
+    <Compile Include="DBOperations\ObjectConverters\OrderConverter.cs" />
+    <Compile Include="DBOperations\ObjectConverters\OrderLineConverter.cs" />
+    <Compile Include="DBOperations\ObjectConverters\RoleConverter.cs" />
+    <Compile Include="DBOperations\ObjectConverters\UserConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingCartService\ShoppingCartManager.cs" />
+    <Compile Include="Utilities\SessionMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BOL\BOL.csproj">
@@ -84,10 +97,6 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{f0693325-1755-406e-8b88-50a17b6cd89f}</Project>
       <Name>DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataServices\DataServices.csproj">
-      <Project>{40602cd4-ef01-46b8-91ac-62ba43dbb8e6}</Project>
-      <Name>DataServices</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

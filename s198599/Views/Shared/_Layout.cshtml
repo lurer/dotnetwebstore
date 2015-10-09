@@ -33,11 +33,21 @@
 
                         if (User.IsInRole("A"))
                         {
-                            <li>@Html.ActionLink("All Orders", "Index", "Order", new { Area = "Customer" }, null)</li>
-                            <li>@Html.ActionLink("Manage Users", "Index", "User", new { Area = "Admin" }, null)</li>
-                            <li>@Html.ActionLink("Manage Roles", "Index", "Roles", new { Area = "Admin" }, null)</li>
-                            <li>@Html.ActionLink("Manage Items", "Index", "Item", new { Area = "Admin" }, null)</li>
-                            <li>@Html.ActionLink("Manage Categories", "Index", "ItemCategories", new { Area = "Admin" }, null)</li>
+                            <li>
+                                <div class="dropdown">
+                                    <button class="btn-link dropdown-toggle" type="button" data-toggle="dropdown">
+                                        Manage categories
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("All Orders", "Index", "Order", new { Area = "Admin" }, null)</li>
+                                        <li>@Html.ActionLink("Manage Users", "Index", "User", new { Area = "Admin" }, null)</li>
+                                        <li>@Html.ActionLink("Manage Roles", "Index", "Roles", new { Area = "Admin" }, null)</li>
+                                        <li>@Html.ActionLink("Manage Items", "Index", "Item", new { Area = "Admin" }, null)</li>
+                                        <li>@Html.ActionLink("Manage Categories", "Index", "ItemCategories", new { Area = "Admin" }, null)</li>
+                                    </ul>
+                                </div>
+                            </li>
                         }
 
                         <li>
@@ -64,15 +74,45 @@
     </div>
 
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        <div id="information_area">
+            @if (Session["ControllerMsg"] != null)
+            {
+
+                var msgType = Session["MsgType"] as string;
+                switch (msgType)
+                {
+                    case "success":
+                        <div id="information_bar" class="alert alert-success">@Session["ControllerMsg"]</div>
+                        break;
+                    case "info":
+                        <div id="information_bar" class="alert alert-info">@Session["ControllerMsg"]</div>
+                        break;
+                    case "fail":
+                        <div id="information_bar" class="alert alert-danger">@Session["ControllerMsg"]</div>
+                        break;
+
+                }
+                Session["ControllerMsg"] = null;
+                Session["MsgType"] = null;
+                <script>
+                    fadeOutSessionMessage();
+                </script>
+            }
+        </div>
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/customscript.js"></script>
+
+
+
+
+
 </body>
 </html>

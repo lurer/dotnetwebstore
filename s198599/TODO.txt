@@ -1,13 +1,18 @@
-﻿- Ednring av User fungerer ikke etter flere attributter er lagt til
+﻿
+- Checkout-controller har ikke alle sine metoder implementert.
+
+- Implementere alle Controllere med BaseController
+- Try-Catch på alle databasekall
+- Egendefinerte sider for informasjon om feil
+
+
+
+- Ednring av User fungerer ikke etter flere attributter er lagt til
 - Bilder i Item
-- Må kunne liste ordrehistorikk per bruker, i "my page"
-- DbUser har ingen liste over sine ordre
 
 
-Use Case: Add Item to Cart
-- Controller tar mot Id'en til produktet
-	- Sjekker om produktet finnes på lager
-	- Oppretter en Shopping basket om den ikke finnes.
-	- Legger produktet til i Basket.
-	- Basket legges i Session
-	- Returnerer Boolean om det gikk i orden.
+
+
+
+::::::::::::::::Design::::::::::::::
+- Penere login. 

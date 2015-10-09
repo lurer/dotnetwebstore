@@ -9,7 +9,7 @@ using System.Web.SessionState;
 
 namespace BLL.AuthenticationServices
 {
-    public class GlobalInterceptor : ActionFilterAttribute
+    public class SessionInterceptor : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -23,5 +23,7 @@ namespace BLL.AuthenticationServices
                 filterContext.HttpContext.Session["SessionID"] = sessionID;
             }
         }
+
+
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.BussinessTransactions
+namespace BLL.BussinessObjectOperations
 {
     public interface ITransaction<T> : IDisposable
     {

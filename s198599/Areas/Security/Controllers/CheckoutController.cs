@@ -1,7 +1,8 @@
-﻿using BLL.BussinessTransactions;
+﻿using BLL.BussinessObjectOperations;
 using BLL.ShoppingCartService;
 using BOL.Models;
 using Microsoft.AspNet.Identity;
+using s198599.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 namespace s198599.Areas.Security.Controllers
 {
     [Authorize(Roles ="C")]
-    public class CheckoutController : Controller
+    public class CheckoutController : BaseController
     {
         [Authorize(Roles ="C")]
         // GET: Security/Checkout
@@ -40,6 +41,8 @@ namespace s198599.Areas.Security.Controllers
 
             ShoppingCart myCart = ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
             User myUser = new UserTransaction().getUserByEmail(myId);
+            if(myUser == null)
+                SetSessionMessage(View(), "fail", "Something went wrong. Please try again");
 
             var myOrder = new Order();
             myOrder.User = myUser;
@@ -57,9 +60,11 @@ namespace s198599.Areas.Security.Controllers
                 myOrder.Items.Add(orderLine);
             }
 
-            new OrderTransaction().Insert(myOrder);
+            var updatedOrder = new OrderTransaction().Insert(myOrder);
+            if(updatedOrder == null)
+                SetSessionMessage(View(), "fail", "Something went wrong. The order is not registered");
 
-            return RedirectToAction("Index", "MyUser", new { area = "Customer" });
+            return SetSessionMessage(RedirectToAction("ListAll", "DisplayItems", new { area = "Common" }), "success", "The order is registered");
         }
 
         public ActionResult ChangeAccount()

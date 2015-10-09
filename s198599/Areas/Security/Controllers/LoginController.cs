@@ -1,5 +1,7 @@
 ﻿using BLL.AuthenticationServices;
+using BLL.ShoppingCartService;
 using BOL.Models;
+using s198599.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ using System.Web.Security;
 namespace s198599.Areas.Security.Controllers
 {
     [AllowAnonymous]
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         // GET: Security/Login
         public ActionResult Index()
@@ -25,7 +27,6 @@ namespace s198599.Areas.Security.Controllers
         public ActionResult SignIn(User user)
         {
             try {
-                
 
                 if (PasswordUtility.CheckUsedPasswordAgainstHashed(user.Email, user.Password))
                 {
@@ -48,9 +49,11 @@ namespace s198599.Areas.Security.Controllers
 
         public ActionResult SignOut()
         {
+            var sessionID = Session["SessionID"] as string;
+            ShoppingCartManager.getInstance().deleteShopppingCart(sessionID);
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("Index", "Home", new { area = "Common" });
+            return SetSessionMessage(RedirectToAction("Index", "Home", new { area = "Common" }),"success","You are now logged out!");
         }
     }
 }
