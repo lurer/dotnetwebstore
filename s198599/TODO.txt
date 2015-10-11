@@ -1,8 +1,9 @@
-﻿
-- Checkout-controller har ikke alle sine metoder implementert.
+﻿- Kvittering må vises ved bekreftelse
+- Betalingsløsning mæ ferdiggjøres
 
-- Implementere alle Controllere med BaseController
+
 - Try-Catch på alle databasekall
+	- Implementere ferdig ItemController for testing
 - Egendefinerte sider for informasjon om feil
 
 
@@ -15,4 +16,4 @@
 
 
 ::::::::::::::::Design::::::::::::::
-- Penere login. 
+- Penere visninger

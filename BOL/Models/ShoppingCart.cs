@@ -1,4 +1,5 @@
 ﻿using BOL.Models;
+using BOL.Models.Payment;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,17 +23,13 @@ namespace BOL.Models
 
         public double PriceOfCart { get; set; }
 
- /*       public double GetPriceOfItemsInCart {
-            get
-            {
-                if (cartItems != null) { 
-                    priceOfCart = cartItems.ToList().Select(x => x.Price).Sum();
-                    return priceOfCart;
-                }
-                else
-                    return 0.0;
-            }
-        }*/
+        public void EmptyCart()
+        {
+            Items.Clear();
+        }
+
+
+        public IPayment Payment { get; set; }
 
     }
 }

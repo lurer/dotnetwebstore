@@ -6,10 +6,11 @@
 }
 
 #shoppingbasket_aside{
-
+    
     color:coral !important;
     position: relative;
     right: 0;
     min-width: 10em;
     width: auto;
 }
+

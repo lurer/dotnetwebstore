@@ -11,7 +11,9 @@
     <link href="~/Content/customcss.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    
     <div class="navbar navbar-inverse navbar-fixed-top">
+
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -75,44 +77,33 @@
 
     <div class="container body-content">
         <div id="information_area">
-            @if (Session["ControllerMsg"] != null)
-            {
+            <div id="information_bar" class="alert hidden"></div>
 
-                var msgType = Session["MsgType"] as string;
-                switch (msgType)
-                {
-                    case "success":
-                        <div id="information_bar" class="alert alert-success">@Session["ControllerMsg"]</div>
-                        break;
-                    case "info":
-                        <div id="information_bar" class="alert alert-info">@Session["ControllerMsg"]</div>
-                        break;
-                    case "fail":
-                        <div id="information_bar" class="alert alert-danger">@Session["ControllerMsg"]</div>
-                        break;
-
-                }
-                Session["ControllerMsg"] = null;
-                Session["MsgType"] = null;
-                <script>
-                    fadeOutSessionMessage();
-                </script>
-            }
         </div>
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
-        </div>
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/customscript.js"></script>
 
+    @if (Session["ControllerMsg"] != null)
+    {
+        var msgType = Session["MsgType"] as string;
 
+        <script>
+            var msgType = '@Session["MsgType"]';
+            var msg = '@Session["ControllerMsg"]';
 
-
+            feedbackMessage(msgType, msg);
+        </script>
+        Session["ControllerMsg"] = null;
+        Session["MsgType"] = null;
+    }
 
 </body>
 </html>

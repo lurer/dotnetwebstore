@@ -24,7 +24,8 @@ Nøkkelfunksjonalitet:
 - Passord Hashes ved hjelp av BLL.PasswordUtility før det lagres i databasen. 
 - Sider er tilgjenglige/utilgjenglige avhengig av hvilken rolle brukeren har.
 - Ajax
-	- Kjøpefunksjonalitet og oppdatering av Handlekurv skjer via ajax-kall
+	- Kjøpefunksjonalitet og oppdatering av Handlekurv skjer via ajax-kall. Ajax er brukt litt flere steder også.
+	- Ajax-scriptene ligger i Scripts\customscript.js
 - Handlekurv/ShoppingCart bruker en unik SessionID som identifikasjon. BLL.AuthenticationServices.GlobalInterceptor passer på at alle 
 	sessions har en gyldig SessionID. 
 - BaseController er abstrakt Superklasse for alle kontrollere. Her har man noe metoder som brukes til å sende ActionResult med Session-beskjeder som fanger opp i Web.

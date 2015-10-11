@@ -1,0 +1,52 @@
+﻿@model BOL.Models.ShoppingCart
+
+<h2>Your Shopping cart</h2>
+@{
+    var it = Model.Items.FirstOrDefault();
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => it.ItemCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => it.ItemDesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => it.InStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => it.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => it.ImgPath)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemDesc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InStock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImgPath)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ItemID }, new { @class = "btn btn-danger btn-xs" })
+                </td>
+            </tr>
+        }
+
+    </table>
+}

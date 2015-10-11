@@ -9,11 +9,12 @@ using System.Web.Mvc;
 using BLL;
 using BOL.Models;
 using BLL.BussinessObjectOperations;
+using s198599.Controllers;
 
 namespace s198599.Areas.Admin.Controllers
 {
     [Authorize(Roles = "A")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         public ActionResult Index()
         {

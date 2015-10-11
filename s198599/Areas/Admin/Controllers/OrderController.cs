@@ -9,11 +9,12 @@ using System.Web.Mvc;
 using BOL.Models;
 using BLL.DBOperations.DataServices;
 using BLL.BussinessObjectOperations;
+using s198599.Controllers;
 
 namespace s198599.Areas.Admin.Controllers
 {
     [Authorize(Roles ="A")]
-    public class OrderController : Controller
+    public class OrderController : BaseController
     {
         
         // GET: Customer/Order

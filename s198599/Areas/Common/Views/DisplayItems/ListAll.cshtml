@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.Partial("_BasketPartialView")
+@Html.Partial("../../Views/Shared/_BasketPartialView")
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script>
@@ -13,8 +13,8 @@
         getUpdatedBasket('../ShoppingCart/GetMyUpdatedCartJSON');
     });
 </script>
-<h2>Our products</h2>
 
+<h2>Our products</h2>
 <table class="table">
     <tr>
         <th>

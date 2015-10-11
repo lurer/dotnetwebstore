@@ -87,6 +87,7 @@
     <Compile Include="DBOperations\ObjectConverters\UserConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingCartService\ShoppingCartManager.cs" />
+    <Compile Include="Utilities\CustomDbException.cs" />
     <Compile Include="Utilities\SessionMessage.cs" />
   </ItemGroup>
   <ItemGroup>

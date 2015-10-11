@@ -12,6 +12,7 @@ namespace BLL.DBOperations.ObjectConverters
     {
         public override DbItem TransFromBusinessToDb(Item obj)
         {
+
             DbItem dbItem = new DbItem()
             {
                 ItemID = obj.ItemID,
@@ -29,6 +30,7 @@ namespace BLL.DBOperations.ObjectConverters
 
         public override Item TransFromDbToBusiness(DbItem dbObj)
         {
+
             Item newItem = new Item()
             {
                 ItemID = dbObj.ItemID,

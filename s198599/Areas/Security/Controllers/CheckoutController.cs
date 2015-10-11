@@ -1,6 +1,7 @@
 ﻿using BLL.BussinessObjectOperations;
 using BLL.ShoppingCartService;
 using BOL.Models;
+using BOL.Models.Payment;
 using Microsoft.AspNet.Identity;
 using s198599.Controllers;
 using System;
@@ -18,19 +19,24 @@ namespace s198599.Areas.Security.Controllers
         // GET: Security/Checkout
         public ActionResult CheckingOut()
         {
+            var mySessionID = Session["SessionID"] as string;
+            ShoppingCart myCart = ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
+            myCart.Payment = new CreditCardPaymentImpl();
             return View();
         }
 
 
         public ActionResult ConfirmCheckout()
         {
-
             return View();
         }
 
         public ActionResult CancelOrder()
         {
-            return View();
+            var mySessionID = Session["SessionID"] as string;
+            ShoppingCart myCart = ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
+            myCart.EmptyCart();
+            return SetSessionMessage(RedirectToAction("ListAll", "DisplayItems", new { area = "Common" }), "info", "Your order was canceled.");
         }
 
         public ActionResult CompleteOrder()
@@ -38,8 +44,8 @@ namespace s198599.Areas.Security.Controllers
 
             var mySessionID = Session["SessionID"] as string;
             string myId = User.Identity.GetUserName();
-
             ShoppingCart myCart = ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
+
             User myUser = new UserTransaction().getUserByEmail(myId);
             if(myUser == null)
                 SetSessionMessage(View(), "fail", "Something went wrong. Please try again");
@@ -63,7 +69,7 @@ namespace s198599.Areas.Security.Controllers
             var updatedOrder = new OrderTransaction().Insert(myOrder);
             if(updatedOrder == null)
                 SetSessionMessage(View(), "fail", "Something went wrong. The order is not registered");
-
+            myCart.EmptyCart();
             return SetSessionMessage(RedirectToAction("ListAll", "DisplayItems", new { area = "Common" }), "success", "The order is registered");
         }
 

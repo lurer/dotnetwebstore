@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,15 @@ namespace BLL.DBOperations.DataServices
         {
             using (var context = new DataContext())
             {
-                       
+
                 var dbObj = context.Set<T>().Find(id);
+                if (dbObj == null)
+                    throw new CustomDbException();
+
                 context.Set<T>().Remove(dbObj);
                 context.SaveChanges();
+  
+
             };
         }
 
@@ -28,11 +34,16 @@ namespace BLL.DBOperations.DataServices
 
         public R GetById(int? id)
         {
+
             using (var context = new DataContext())
             {
                 var dbObj = context.Set<T>().Find(id);
+                if (dbObj == null)
+                    throw new CustomDbException();
                 return transFromDbToBusiness(dbObj);
             };
+            
+
         }
 
 
@@ -43,6 +54,8 @@ namespace BLL.DBOperations.DataServices
             using (var context = new DataContext())
             {
                 var dbList = context.Set<T>().ToList();
+                if(dbList == null)
+                    throw new CustomDbException();
 
                 foreach (var dbObj in dbList)
                 {

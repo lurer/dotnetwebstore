@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Payment\CreditCardPaymentImpl.cs" />
+    <Compile Include="Models\Payment\IPayment.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemCategory.cs" />
     <Compile Include="Models\Order.cs" />

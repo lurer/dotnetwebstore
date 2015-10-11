@@ -29,7 +29,7 @@ namespace s198599.Areas.Security.Controllers
             if (ModelState.IsValid)
             {
                 new ComplexTransactions().createUserAndUpdateRole(User);
-                return RedirectToAction("Login", "Security", new { area = "Security" });
+                return SetSessionMessage(RedirectToAction("Login", "Security", new { area = "Security" }), "success", "Registration was successful");
             }
             return View(User);
         }
@@ -53,17 +53,17 @@ namespace s198599.Areas.Security.Controllers
                     FormsAuthentication.SetAuthCookie(user.Email, false);
 
                     Session.Add("UserId", user.UserID);
-                    return RedirectToAction("Index", "Home", new { area = "Common" });
+                    return SetSessionMessage(RedirectToAction("Index", "Home", new { area = "Common" }),"success","Login was successfull!");
                 }
                 else
                 {
-                    TempData["LoginMsg"] = "Login failed, please try again.";
+                    //TempData["LoginMsg"] = "Login failed, please try again.";
                     return SetSessionMessage(View(user), "fail", "You did not supply correct information. Please try again.");
                 }
             }
             catch (Exception e)
             {
-                TempData["LoginMsg"] = "Login failed " + e.Message;
+                //TempData["LoginMsg"] = "Login failed " + e.Message;
                 return SetSessionMessage(RedirectToAction("Login"), "success", "You are now logged in.");
             }
         }
@@ -74,7 +74,7 @@ namespace s198599.Areas.Security.Controllers
             ShoppingCartManager.getInstance().deleteShopppingCart(sessionID);
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return SetSessionMessage(RedirectToAction("Index", "Home", new { area = "Common" }), "success", "You are now logged out!");
+            return RedirectToAction("Index", "Home", new { area = "Common" });
         }
     }
 }

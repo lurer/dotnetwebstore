@@ -5,18 +5,21 @@ function updateBasket(myBasket) {
     $('#priceItemsInCart').text(" " + myBasket["PriceOfCart"]);
 }
 
-function deleteSessionMessageDiv() {
-    var parent = document.getElementById("information_area");
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+function deleteSessionMessage() {
+    var id = document.getElementById("information_bar");
+    id.className = "alert hidden";
+    id.innerHTML = "";
+}
+
+function slideInfoBarUp() {
+    $('#information_bar').slideUp(1000);
 }
 
 //Skal fade ut Session-meldingen, og slette div'en 3 sek. etterpå
 function fadeOutSessionMessage() {
     if ($('#information_bar') != null) {
-        $('#information_bar').fadeOut(3000);
-        setTimeout(deleteSessionMessageDiv, 3000);
+        setTimeout(deleteSessionMessage, 5000);
+        setTimeout(slideInfoBarUp, 2000);
     }
 }
 
@@ -32,13 +35,13 @@ function feedbackMessage(type, message) {
     div_info.appendChild(document.createTextNode(message));
     switch (type) {
         case "success":
-            div_info.className = div_info.className + " alert-success";
+            div_info.className = "alert alert-success";
             break;
         case "info":
-            div_info.className = div_info.className + " alert-info";
+            div_info.className = "alert alert-info";
             break;
         case "fail":
-            div_info.className = div_info.className + " alert-danger";
+            div_info.className = "alert alert-danger";
             break;
     }
     $('#information_area').append(div_info);
@@ -83,3 +86,5 @@ function getUpdatedBasket(myurl) {
     });
 
 }
+
+
