@@ -19,8 +19,7 @@ namespace s198599.Areas.Security.Controllers
         // GET: Security/Checkout
         public ActionResult CheckingOut()
         {
-            var mySessionID = Session["SessionID"] as string;
-            ShoppingCart myCart = ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
+            var myCart = getMyShoppingCart();
             myCart.Payment = new CreditCardPaymentImpl();
             return View();
         }
@@ -33,8 +32,7 @@ namespace s198599.Areas.Security.Controllers
 
         public ActionResult CancelOrder()
         {
-            var mySessionID = Session["SessionID"] as string;
-            ShoppingCart myCart = ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
+            var myCart = getMyShoppingCart();
             myCart.EmptyCart();
             return SetSessionMessage(RedirectToAction("ListAll", "DisplayItems", new { area = "Common" }), "info", "Your order was canceled.");
         }
@@ -42,11 +40,9 @@ namespace s198599.Areas.Security.Controllers
         public ActionResult CompleteOrder()
         {
 
-            var mySessionID = Session["SessionID"] as string;
-            string myId = User.Identity.GetUserName();
-            ShoppingCart myCart = ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
+            var myCart = getMyShoppingCart();
 
-            User myUser = new UserTransaction().getUserByEmail(myId);
+            User myUser = new UserTransaction().getUserByEmail(User.Identity.Name);
             if(myUser == null)
                 SetSessionMessage(View(), "fail", "Something went wrong. Please try again");
 
@@ -55,8 +51,12 @@ namespace s198599.Areas.Security.Controllers
             myOrder.DateTime = DateTime.Now;
             myOrder.Items = new List<OrderLine>();
 
+            var itemTransaction = new ItemTransaction();
             foreach(var item in myCart.Items)
             {
+                item.InStock--;
+                itemTransaction.Update(item);
+
                 var orderLine = new OrderLine()
                 {
                     Amount = 1,
@@ -72,6 +72,16 @@ namespace s198599.Areas.Security.Controllers
             myCart.EmptyCart();
             return SetSessionMessage(RedirectToAction("ListAll", "DisplayItems", new { area = "Common" }), "success", "The order is registered");
         }
+
+
+        private ShoppingCart getMyShoppingCart()
+        {
+            var mySessionID = Session["SessionID"] as string;
+            string myId = User.Identity.GetUserName();
+            return ShoppingCartManager.getInstance().getMyShoppingCart(mySessionID);
+
+        }
+
 
         public ActionResult ChangeAccount()
         {

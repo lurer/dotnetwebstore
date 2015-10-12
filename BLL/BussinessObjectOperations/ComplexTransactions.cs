@@ -21,7 +21,7 @@ namespace BLL.BussinessObjectOperations
                     roleId = RoleService.GetList().Where(x => x.RoleStringId == "C").FirstOrDefault().RoleId;
                     User.RoleId = roleId;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     Role newRole = RoleService.Insert(new Role { RoleStringId = "C", RoleName = "Customer" });
                     User.RoleId = newRole.RoleId;
@@ -33,5 +33,8 @@ namespace BLL.BussinessObjectOperations
             }
             
         }
+
+
+
     }
 }

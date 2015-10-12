@@ -88,3 +88,37 @@ function getUpdatedBasket(myurl) {
 }
 
 
+
+function display_order_detail_modal(orderJson) {
+    var modal = $('#orderDetailModal');
+    var items = orderJson.Items;
+    var orderItemsDiv = $('#orderItems');
+    var tmp = new Date(parseInt(orderJson.DateTime.substr(6)));
+    var newDate = tmp.toUTCString();
+
+    var tblstr = "<table class='table table-responsive table-condensed table-striped'><tr>";
+    tblstr += "<th>Amount</th>";
+    tblstr += "<th>Item Code</th>";
+    tblstr += "<th>Description</th>";
+    tblstr += "<th>Price</th></tr>";
+    
+    for (var i = 0; i < orderJson.Items.length; i++) {
+
+        tblstr += "<tr>";
+            tblstr += "<td>" + items[i].Amount + "</td>";
+            tblstr += "<td>" + items[i].Item.ItemCode + "</td>";
+            tblstr += "<td>" + items[i].Item.ItemDesc + "</td>";
+            tblstr += "<td> NOK " + items[i].Item.Price.toFixed(2) + "</td>";
+        tblstr += "</tr>"
+    }
+    
+    tblstr += "</table>";
+
+    $('#orderHeading').text(orderJson.OrderNumber);
+    $('#orderDate').text(newDate);
+    $('#orderTotal').text("NOK " + orderJson.OrderPriceTotal.toFixed(2));
+    $('#orderItems').html(tblstr);
+
+    modal.modal('show');
+    
+}

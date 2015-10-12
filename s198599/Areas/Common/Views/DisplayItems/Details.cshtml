@@ -17,58 +17,33 @@
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ItemCode)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ItemCode)
-        </dd>
+    <table class="table-responsive table-condensed pull-left">
+        <tr>
+            <td><strong>@Html.DisplayNameFor(model => model.ItemCode)</strong></td>
+            <td>@Html.DisplayFor(model => model.ItemCode)</td>
+        </tr>
+        <tr>
+            <td><strong>@Html.DisplayNameFor(model => model.ItemDesc)</strong></td>
+            <td>@Html.DisplayFor(model => model.ItemDesc)</td>
+        </tr>
+        <tr>
+            <td><strong>@Html.DisplayNameFor(model => model.InStock)</strong></td>
+            <td>@Html.DisplayFor(model => model.InStock)</td>
+        </tr>
+        <tr>
+            <td><strong>@Html.DisplayNameFor(model => model.Price)</strong></td>
+            <td>@Html.DisplayFor(model => model.Price)</td>
+        </tr>
+        <tr>
+            <td><strong>@Html.DisplayNameFor(model => model.SelectedCategoryName)</strong></td>
+            <td>@Html.DisplayFor(model => model.SelectedCategoryName)</td>
+        </tr>
+    </table>
+    <img src="@Url.Content("~/Content/Images/default.gif")" class="img-responsive" />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ItemDesc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ItemDesc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.InStock)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InStock)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SelectedCategoryName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SelectedCategoryName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImgPath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImgPath)
-        </dd>
-
-    </dl>
 </div>
 <p>
     <a href="" onclick="buyItem(@Model.ItemID); return false;" class="btn btn-primary btn-sm">Buy</a>
-    @Html.ActionLink("Back to List", "ListAll", "", htmlAttributes: new { @class = "btn btn-info btn-xs" })
+    @Html.ActionLink("Back to List", "ListAll", "", htmlAttributes: new { @class = "btn btn-info btn-sm" })
 </p>

@@ -11,15 +11,19 @@ namespace BOL.Models.Payment
     {
 
         [RegularExpression(@"^[A-ZÆØÅa-zæøå\-]{3,30}$", ErrorMessage ="Please provide a valid name.")]
+        [Display(Name ="Card holder name")]
         public string CardHolderName { get; set; }
 
         [RegularExpression(@"^\d{11}$", ErrorMessage ="Credit card number is in 11 digits.")]
+        [Display(Name ="Card number")]
         public string CardNumber { get; set; }
 
         [RegularExpression(@"^\d{2}$", ErrorMessage = "Expiration month is in to digits 01-12.")]
+        [Display(Name ="Exp month")]
         public string ExpMonth { get; set; }
 
         [RegularExpression(@"^\d{2}$", ErrorMessage = "Expiration year is in to digits.")]
+        [Display(Name = "Exp year")]
         public string ExpYear { get; set; }
 
         [RegularExpression(@"^\d{3}$", ErrorMessage = "CSV code is in 3 digits and is found on the back side of the card.")]

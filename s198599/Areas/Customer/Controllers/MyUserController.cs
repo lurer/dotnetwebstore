@@ -47,6 +47,14 @@ namespace s198599.Areas.Customer.Controllers
             return this.Json(orders);
         }
 
+
+        public JsonResult GetOrderDetail(int id)
+        {
+            var order = new OrderTransaction().GetById(id);
+            return Json(order);
+        }
+
+
         public ActionResult Edit(int? id)
         {
             if (id == null)

@@ -56,7 +56,7 @@
             @Html.DisplayFor(modelItem => item.SelectedCategoryName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImgPath)
+            <img src="@Url.Content("~/Content/Images/default-thumb.gif")" class="img-thumbnail"/>
         </td>
         <td>
             <a href="" onclick="buyItem(@item.ItemID); return false;" class="btn btn-primary btn-sm">Buy</a>

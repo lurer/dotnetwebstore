@@ -42,3 +42,4 @@ Utfordringer:
 	- CRUD-operasjoner liker helst "int ID"
 	- Jeg har løst dette slik at Role-modellen bruker int for sin Key, men har også en String som representerer Id'ens int. 
 	- Det vil si at hver User har både en RoleId (int) og en RoleStringId i string-format.
+- Foreløpig er det ingen egen ViewUser-model, slik at User-modellen som brukes innehar passordet, og sendes til viewet.

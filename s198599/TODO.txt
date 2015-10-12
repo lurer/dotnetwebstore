@@ -1,7 +1,11 @@
-﻿- Kvittering må vises ved bekreftelse
-- Betalingsløsning mæ ferdiggjøres
+﻿::: Modal må ferdiggjøres :::
+
+- Kvittering må vises ved bekreftelse
 
 
+- "Min side" fungerer bare ved full Page refresh. Må sjekke Ajax-kallet der
+- Endre bruker fungerer ikke.
+	- Hvordan skal man håndtere en bruker? Den har flere attributter enn det man vil gi mulighet for endring på. Man får da tilbake "null" på disse feltene etter endring
 - Try-Catch på alle databasekall
 	- Implementere ferdig ItemController for testing
 - Egendefinerte sider for informasjon om feil
