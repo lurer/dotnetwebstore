@@ -2,7 +2,7 @@
 
 - Kvittering må vises ved bekreftelse
 
-
+- Formatere Currency...
 - "Min side" fungerer bare ved full Page refresh. Må sjekke Ajax-kallet der
 - Endre bruker fungerer ikke.
 	- Hvordan skal man håndtere en bruker? Den har flere attributter enn det man vil gi mulighet for endring på. Man får da tilbake "null" på disse feltene etter endring
@@ -12,7 +12,7 @@
 
 
 
-- Ednring av User fungerer ikke etter flere attributter er lagt til
+- Endring av User fungerer ikke etter flere attributter er lagt til
 - Bilder i Item
 
 

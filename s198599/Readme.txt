@@ -1,12 +1,13 @@
-﻿Fokus for løsningen:
-ALLE prosjekter blir større enn ved første øyekast. Jeg har derfor tatt hensyn til dette og laget løsningen så løst koblet som mulig.
-Det vil si at det er flere prosjektet i løsningen som har et veldig snevert fokusområde, men de er tatt i bruk for å:
+﻿:::::::::Fokus for løsningen::::::::::::::
+
+ALLE prosjekter blir større enn ved første øyekast. Behov for videreutvikling og endring uten å måtte redesigne hele løsninger må man alltid t hensyn til.
+Løsningen fokuserer da på:
  - Gjøre det enkelt å gjenbruke kode.
  - Logisk adskille objekter fra hverandre.
  - Gjøre det enkelt for Controllere til å utføre operasjoner på Business-objekter, via "Transaksjoner" og "Services".
  - Ta høyde for at prosjektet en dag skulle stykkes opp i mindre deler eller spres over flere fysiske maskiner.
- - Ta høyde for fremtidig funksjonalitet. Feks RestAPI, mulighet for å implementere API mot andre tjenester osv.
- - Følge det jeg mener/tror er normen i arbeidslivet.
+ - Ta høyde for fremtidig funksjonalitet. Feks RestAPI, testing og mulighet for å implementere API mot andre tjenester osv.
+ - Følge det jeg tror er normen i arbeidslivet.
 
 Oppbyggning av løsningen:
 - MVC-prosjektet skal ikke vite om annet enn Business-objekter(BOL) og BLL-laget.

@@ -20,7 +20,8 @@ namespace s198599.Areas.Common.Controllers
         public ActionResult Index()
         {
             InitializeDb.initializeAdmin();
-            return View();
+            return RedirectToAction("ListAll", "DisplayItems");
+            //return View();
         }
 
     }
