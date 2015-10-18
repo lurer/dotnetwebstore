@@ -48,7 +48,8 @@
                         @Html.DisplayFor(modelItem => item.Price)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ImgPath)
+                        <img src="@Url.Content(item.ImgPath)" class="img-thumbnail thumbnail" />
+                        
                     </td>
                     <td>
                         @Html.ActionLink("Delete", "Delete", new { id = item.ItemID }, new { @class= "btn btn-danger btn-xs"})

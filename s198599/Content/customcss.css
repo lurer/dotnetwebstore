@@ -17,3 +17,18 @@
 .creditcard_digits{
     width: 50px;
 }
+
+.thumbnail-container{
+    height: 200px;
+    overflow: auto;
+}
+.thumbnail-container img{
+    max-height: 100%;
+}
+
+.thumbnail{
+    
+    height: 100px !important;
+    overflow: auto !important;
+}
+

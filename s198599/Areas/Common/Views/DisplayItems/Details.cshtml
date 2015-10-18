@@ -40,8 +40,9 @@
             <td>@Html.DisplayFor(model => model.SelectedCategoryName)</td>
         </tr>
     </table>
-    <img src="@Url.Content("~/Content/Images/default.gif")" class="img-responsive" />
-
+    <div class="thumbnail-container">
+        <img src="@Model.ImgPath" class="img-responsive" />
+    </div>
 </div>
 <p>
     <a href="" onclick="buyItem(@Model.ItemID); return false;" class="btn btn-primary btn-sm">Buy</a>

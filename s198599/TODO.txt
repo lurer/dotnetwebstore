@@ -1,5 +1,7 @@
 ﻿::: Modal må ferdiggjøres :::
 
+::::Legge script ut i egen mappe::::
+
 - Kvittering må vises ved bekreftelse
 
 - Formatere Currency...
@@ -9,7 +11,7 @@
 - Try-Catch på alle databasekall
 	- Implementere ferdig ItemController for testing
 - Egendefinerte sider for informasjon om feil
-
+- Handlekurv tømmes ved CompleteOrder, men foreløpig er det ingen helhetlig administrering av Handlekurv ut over det.
 
 
 - Endring av User fungerer ikke etter flere attributter er lagt til
