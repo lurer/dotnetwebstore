@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.DbModels
 {
-    public class DbUser
+    public class DbUser : IAuditedEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,5 +22,13 @@ namespace DAL.DbModels
         public virtual DbPostAddress PostAddress { get; set; }
         public string RoleStringId { get; set; }
         public int RoleId { get; set; }
+
+        public string CreatedBy { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public string LastModifiedBy { get; set; }
+
+        public DateTime LastModifiedAt { get; set; }
     }
 }

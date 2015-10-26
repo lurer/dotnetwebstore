@@ -1,4 +1,19 @@
-﻿:::::::::Fokus for løsningen::::::::::::::
+﻿:::::::::::: For mappe2 ::::::::::::::
+
+Logging:
+	Logging til database skjer via overriding av SaveChanges i DataContext.cs. Hver av databasemodellene implementerer et interface kalt IAuditedEntity.cs.
+	Dette er en lånt løsning fra http://stackoverflow.com/questions/26355486/entity-framework-6-audit-track-changes
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+
+:::::::::Fokus for løsningen::::::::::::::
 
 Pålogginger i bruk:
 Admin-bruker: admin@online.no	Passord: admin123

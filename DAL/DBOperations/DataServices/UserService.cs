@@ -14,7 +14,7 @@ namespace DAL.DBOperations.DataServices
             
             using (var context = new DataContext()){
                 var dbUser = transFromBusinessToDb(inUser);
-
+                
                 if(context.Users.ToList().Where(x=>x.Email == dbUser.Email).Count() > 0)
                     return null;
                 
@@ -38,16 +38,6 @@ namespace DAL.DBOperations.DataServices
         public override User Update(User obj)
         {
             DbUser dbUser = transFromBusinessToDb(obj);
-/*            if(obj.Orders != null)
-            {
-                var orderConverter = new OrderConverter();
-                dbUser.Orders = new List<DbOrder>();
-                foreach(var inOrder in obj.Orders)
-                {
-                    dbUser.Orders.Add(orderConverter.TransFromBusinessToDb(inOrder));
-                }
-            } */
-
 
             dbUser.PostAddress = new DbPostAddress();
             dbUser.PostAddress.PostCode = obj.PostCode;

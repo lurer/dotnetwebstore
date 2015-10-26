@@ -1,11 +1,15 @@
 ﻿using DAL.DbModels;
+using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq;
 
 namespace DAL
 {
+
     public class DataContext : DbContext
     {
+
         public DbSet<DbItem> Items { get; set; }
         public DbSet<DbOrderLine> OrderLines { get; set; }
         public DbSet<DbOrder> Orders { get; set; }
@@ -24,6 +28,36 @@ namespace DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public override int SaveChanges()
+        {
+            var addedAuditedEntities = ChangeTracker.Entries<IAuditedEntity>()
+                .Where(p => p.State == EntityState.Added)
+                .Select(p => p.Entity);
+
+            var modifiedAuditedEntities = ChangeTracker.Entries<IAuditedEntity>()
+              .Where(p => p.State == EntityState.Modified)
+              .Select(p => p.Entity);
+
+            var now = DateTime.UtcNow;
+
+            foreach (var added in addedAuditedEntities)
+            {
+                added.CreatedAt = now;
+                added.LastModifiedAt = now;
+                
+            }
+
+            foreach (var modified in modifiedAuditedEntities)
+            {
+                modified.LastModifiedAt = now;
+                
+            }
+            return base.SaveChanges();
+        }
+
+        
+
 
     }
 }

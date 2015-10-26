@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DAL.DBOperations.DataServices
 {
-    public abstract class AbstractService<T, R> where T : class
+    public abstract class AbstractService<T, R> : IDataService<T,R> where T : class
     {
         
         public void Delete(int id)

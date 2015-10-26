@@ -75,9 +75,11 @@
     <Compile Include="DbModels\DbReceipt.cs" />
     <Compile Include="DbModels\DbUser.cs" />
     <Compile Include="DbModels\DbRole.cs" />
+    <Compile Include="DbModels\IAuditedEntity.cs" />
     <Compile Include="DBOperations\CustomDbException.cs" />
     <Compile Include="DBOperations\DataServices\AbstractService.cs" />
     <Compile Include="DBOperations\DataServices\CategoryService.cs" />
+    <Compile Include="DBOperations\IDataService.cs" />
     <Compile Include="DBOperations\DataServices\ItemService.cs" />
     <Compile Include="DBOperations\DataServices\OrderService.cs" />
     <Compile Include="DBOperations\DataServices\RoleService.cs" />
@@ -117,6 +119,9 @@
       <Project>{7f90ad4e-0c2a-4363-9112-868b3e59b45a}</Project>
       <Name>BOL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DBOperations\DataServiceStubs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
