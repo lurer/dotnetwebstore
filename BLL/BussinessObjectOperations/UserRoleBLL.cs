@@ -1,5 +1,5 @@
 ﻿using BOL.Models;
-using BLL.DBOperations.DataServices;
+using DAL.DBOperations.DataServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BLL.BussinessObjectOperations
 {
-    public class UserRoleTransaction : ITransaction<Role>
+    public class UserRoleBLL : InterfaceBLL<Role>
     {
         public void Delete(int id)
         {

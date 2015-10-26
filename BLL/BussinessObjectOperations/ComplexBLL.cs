@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace BLL.BussinessObjectOperations
 {
-    public class ComplexTransactions
+    public class ComplexBLL
     {
         public User createUserAndUpdateRole(User User)
         {
-            using (var UserService = new UserTransaction())
+            using (var UserService = new UserBLL())
             {
-                var RoleService = new UserRoleTransaction();
+                var RoleService = new UserRoleBLL();
                 int roleId = 0;
                 try
                 {

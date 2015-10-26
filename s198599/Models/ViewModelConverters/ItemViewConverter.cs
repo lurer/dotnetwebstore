@@ -27,7 +27,7 @@ namespace s198599.Models.ViewModelConverters
 
         public static ItemViewPopulated convertToView(Item item)
         {
-            var categoryDb = new CategoryTransaction();
+            var categoryDb = new CategoryBLL();
             var categories = categoryDb.GetList();
             IEnumerable<SelectListItem> categoryList = categories.ToList().Select(x => new SelectListItem()
             {

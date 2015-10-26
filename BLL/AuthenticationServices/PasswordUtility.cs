@@ -22,7 +22,7 @@ namespace BLL.AuthenticationServices
 
         public static bool CheckUsedPasswordAgainstHashed(string username, string plainPassword)
         {
-            var userFromDb = new UserTransaction().getUserByEmail(username);
+            var userFromDb = new UserBLL().getUserByEmail(username);
             var hashedPassword = userFromDb.Password;
             var doesPasswordMatch = Crypto.VerifyHashedPassword(hashedPassword, plainPassword);
             return doesPasswordMatch;

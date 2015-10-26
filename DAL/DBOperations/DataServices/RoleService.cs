@@ -1,14 +1,9 @@
-﻿using BLL.DBOperations.ObjectConverters;
-using BOL.Models;
+﻿using BOL.Models;
 using DAL.DbModels;
-using System;
-using System.Collections.Generic;
+using DAL.DBOperations.ObjectConverters;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BLL.DBOperations.DataServices
+namespace DAL.DBOperations.DataServices
 {
     public class RoleService : AbstractService<DbRole, Role>
     {

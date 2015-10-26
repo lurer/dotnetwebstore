@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.BussinessObjectOperations
 {
-    public interface ITransaction<T> : IDisposable
+    public interface InterfaceBLL<T> : IDisposable
     {
         List<T> GetList();
         T GetById(int? id);

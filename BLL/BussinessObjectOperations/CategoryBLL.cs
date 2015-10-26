@@ -1,17 +1,18 @@
 ﻿using BOL.Models;
-using BLL.DBOperations.DataServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.DBOperations.DataServices;
 
 namespace BLL.BussinessObjectOperations
 {
-    public class CategoryTransaction : ITransaction<ItemCategory>
+    public class CategoryBLL : InterfaceBLL<ItemCategory>
     {
         public void Delete(int id)
-        {
+        { 
+        
             new CategoryService().Delete(id);
         }
 
@@ -40,7 +41,7 @@ namespace BLL.BussinessObjectOperations
             return new CategoryService().Update(obj);
         }
 
-        List<ItemCategory> ITransaction<ItemCategory>.GetList()
+        List<ItemCategory> InterfaceBLL<ItemCategory>.GetList()
         {
             throw new NotImplementedException();
         }

@@ -19,9 +19,9 @@ namespace s198599.Areas.Customer.Controllers
         public ActionResult Index()
         {
             string myId = User.Identity.GetUserName();
-            User myUser = new UserTransaction().getUserByEmail(myId);
+            User myUser = new UserBLL().getUserByEmail(myId);
             if (myUser == null)
-                return SetSessionMessage(View(myUser), "fail", "Could not get information for your user");
+                return SetSessionMessage(View(myUser), SESSIONMESSAGE.FAIL, "Could not get information for your user");
             return View(myUser);
             
         }
@@ -29,28 +29,28 @@ namespace s198599.Areas.Customer.Controllers
         public JsonResult myUserAsJson()
         {
             string myId = User.Identity.GetUserName();
-            User myUser = new UserTransaction().getUserByEmail(myId);
+            User myUser = new UserBLL().getUserByEmail(myId);
             return this.Json(myUser);
         }
 
         public ActionResult _UserPartialView()
         {
             string myId = User.Identity.GetUserName();
-            User myUser = new UserTransaction().getUserByEmail(myId);
+            User myUser = new UserBLL().getUserByEmail(myId);
             return View(myUser);
         }
 
 
         public JsonResult GetMyOrders(int id)
         {
-            var orders = new OrderTransaction().GetList().Where(x => x.User.UserID == id);
+            var orders = new OrderBLL().GetList().Where(x => x.User.UserID == id);
             return this.Json(orders);
         }
 
 
         public JsonResult GetOrderDetail(int id)
         {
-            var order = new OrderTransaction().GetById(id);
+            var order = new OrderBLL().GetById(id);
             return Json(order);
         }
 
@@ -61,7 +61,7 @@ namespace s198599.Areas.Customer.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User User = new UserTransaction().GetById(id);
+            User User = new UserBLL().GetById(id);
             if (User == null)
             {
                 return HttpNotFound();
@@ -76,11 +76,11 @@ namespace s198599.Areas.Customer.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updatedUser = new UserTransaction().Update(User);
+                var updatedUser = new UserBLL().Update(User);
                 if(updatedUser != null)
-                    return SetSessionMessage(RedirectToAction("Index"), "success", "Your user account information is updated");
+                    return SetSessionMessage(RedirectToAction("Index"), SESSIONMESSAGE.SUCESS, "Your user account information is updated");
             }
-            return SetSessionMessage(View(User), "fail", "Something went wrong. Please try again!");
+            return SetSessionMessage(View(User), SESSIONMESSAGE.FAIL, "Something went wrong. Please try again!");
         }
     }
 }

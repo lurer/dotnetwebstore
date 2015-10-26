@@ -1,21 +1,20 @@
-﻿using BLL.DBOperations.DataServices;
-using BOL.Models;
-
+﻿using BOL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.DBOperations.DataServices;
 
 namespace BLL.BussinessObjectOperations
 {
-    public class UserTransaction : ITransaction<User>
+    public class ItemBLL : InterfaceBLL<Item>
     {
-        private UserService service;
+        private ItemService service;
 
-        public UserTransaction()
+        public ItemBLL()
         {
-            service = new UserService();
+            service = new ItemService();
         }
 
         public void Delete(int id)
@@ -28,31 +27,24 @@ namespace BLL.BussinessObjectOperations
             //throw new NotImplementedException();
         }
 
-        public User GetById(int? id)
+        public Item GetById(int? id)
         {
             return service.GetById(id);
         }
 
-
-
-        public List<User> GetList()
+        public List<Item> GetList()
         {
             return service.GetList();
         }
 
-        public User Insert(User obj)
+        public Item Insert(Item obj)
         {
             return service.Insert(obj);
         }
 
-        public User Update(User obj)
+        public Item Update(Item obj)
         {
             return service.Update(obj);
-        }
-
-        public User getUserByEmail(string emailAdr)
-        {
-            return service.getUserByEmail(emailAdr);
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using BLL.DBOperations.DataServices;
-using BOL.Models;
+﻿using BOL.Models;
 using DAL.DbModels;
+using DAL.DBOperations.DataServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +57,7 @@ namespace AuthenticationServices
                 string[] s = { service.GetList().Where(x => x.Email == username).FirstOrDefault().RoleStringId };
                 return s;
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Roles in the system</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create","", htmlAttributes: new { @class = "btn btn-success btn-sm" })
@@ -31,7 +31,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.RoleId }, htmlAttributes: new { @class = "btn btn-warning btn-sm" }) 
-            @Html.ActionLink("Details", "Details", new { id=item.RoleId }, htmlAttributes: new { @class = "btn btn-info btn-sm" }) 
             @Html.ActionLink("Delete", "Delete", new { id=item.RoleId }, htmlAttributes: new { @class = "btn btn-danger btn-sm" })
         </td>
     </tr>

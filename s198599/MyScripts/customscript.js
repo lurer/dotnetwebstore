@@ -34,13 +34,13 @@ function feedbackMessage(type, message) {
     }
     div_info.appendChild(document.createTextNode(message));
     switch (type) {
-        case "success":
+        case "SUCCESS":
             div_info.className = "alert alert-success";
             break;
-        case "info":
+        case "INFO":
             div_info.className = "alert alert-info";
             break;
-        case "fail":
+        case "FAIL":
             div_info.className = "alert alert-danger";
             break;
     }

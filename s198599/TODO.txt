@@ -1,4 +1,37 @@
-﻿::: Modal må ferdiggjøres :::
+﻿::: Status :::
+Har endret på alle kontrollere. De tar nå imot en BLL interface i construktøren.
+
+
+- ItemCategoryController er et unntak!!!
+
+
+
+I Admin-Area:
+	Ordre:
+		- Liste - Kunne søke og sortere, eventuelt også gruppere ordre på kunde
+		- Ajax på Details slik at man får opp detaljert informasjon om ordren og kunden-
+	Users:
+		- Kunne sortere og gruppere per kategori, og søke på navn/epost
+		- Må kunne aktivere/deaktivere kunde. Kan ikke slette kunde med kundehistorikk
+		- Bør Edit være mulig på andre brukere?
+		- Trenger man details? Hva skal det inneholde som ikke inneholdes i listen?
+	Items:
+		- De varer som er lite av på lager må markeres slik at de blir synlig. Kanskje i en egen liste eller modal?
+		- Gi mulighet for å "plukke" bildesti, og ikke skrive stien manuelt.
+	ItemCategory:
+		- Kan ikke slette ItemCategory hvis det er i bruk av andre produkter.
+
+
+
+
+DI og Unit test:
+
+	ItemController:
+		Se på behov for abstraksjon av Converter ifm Unit test		
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+::: Modal må ferdiggjøres :::
 
 ::::Legge script ut i egen mappe::::
 

@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContext.cs" />
     <Compile Include="DbModels\DbItem.cs" />
     <Compile Include="DbModels\DbItemCategory.cs" />
     <Compile Include="DbModels\DbOrder.cs" />
@@ -74,6 +75,20 @@
     <Compile Include="DbModels\DbReceipt.cs" />
     <Compile Include="DbModels\DbUser.cs" />
     <Compile Include="DbModels\DbRole.cs" />
+    <Compile Include="DBOperations\CustomDbException.cs" />
+    <Compile Include="DBOperations\DataServices\AbstractService.cs" />
+    <Compile Include="DBOperations\DataServices\CategoryService.cs" />
+    <Compile Include="DBOperations\DataServices\ItemService.cs" />
+    <Compile Include="DBOperations\DataServices\OrderService.cs" />
+    <Compile Include="DBOperations\DataServices\RoleService.cs" />
+    <Compile Include="DBOperations\DataServices\ShoppingCartService.cs" />
+    <Compile Include="DBOperations\DataServices\UserService.cs" />
+    <Compile Include="DBOperations\ObjectConverters\AbstractConverter.cs" />
+    <Compile Include="DBOperations\ObjectConverters\ItemConverter.cs" />
+    <Compile Include="DBOperations\ObjectConverters\OrderConverter.cs" />
+    <Compile Include="DBOperations\ObjectConverters\OrderLineConverter.cs" />
+    <Compile Include="DBOperations\ObjectConverters\RoleConverter.cs" />
+    <Compile Include="DBOperations\ObjectConverters\UserConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -97,7 +112,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BOL\BOL.csproj">
+      <Project>{7f90ad4e-0c2a-4363-9112-868b3e59b45a}</Project>
+      <Name>BOL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BLL.DBOperations.ObjectConverters
+﻿namespace DAL.DBOperations.ObjectConverters
 {
     public abstract class AbstractConverter<T, R> where T : class
     {

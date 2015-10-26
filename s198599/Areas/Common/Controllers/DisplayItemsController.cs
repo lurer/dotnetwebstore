@@ -25,7 +25,7 @@ namespace s198599.Areas.Common.Controllers
         {
             var viewItems = new List<ItemViewPopulated>();
             try { 
-                var domainItems = new ItemTransaction().GetList();
+                var domainItems = new ItemBLL().GetList();
                 foreach (var item in domainItems)
                     viewItems.Add(ItemViewConverter.convertToView(item));
 
@@ -33,7 +33,7 @@ namespace s198599.Areas.Common.Controllers
             }
             catch (Exception)
             {
-                return SetSessionMessage(View(viewItems), "fail", "We could not retrieve products from the database");
+                return SetSessionMessage(View(viewItems), SESSIONMESSAGE.FAIL, "We could not retrieve products from the database");
             }
             
 
@@ -47,7 +47,7 @@ namespace s198599.Areas.Common.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = new ItemTransaction().GetById(id);
+            Item item = new ItemBLL().GetById(id);
             if (item == null)
             {
                 return HttpNotFound();

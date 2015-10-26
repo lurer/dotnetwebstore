@@ -16,9 +16,23 @@ namespace s198599.Areas.Admin.Controllers
     [Authorize(Roles = "A")]
     public class UserController : BaseController
     {
+
+        private InterfaceBLL<User> bll;
+
+
+        public UserController(InterfaceBLL<User> bll)
+        {
+            this.bll = bll;
+        }
+
+        public UserController()
+        {
+            bll = new UserBLL();
+        }
+
         public ActionResult Index()
         {
-            return View(new UserTransaction().GetList());
+            return View(bll.GetList());
         }
 
         // GET: User/Users/Details/5
@@ -29,7 +43,7 @@ namespace s198599.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User User = new UserTransaction().GetById(id);
+            User User = bll.GetById(id);
             if (User == null)
             {
                 return HttpNotFound();
@@ -52,11 +66,13 @@ namespace s198599.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var UserService = new UserTransaction())
-                {
-                    UserService.Insert(User);
+                try { 
+                    bll.Insert(User);
                 }
-
+                catch (Exception)
+                {
+                    return SetSessionMessage(View(), SESSIONMESSAGE.FAIL, "Sometjing went wrong with registration");
+                }
                 return RedirectToAction("Index");
             }
 
@@ -70,7 +86,7 @@ namespace s198599.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOL.Models.User User = new UserTransaction().GetById(id);
+            User User = bll.GetById(id);
             if (User == null)
             {
                 return HttpNotFound();
@@ -87,7 +103,7 @@ namespace s198599.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                new UserTransaction().Update(User);
+                bll.Update(User);
 
                 return RedirectToAction("Index");
             }
@@ -101,7 +117,7 @@ namespace s198599.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BOL.Models.User User = new UserTransaction().GetById(id);
+            User User = bll.GetById(id);
             if (User == null)
             {
                 return HttpNotFound();
@@ -114,7 +130,7 @@ namespace s198599.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            new UserTransaction().Delete(id);
+            bll.Delete(id);
             return RedirectToAction("Index");
         }
 

@@ -1,12 +1,4 @@
-﻿using BOL.Models;
-using DAL.DbModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BLL.DBOperations.DataServices
+﻿namespace DAL.DBOperations.DataServices
 {
     public class ShoppingCartService
     {

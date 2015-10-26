@@ -27,7 +27,7 @@ namespace s198599.Areas.Common.Controllers
                     myCart.Items = new List<Item>();
                     ShoppingCartManager.getInstance().addShoppingCartToList(myCart);
                 }
-                var newItem = new ItemTransaction().GetById(id);
+                var newItem = new ItemBLL().GetById(id);
                 if (newItem.InStock > 0) {
 
                     myCart.Items.Add(newItem);
@@ -75,9 +75,9 @@ namespace s198599.Areas.Common.Controllers
             {
                 bool ok = myCart.Items.Remove(myCart.Items.ToList().Where(x => x.ItemID == id).FirstOrDefault());
                 if (ok)
-                    SetSessionMessage(View(), "info", "The product was removed from your shopping cart!");
+                    SetSessionMessage(View(), SESSIONMESSAGE.INFO, "The product was removed from your shopping cart!");
                 else
-                    SetSessionMessage(View(), "fail", "Something went wrong. Please update your page!");
+                    SetSessionMessage(View(), SESSIONMESSAGE.FAIL, "Something went wrong. Please update your page!");
 
             }
             return RedirectToAction("GetMyCart");

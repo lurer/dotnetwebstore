@@ -7,20 +7,35 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BOL.Models;
-using BLL.DBOperations.DataServices;
 using BLL.BussinessObjectOperations;
 using s198599.Controllers;
 
 namespace s198599.Areas.Admin.Controllers
 {
+
+    
+
     [Authorize(Roles ="A")]
     public class OrderController : BaseController
     {
-        
+
+        InterfaceBLL<Order> bll;
+
+        public OrderController(InterfaceBLL<Order> bll)
+        {
+            this.bll = bll;
+        }
+
+
+        public OrderController()
+        {
+            bll = new OrderBLL();
+        }
+
         // GET: Customer/Order
         public ActionResult Index()
         {
-            return View(new OrderTransaction().GetList());
+            return View(bll.GetList());
         }
 
         // GET: Customer/Order/Details/5
@@ -30,7 +45,7 @@ namespace s198599.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = new OrderTransaction().GetById(id);
+            Order order = bll.GetById(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -44,75 +59,8 @@ namespace s198599.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Customer/Order/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderNumber,DateTime,OrderPriceTotal")] Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                new OrderTransaction().Insert(order);
-                return RedirectToAction("Index");
-            }
 
-            return View(order);
-        }
 
-        // GET: Customer/Order/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = new OrderTransaction().GetById(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
-
-        // POST: Customer/Order/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderNumber,DateTime,OrderPriceTotal")] Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                new OrderTransaction().Update(order);
-                return RedirectToAction("Index");
-            }
-            return View(order);
-        }
-
-        // GET: Customer/Order/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = new OrderTransaction().GetById(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
-
-        // POST: Customer/Order/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            new OrderTransaction().Delete(id);
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

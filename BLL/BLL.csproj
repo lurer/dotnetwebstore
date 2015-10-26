@@ -61,33 +61,18 @@
   <ItemGroup>
     <Compile Include="AuthenticationServices\SessionInterceptor.cs" />
     <Compile Include="AuthenticationServices\PasswordUtility.cs" />
-    <Compile Include="BussinessObjectOperations\CategoryTransaction.cs" />
-    <Compile Include="BussinessObjectOperations\ComplexTransactions.cs" />
-    <Compile Include="BussinessObjectOperations\ItemTransaction.cs" />
-    <Compile Include="BussinessObjectOperations\UserRoleTransaction.cs" />
-    <Compile Include="BussinessObjectOperations\UserTransaction.cs" />
-    <Compile Include="BussinessObjectOperations\ITransaction.cs" />
-    <Compile Include="BussinessObjectOperations\OrderTransaction.cs" />
-    <Compile Include="DataContext.cs" />
+    <Compile Include="BussinessObjectOperations\CategoryBLL.cs" />
+    <Compile Include="BussinessObjectOperations\ComplexBLL.cs" />
+    <Compile Include="BussinessObjectOperations\ItemBLL.cs" />
+    <Compile Include="BussinessObjectOperations\UserRoleBLL.cs" />
+    <Compile Include="BussinessObjectOperations\UserBLL.cs" />
+    <Compile Include="BussinessObjectOperations\InterfaceBLL.cs" />
+    <Compile Include="BussinessObjectOperations\OrderBLL.cs" />
     <Compile Include="AuthenticationServices\WebstoreRoleProvider.cs" />
     <Compile Include="AuthenticationServices\WebstoreMembershipProvider.cs" />
-    <Compile Include="DBOperations\DataServices\AbstractService.cs" />
-    <Compile Include="DBOperations\DataServices\CategoryService.cs" />
-    <Compile Include="DBOperations\DataServices\ItemService.cs" />
-    <Compile Include="DBOperations\DataServices\OrderService.cs" />
-    <Compile Include="DBOperations\DataServices\RoleService.cs" />
-    <Compile Include="DBOperations\DataServices\ShoppingCartService.cs" />
-    <Compile Include="DBOperations\DataServices\UserService.cs" />
     <Compile Include="Initializer\InitializeDb.cs" />
-    <Compile Include="DBOperations\ObjectConverters\AbstractConverter.cs" />
-    <Compile Include="DBOperations\ObjectConverters\ItemConverter.cs" />
-    <Compile Include="DBOperations\ObjectConverters\OrderConverter.cs" />
-    <Compile Include="DBOperations\ObjectConverters\OrderLineConverter.cs" />
-    <Compile Include="DBOperations\ObjectConverters\RoleConverter.cs" />
-    <Compile Include="DBOperations\ObjectConverters\UserConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingCartService\ShoppingCartManager.cs" />
-    <Compile Include="Utilities\CustomDbException.cs" />
     <Compile Include="Utilities\SessionMessage.cs" />
   </ItemGroup>
   <ItemGroup>

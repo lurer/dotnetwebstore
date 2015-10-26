@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace BLL.DBOperations.ObjectConverters
+namespace ObjectConverters
 {
     public class UserConverter : AbstractConverter<DbUser, User>
     {

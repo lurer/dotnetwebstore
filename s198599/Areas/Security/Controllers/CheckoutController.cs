@@ -34,7 +34,7 @@ namespace s198599.Areas.Security.Controllers
         {
             var myCart = getMyShoppingCart();
             myCart.EmptyCart();
-            return SetSessionMessage(RedirectToAction("ListAll", "DisplayItems", new { area = "Common" }), "info", "Your order was canceled.");
+            return SetSessionMessage(RedirectToAction("ListAll", "DisplayItems", new { area = "Common" }), SESSIONMESSAGE.INFO, "Your order was canceled.");
         }
 
         public ActionResult CompleteOrder()
@@ -42,16 +42,16 @@ namespace s198599.Areas.Security.Controllers
 
             var myCart = getMyShoppingCart();
 
-            User myUser = new UserTransaction().getUserByEmail(User.Identity.Name);
+            User myUser = new UserBLL().getUserByEmail(User.Identity.Name);
             if(myUser == null)
-                SetSessionMessage(View(), "fail", "Something went wrong. Please try again");
+                SetSessionMessage(View(), SESSIONMESSAGE.FAIL, "Something went wrong. Please try again");
 
             var myOrder = new Order();
             myOrder.User = myUser;
             myOrder.DateTime = DateTime.Now;
             myOrder.Items = new List<OrderLine>();
 
-            var itemTransaction = new ItemTransaction();
+            var itemTransaction = new ItemBLL();
             foreach(var item in myCart.Items)
             {
                 item.InStock--;
@@ -66,11 +66,11 @@ namespace s198599.Areas.Security.Controllers
                 myOrder.Items.Add(orderLine);
             }
 
-            var updatedOrder = new OrderTransaction().Insert(myOrder);
+            var updatedOrder = new OrderBLL().Insert(myOrder);
             if(updatedOrder == null)
-                SetSessionMessage(View(), "fail", "Something went wrong. The order is not registered");
+                SetSessionMessage(View(), SESSIONMESSAGE.FAIL, "Something went wrong. The order is not registered");
             myCart.EmptyCart();
-            return SetSessionMessage(RedirectToAction("ListAll", "DisplayItems", new { area = "Common" }), "success", "The order is registered");
+            return SetSessionMessage(RedirectToAction("ListAll", "DisplayItems", new { area = "Common" }), SESSIONMESSAGE.SUCESS, "The order is registered");
         }
 
 

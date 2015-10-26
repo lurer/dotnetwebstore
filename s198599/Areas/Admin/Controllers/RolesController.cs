@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BOL.Models;
-using BLL.DBOperations.DataServices;
 using BLL.BussinessObjectOperations;
 using s198599.Controllers;
 
@@ -15,28 +14,27 @@ namespace s198599.Areas.Admin.Controllers
 {
     public class RolesController : BaseController
     {
+
+        InterfaceBLL<Role> bll;
         
+
+        public RolesController(InterfaceBLL<Role> bll)
+        {
+            this.bll = bll;
+        }
+
+        public RolesController()
+        {
+            bll = new UserRoleBLL();
+        }
 
         // GET: Admin/Roles
         public ActionResult Index()
         {
-            return View(new UserRoleTransaction().GetList());
+            return View(bll.GetList());
         }
 
-        // GET: Admin/Roles/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Role role = new UserRoleTransaction().GetById(id);
-            if (role == null)
-            {
-                return HttpNotFound();
-            }
-            return View(role);
-        }
+
 
         // GET: Admin/Roles/Create
         public ActionResult Create()
@@ -53,7 +51,7 @@ namespace s198599.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                new UserRoleTransaction().Insert(role);
+                bll.Insert(role);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +65,7 @@ namespace s198599.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = new UserRoleTransaction().GetById(id);
+            Role role = bll.GetById(id);
             if (role == null)
             {
                 return HttpNotFound();
@@ -84,7 +82,7 @@ namespace s198599.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                new UserRoleTransaction().Update(role);
+                bll.Update(role);
                 return RedirectToAction("Index");
             }
             return View(role);
@@ -97,7 +95,7 @@ namespace s198599.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = new UserRoleTransaction().GetById(id);
+            Role role = bll.GetById(id);
             if (role == null)
             {
                 return HttpNotFound();
@@ -110,7 +108,7 @@ namespace s198599.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            new UserRoleTransaction().Delete(id);
+            bll.Delete(id);
             return RedirectToAction("Index");
         }
 
