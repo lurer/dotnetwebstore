@@ -1,5 +1,7 @@
 ﻿using BOL.Models;
 using DAL.DbModels;
+using DAL.Utilities;
+using System;
 
 namespace DAL.DBOperations.DataServices
 {
@@ -10,8 +12,17 @@ namespace DAL.DBOperations.DataServices
             DbItemCategory dbCategory = new DbItemCategory { CategoryName = inObj.CategoryName };
             using (var context = new DataContext())
             {
-                context.Category.Add(dbCategory);
-                context.SaveChanges();
+
+                try
+                {
+                    context.Category.Add(dbCategory);
+                    context.SaveChanges();
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+
             }
             return transFromDbToBusiness(dbCategory);
         }
@@ -21,8 +32,16 @@ namespace DAL.DBOperations.DataServices
             var dbCategory = transFromBusinessToDb(obj);
             using (var context = new DataContext())
             {
-                context.Entry(dbCategory).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
+                try
+                {
+                    context.Entry(dbCategory).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+
             }
             return transFromDbToBusiness(dbCategory);
         }

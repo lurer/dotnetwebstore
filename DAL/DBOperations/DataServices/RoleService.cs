@@ -1,6 +1,8 @@
 ﻿using BOL.Models;
 using DAL.DbModels;
 using DAL.DBOperations.ObjectConverters;
+using DAL.Utilities;
+using System;
 using System.Data.Entity;
 
 namespace DAL.DBOperations.DataServices
@@ -12,8 +14,16 @@ namespace DAL.DBOperations.DataServices
             DbRole dbRole = transFromBusinessToDb(inObj);
             using (var context = new DataContext())
             {
-                context.Roles.Add(dbRole);
-                context.SaveChanges();
+                try
+                {
+                    context.Roles.Add(dbRole);
+                    context.SaveChanges();
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+
             }
             return transFromDbToBusiness(dbRole);
         }
@@ -23,8 +33,16 @@ namespace DAL.DBOperations.DataServices
             DbRole dbRole = transFromBusinessToDb(obj);
             using (var context = new DataContext())
             {
-                context.Entry(dbRole).State = EntityState.Modified;
-                context.SaveChanges();
+                try
+                {
+                    context.Entry(dbRole).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+
             }
             return transFromDbToBusiness(dbRole);
         }

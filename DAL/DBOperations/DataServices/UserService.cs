@@ -1,6 +1,8 @@
 ﻿using BOL.Models;
 using DAL.DbModels;
 using DAL.DBOperations.ObjectConverters;
+using DAL.Utilities;
+using System;
 using System.Data.Entity;
 using System.Linq;
 
@@ -28,8 +30,16 @@ namespace DAL.DBOperations.DataServices
                     dbUser.PostAddress = PostAddress;
                 }
 
-                context.Users.Add(dbUser);
-                context.SaveChanges();
+                try
+                {
+                    context.Users.Add(dbUser);
+                    context.SaveChanges();
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+
 
                 return transFromDbToBusiness(dbUser);
             }//using 
@@ -42,9 +52,18 @@ namespace DAL.DBOperations.DataServices
             dbUser.PostAddress = new DbPostAddress();
             dbUser.PostAddress.PostCode = obj.PostCode;
             dbUser.PostAddress.PostAddres = obj.PostAddress;
-            using(var context = new DataContext()) { 
-                context.Entry(dbUser).State = EntityState.Modified;
-                context.SaveChanges();
+            using(var context = new DataContext()) {
+
+                try
+                {
+                    context.Entry(dbUser).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+
             }
             return transFromDbToBusiness(dbUser);
         }

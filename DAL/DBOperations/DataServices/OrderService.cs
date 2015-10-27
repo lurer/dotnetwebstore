@@ -1,8 +1,10 @@
 ﻿using BOL.Models;
 using DAL.DbModels;
 using DAL.DBOperations.ObjectConverters;
+using DAL.Utilities;
+using System;
 using System.Data.Entity;
-
+using System.Data.Entity.Core;
 
 namespace DAL.DBOperations.DataServices
 {
@@ -15,8 +17,16 @@ namespace DAL.DBOperations.DataServices
             DbOrder dbOrder = transFromBusinessToDb(inObj);
             using(var context = new DataContext())
             {
-                context.Orders.Add(dbOrder);
-                context.SaveChanges();
+                try
+                {
+                    context.Orders.Add(dbOrder);
+                    context.SaveChanges();
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+
             }
             return transFromDbToBusiness(dbOrder);
         }
@@ -26,8 +36,16 @@ namespace DAL.DBOperations.DataServices
             DbOrder dbOrder = transFromBusinessToDb(obj);
             using(var context = new DataContext())
             {
-                context.Entry(dbOrder).State = EntityState.Modified;
-                context.SaveChanges();
+                try
+                {
+                    context.Entry(dbOrder).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+
             }
             return transFromDbToBusiness(dbOrder);
         }

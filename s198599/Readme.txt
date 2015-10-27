@@ -1,8 +1,13 @@
 ﻿:::::::::::: For mappe2 ::::::::::::::
 
-Logging:
+Logging i database:
 	Logging til database skjer via overriding av SaveChanges i DataContext.cs. Hver av databasemodellene implementerer et interface kalt IAuditedEntity.cs.
 	Dette er en lånt løsning fra http://stackoverflow.com/questions/26355486/entity-framework-6-audit-track-changes
+	Det logges når en entitet blir opprettet og når den endres.
+Logging til fil:
+	Det er laget en CustomDbException som arver EntityException. Denne filen har en logToFile()-metode som skrive til loggfil. loggfilen ligger i App_Data-mappen.
+	Alle metoder som kontakter databasen på noen måte har en try/catch, der man catcher CustomDbException.
+
 
 
 

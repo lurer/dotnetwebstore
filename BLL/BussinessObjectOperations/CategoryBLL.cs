@@ -26,7 +26,7 @@ namespace BLL.BussinessObjectOperations
             return new CategoryService().GetById(id);
         }
 
-        public IEnumerable<ItemCategory> GetList()
+        public List<ItemCategory> GetList()
         {
             return new CategoryService().GetList();
         }
@@ -41,9 +41,6 @@ namespace BLL.BussinessObjectOperations
             return new CategoryService().Update(obj);
         }
 
-        List<ItemCategory> InterfaceBLL<ItemCategory>.GetList()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

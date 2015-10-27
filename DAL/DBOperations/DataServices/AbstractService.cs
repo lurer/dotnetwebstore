@@ -1,4 +1,5 @@
 ﻿using DAL.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,14 +13,16 @@ namespace DAL.DBOperations.DataServices
             using (var context = new DataContext())
             {
 
-                var dbObj = context.Set<T>().Find(id);
-                if (dbObj == null)
-                    throw new CustomDbException();
-
-                context.Set<T>().Remove(dbObj);
-                context.SaveChanges();
-  
-
+                try
+                {
+                    var dbObj = context.Set<T>().Find(id);
+                    context.Set<T>().Remove(dbObj);
+                    context.SaveChanges();
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
             };
         }
 
@@ -31,15 +34,21 @@ namespace DAL.DBOperations.DataServices
 
         public R GetById(int? id)
         {
-
+            
             using (var context = new DataContext())
             {
-                var dbObj = context.Set<T>().Find(id);
-                if (dbObj == null)
-                    throw new CustomDbException();
-                return transFromDbToBusiness(dbObj);
+                try
+                {
+                    var dbObj = context.Set<T>().Find(id);
+                    return transFromDbToBusiness(dbObj);
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+
             };
-            
+            return default(R);            
 
         }
 
@@ -50,14 +59,19 @@ namespace DAL.DBOperations.DataServices
 
             using (var context = new DataContext())
             {
-                var dbList = context.Set<T>().ToList();
-                if(dbList == null)
-                    throw new CustomDbException();
-
-                foreach (var dbObj in dbList)
+                try
                 {
-                    busList.Add(transFromDbToBusiness(dbObj));
+                    var dbList = context.Set<T>().ToList();
+                    foreach (var dbObj in dbList)
+                    {
+                        busList.Add(transFromDbToBusiness(dbObj));
+                    }
                 }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+
             }
             return busList;
         }

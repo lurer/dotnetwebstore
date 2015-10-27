@@ -2,7 +2,10 @@
 using BOL.Models;
 using DAL.DbModels;
 using DAL.DBOperations.ObjectConverters;
+using DAL.Utilities;
+using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace DAL.DBOperations.DataServices
 {
@@ -13,21 +16,38 @@ namespace DAL.DBOperations.DataServices
             DbItem dbItem = transFromBusinessToDb(inObj);
             using(var context = new DataContext())
             {
-                context.Items.Add(dbItem);
-                context.SaveChanges();
+                try
+                {
+                    context.Items.Add(dbItem);
+                    context.SaveChanges();
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+
             }
             return transFromDbToBusiness(dbItem);
         }
 
         public override Item Update(Item obj)
         {
-            DbItem dbItem = transFromBusinessToDb(obj);
+            
             using(var context = new DataContext())
             {
-                context.Entry(dbItem).State = EntityState.Modified;
-                context.SaveChanges();
+                DbItem dbItem = transFromBusinessToDb(obj);
+                try
+                {
+                    context.Entry(dbItem).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+                catch (CustomDbException e)
+                {
+                    e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                }
+                return transFromDbToBusiness(dbItem);
             }
-            return transFromDbToBusiness(dbItem);
+            
         }
 
         internal override DbItem transFromBusinessToDb(Item obj)

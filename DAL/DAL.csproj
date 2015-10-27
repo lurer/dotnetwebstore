@@ -77,13 +77,17 @@
     <Compile Include="DbModels\DbRole.cs" />
     <Compile Include="DbModels\IAuditedEntity.cs" />
     <Compile Include="DBOperations\CustomDbException.cs" />
+    <Compile Include="DBOperations\DataServiceStubs\CategoryServiceStub.cs" />
+    <Compile Include="DBOperations\DataServiceStubs\ItemServiceStub.cs" />
+    <Compile Include="DBOperations\DataServiceStubs\OrderServiceStub.cs" />
+    <Compile Include="DBOperations\DataServiceStubs\RoleServiceStub.cs" />
+    <Compile Include="DBOperations\DataServiceStubs\UserServiceStub.cs" />
     <Compile Include="DBOperations\DataServices\AbstractService.cs" />
     <Compile Include="DBOperations\DataServices\CategoryService.cs" />
     <Compile Include="DBOperations\IDataService.cs" />
     <Compile Include="DBOperations\DataServices\ItemService.cs" />
     <Compile Include="DBOperations\DataServices\OrderService.cs" />
     <Compile Include="DBOperations\DataServices\RoleService.cs" />
-    <Compile Include="DBOperations\DataServices\ShoppingCartService.cs" />
     <Compile Include="DBOperations\DataServices\UserService.cs" />
     <Compile Include="DBOperations\ObjectConverters\AbstractConverter.cs" />
     <Compile Include="DBOperations\ObjectConverters\ItemConverter.cs" />
@@ -120,9 +124,7 @@
       <Name>BOL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DBOperations\DataServiceStubs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
