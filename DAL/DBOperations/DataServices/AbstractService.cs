@@ -84,6 +84,6 @@ namespace DAL.DBOperations.DataServices
 
         internal abstract R transFromDbToBusiness(T dbObj);
 
-        internal abstract T transFromBusinessToDb(R obj);
+        internal abstract T transFromBusinessToDb(R obj, T dbObj);
     }
 }

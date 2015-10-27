@@ -15,7 +15,7 @@ namespace DAL.DBOperations.DataServices
         {
             
             using (var context = new DataContext()){
-                var dbUser = transFromBusinessToDb(inUser);
+                var dbUser = transFromBusinessToDb(inUser, null);
                 
                 if(context.Users.ToList().Where(x=>x.Email == dbUser.Email).Count() > 0)
                     return null;
@@ -47,13 +47,15 @@ namespace DAL.DBOperations.DataServices
 
         public override User Update(User obj)
         {
-            DbUser dbUser = transFromBusinessToDb(obj);
 
-            dbUser.PostAddress = new DbPostAddress();
-            dbUser.PostAddress.PostCode = obj.PostCode;
-            dbUser.PostAddress.PostAddres = obj.PostAddress;
-            using(var context = new DataContext()) {
+            using (var context = new DataContext())
+            {
+                DbUser dbUser = context.Users.Find(obj.UserID);
+                dbUser = transFromBusinessToDb(obj, dbUser);
 
+                dbUser.PostAddress = new DbPostAddress();
+                dbUser.PostAddress.PostCode = obj.PostCode;
+                dbUser.PostAddress.PostAddres = obj.PostAddress;
                 try
                 {
                     context.Entry(dbUser).State = EntityState.Modified;
@@ -63,15 +65,15 @@ namespace DAL.DBOperations.DataServices
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }
-
+                return transFromDbToBusiness(dbUser);
             }
-            return transFromDbToBusiness(dbUser);
+            
         }
 
 
-        internal override DbUser transFromBusinessToDb(User inUser)
+        internal override DbUser transFromBusinessToDb(User inUser, DbUser dbUser)
         {
-            return new UserConverter().TransFromBusinessToDb(inUser);
+            return new UserConverter().TransFromBusinessToDb(inUser, dbUser);
         }
 
         internal override User transFromDbToBusiness(DbUser dbUser)

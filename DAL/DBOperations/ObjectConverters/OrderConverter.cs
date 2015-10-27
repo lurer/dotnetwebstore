@@ -7,19 +7,21 @@ namespace DAL.DBOperations.ObjectConverters
 {
     public class OrderConverter : AbstractConverter<DbOrder, Order>
     {
-        public override DbOrder TransFromBusinessToDb(Order obj)
+        public override DbOrder TransFromBusinessToDb(Order obj, DbOrder dbOrder)
         {
-            var dbOrder = new DbOrder()
+            if(dbOrder == null)
             {
-                UserID = obj.User.UserID,
-                DateTime = obj.DateTime
-            };
+                dbOrder = new DbOrder();
+            }
+            dbOrder.UserID = obj.User.UserID;
+            dbOrder.DateTime = obj.DateTime;
+
 
             var orderLineConverter = new OrderLineConverter();
             dbOrder.Items = new List<DbOrderLine>();
             foreach (var newLine in obj.Items)
             {
-                dbOrder.Items.Add(orderLineConverter.TransFromBusinessToDb(newLine));
+                dbOrder.Items.Add(orderLineConverter.TransFromBusinessToDb(newLine, null));
             }
             
             return dbOrder;

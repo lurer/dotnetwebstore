@@ -11,7 +11,7 @@ namespace DAL.DBOperations.DataServices
     {
         public override Role Insert(Role inObj)
         {
-            DbRole dbRole = transFromBusinessToDb(inObj);
+            DbRole dbRole = transFromBusinessToDb(inObj, null);
             using (var context = new DataContext())
             {
                 try
@@ -30,9 +30,11 @@ namespace DAL.DBOperations.DataServices
 
         public override Role Update(Role obj)
         {
-            DbRole dbRole = transFromBusinessToDb(obj);
+            
             using (var context = new DataContext())
             {
+                DbRole dbRole = context.Roles.Find(obj.RoleId);
+                dbRole = transFromBusinessToDb(obj, dbRole);
                 try
                 {
                     context.Entry(dbRole).State = EntityState.Modified;
@@ -42,14 +44,14 @@ namespace DAL.DBOperations.DataServices
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }
-
+                return transFromDbToBusiness(dbRole);
             }
-            return transFromDbToBusiness(dbRole);
+            
         }
 
-        internal override DbRole transFromBusinessToDb(Role obj)
+        internal override DbRole transFromBusinessToDb(Role obj, DbRole dbObj)
         {
-            return new RoleConverter().TransFromBusinessToDb(obj);
+            return new RoleConverter().TransFromBusinessToDb(obj, dbObj);
         }
 
         internal override Role transFromDbToBusiness(DbRole dbObj)

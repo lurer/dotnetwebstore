@@ -5,14 +5,16 @@ namespace DAL.DBOperations.ObjectConverters
 {
     public class OrderLineConverter : AbstractConverter<DbOrderLine, OrderLine>
     {
-        public override DbOrderLine TransFromBusinessToDb(OrderLine obj)
+        public override DbOrderLine TransFromBusinessToDb(OrderLine obj, DbOrderLine dbLine)
         {
-            var dbLine = new DbOrderLine()
+            if(dbLine == null)
             {
-                Amount = obj.Amount,
-                Discount = obj.Discount,
-                ItemId = obj.Item.ItemID,
-            };
+                dbLine = new DbOrderLine();
+            }
+            dbLine.Amount = obj.Amount;
+            dbLine.Discount = obj.Discount;
+            dbLine.ItemId = obj.Item.ItemID;
+            
             return dbLine;
             
         }

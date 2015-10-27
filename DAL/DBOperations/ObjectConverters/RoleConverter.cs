@@ -5,9 +5,15 @@ namespace DAL.DBOperations.ObjectConverters
 {
     public class RoleConverter : AbstractConverter<DbRole, Role>
     {
-        public override DbRole TransFromBusinessToDb(Role obj)
+        public override DbRole TransFromBusinessToDb(Role obj, DbRole dbRole)
         {
-            return new DbRole { RoleStringId = obj.RoleStringId, RoleName = obj.RoleName };
+            if(dbRole == null)
+            {
+                dbRole = new DbRole();
+            }
+            dbRole.RoleStringId = obj.RoleStringId;
+            dbRole.RoleName = obj.RoleName;
+            return dbRole;
         }
 
         public override Role TransFromDbToBusiness(DbRole dbObj)

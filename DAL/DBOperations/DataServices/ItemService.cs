@@ -13,7 +13,7 @@ namespace DAL.DBOperations.DataServices
     {
         public override Item Insert(Item inObj)
         {
-            DbItem dbItem = transFromBusinessToDb(inObj);
+            DbItem dbItem = transFromBusinessToDb(inObj, null);
             using(var context = new DataContext())
             {
                 try
@@ -35,7 +35,9 @@ namespace DAL.DBOperations.DataServices
             
             using(var context = new DataContext())
             {
-                DbItem dbItem = transFromBusinessToDb(obj);
+                
+                DbItem dbItem = context.Items.Find(obj.ItemID);
+                dbItem = transFromBusinessToDb(obj, dbItem);
                 try
                 {
                     context.Entry(dbItem).State = EntityState.Modified;
@@ -50,9 +52,9 @@ namespace DAL.DBOperations.DataServices
             
         }
 
-        internal override DbItem transFromBusinessToDb(Item obj)
+        internal override DbItem transFromBusinessToDb(Item obj, DbItem dbObj)
         {
-            return new ItemConverter().TransFromBusinessToDb(obj);
+            return new ItemConverter().TransFromBusinessToDb(obj, dbObj);
         }
 
         internal override Item transFromDbToBusiness(DbItem dbObj)

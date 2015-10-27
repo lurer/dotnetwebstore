@@ -29,9 +29,11 @@ namespace DAL.DBOperations.DataServices
 
         public override ItemCategory Update(ItemCategory obj)
         {
-            var dbCategory = transFromBusinessToDb(obj);
+            
             using (var context = new DataContext())
             {
+                DbItemCategory dbCategory = context.Category.Find(obj.CategoryId);
+                dbCategory = transFromBusinessToDb(obj, dbCategory);
                 try
                 {
                     context.Entry(dbCategory).State = System.Data.Entity.EntityState.Modified;
@@ -41,14 +43,20 @@ namespace DAL.DBOperations.DataServices
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }
-
+                return transFromDbToBusiness(dbCategory);
             }
-            return transFromDbToBusiness(dbCategory);
+            
         }
 
-        internal override DbItemCategory transFromBusinessToDb(ItemCategory obj)
+        internal override DbItemCategory transFromBusinessToDb(ItemCategory obj, DbItemCategory dbObj)
         {
-            return new DbItemCategory { CategoryName = obj.CategoryName };
+            if(dbObj == null)
+            {
+                dbObj = new DbItemCategory();
+            }
+            dbObj.CategoryName = obj.CategoryName;
+            return dbObj;
+            
         }
 
         internal override ItemCategory transFromDbToBusiness(DbItemCategory dbObj)

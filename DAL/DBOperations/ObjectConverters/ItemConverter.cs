@@ -5,19 +5,21 @@ namespace DAL.DBOperations.ObjectConverters
 {
     public class ItemConverter : AbstractConverter<DbItem, Item>
     {
-        public override DbItem TransFromBusinessToDb(Item obj)
+        public override DbItem TransFromBusinessToDb(Item obj, DbItem dbItem)
         {
-
-            DbItem dbItem = new DbItem()
+            if(dbItem == null)
             {
-                ItemID = obj.ItemID,
-                ItemCode = obj.ItemCode,
-                ItemDesc = obj.ItemDesc,
-                InStock = obj.InStock,
-                Price = obj.Price,
-                Category = obj.Category,
-                ImgPath = obj.ImgPath
-            };
+                dbItem = new DbItem();
+            }
+
+            dbItem.ItemID = obj.ItemID;
+            dbItem.ItemCode = obj.ItemCode;
+            dbItem.ItemDesc = obj.ItemDesc;
+            dbItem.InStock = obj.InStock;
+            dbItem.Price = obj.Price;
+            dbItem.Category = obj.Category;
+            dbItem.ImgPath = obj.ImgPath;
+
 
             return dbItem;
 

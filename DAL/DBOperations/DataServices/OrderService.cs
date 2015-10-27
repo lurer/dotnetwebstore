@@ -14,7 +14,7 @@ namespace DAL.DBOperations.DataServices
 
         public override Order Insert(Order inObj)
         {
-            DbOrder dbOrder = transFromBusinessToDb(inObj);
+            DbOrder dbOrder = transFromBusinessToDb(inObj, null);
             using(var context = new DataContext())
             {
                 try
@@ -33,9 +33,11 @@ namespace DAL.DBOperations.DataServices
 
         public override Order Update(Order obj)
         {
-            DbOrder dbOrder = transFromBusinessToDb(obj);
+            
             using(var context = new DataContext())
             {
+                DbOrder dbOrder = context.Orders.Find(obj.OrderNumber);
+                dbOrder = transFromBusinessToDb(obj, dbOrder);
                 try
                 {
                     context.Entry(dbOrder).State = EntityState.Modified;
@@ -45,14 +47,14 @@ namespace DAL.DBOperations.DataServices
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }
-
+                return transFromDbToBusiness(dbOrder);
             }
-            return transFromDbToBusiness(dbOrder);
+            
         }
 
-        internal override DbOrder transFromBusinessToDb(Order obj)
+        internal override DbOrder transFromBusinessToDb(Order obj, DbOrder dbObj)
         {
-            return new OrderConverter().TransFromBusinessToDb(obj);
+            return new OrderConverter().TransFromBusinessToDb(obj, dbObj);
         }
 
         internal override Order transFromDbToBusiness(DbOrder dbObj)
