@@ -6,12 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.DBOperations;
+using DAL.DbModels;
 
 namespace BLL.BussinessObjectOperations
 {
     public class UserBLL : InterfaceBLL<User>
     {
-        private UserService service;
+
+        private IDataService<DbUser, User> service;
+
+
+        public UserBLL(IDataService<DbUser, User> service)
+        {
+            this.service = service;
+        }
 
         public UserBLL()
         {
@@ -52,7 +61,7 @@ namespace BLL.BussinessObjectOperations
 
         public User getUserByEmail(string emailAdr)
         {
-            return service.getUserByEmail(emailAdr);
+            return new UserService().getUserByEmail(emailAdr);
         }
     }
 }

@@ -2,7 +2,6 @@
 using BLL.ShoppingCartService;
 using BOL.Models;
 using s198599.Controllers;
-using s198599.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

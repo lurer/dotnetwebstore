@@ -9,10 +9,8 @@ using System.Web.Mvc;
 using BLL;
 using BOL.Models;
 using BLL.BussinessObjectOperations;
-using s198599.Models;
-using s198599.Models.ViewModelConverters;
-using s198599.Areas.Customer.Controllers;
 using s198599.Controllers;
+using BLL.ViewModels;
 
 namespace s198599.Areas.Common.Controllers
 {

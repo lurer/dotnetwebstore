@@ -1,12 +1,11 @@
 ﻿using BLL.BussinessObjectOperations;
+using BLL.ViewModels;
 using BOL.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
-namespace s198599.Models.ViewModelConverters
+namespace BLL.ViewModels
 {
     public class ItemViewConverter
     {

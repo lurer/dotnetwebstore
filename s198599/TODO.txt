@@ -28,8 +28,10 @@ I Admin-Area:
 
 DI og Unit test:
 
-	ItemController:
-		Se på behov for abstraksjon av Converter ifm Unit test		
+	UserBLL:
+		getUserByEmail-metoden finnes bare i UserService, og ikke i IDataService-interfacet.
+	ItemControllerTest:
+		Er avhengig av ItemViewConverter som skaper problemer. Må høre med Tor.
 
 
 ---------------------------------------------------------------------------------------------------------------------------------

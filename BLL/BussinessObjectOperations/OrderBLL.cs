@@ -1,4 +1,6 @@
 ﻿using BOL.Models;
+using DAL.DbModels;
+using DAL.DBOperations;
 using DAL.DBOperations.DataServices;
 using System;
 using System.Collections.Generic;
@@ -10,9 +12,23 @@ namespace BLL.BussinessObjectOperations
 {
     public class OrderBLL : InterfaceBLL<Order>
     {
+
+        private IDataService<DbOrder, Order> service;
+
+        public OrderBLL(IDataService<DbOrder, Order> service)
+        {
+            this.service = service;
+        }
+
+        public OrderBLL()
+        {
+            service = new OrderService();
+        }
+
+
         public void Delete(int id)
         {
-            new OrderService().Delete(id);
+            service.Delete(id);
         }
 
         public void Dispose()
@@ -22,23 +38,23 @@ namespace BLL.BussinessObjectOperations
 
         public Order GetById(int? id)
         {
-            return new OrderService().GetById(id);
+            return service.GetById(id);
         }
 
         public List<Order> GetList()
         {
-            return new OrderService().GetList();
+            return service.GetList();
         }
 
         public Order Insert(Order obj)
         {
-            return new OrderService().Insert(obj);
+            return service.Insert(obj);
         }
 
 
         public Order Update(Order obj)
         {
-            return new OrderService().Update(obj);
+            return service.Update(obj);
         }
     }
 }

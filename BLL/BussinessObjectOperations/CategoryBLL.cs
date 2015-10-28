@@ -5,15 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.DBOperations.DataServices;
+using DAL.DBOperations;
+using DAL.DbModels;
 
 namespace BLL.BussinessObjectOperations
 {
     public class CategoryBLL : InterfaceBLL<ItemCategory>
     {
+        private IDataService<DbItemCategory, ItemCategory> service;
+
+        public CategoryBLL(IDataService<DbItemCategory, ItemCategory> service)
+        {
+            this.service = service;
+        }
+
+        public CategoryBLL()
+        {
+            service = new CategoryService();
+        }
+
         public void Delete(int id)
         { 
         
-            new CategoryService().Delete(id);
+            service.Delete(id);
         }
 
         public void Dispose()
@@ -23,22 +37,22 @@ namespace BLL.BussinessObjectOperations
 
         public ItemCategory GetById(int? id)
         {
-            return new CategoryService().GetById(id);
+            return service.GetById(id);
         }
 
         public List<ItemCategory> GetList()
         {
-            return new CategoryService().GetList();
+            return service.GetList();
         }
 
         public ItemCategory Insert(ItemCategory obj)
         {
-            return new CategoryService().Insert(obj);
+            return service.Insert(obj);
         }
 
         public ItemCategory Update(ItemCategory obj)
         {
-            return new CategoryService().Update(obj);
+            return service.Update(obj);
         }
 
 

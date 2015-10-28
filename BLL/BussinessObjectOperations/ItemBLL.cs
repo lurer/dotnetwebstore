@@ -5,12 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.DBOperations.DataServices;
+using DAL.DBOperations;
+using DAL.DbModels;
 
 namespace BLL.BussinessObjectOperations
 {
     public class ItemBLL : InterfaceBLL<Item>
     {
-        private ItemService service;
+        private IDataService<DbItem, Item> service;
+
+
+        public ItemBLL(IDataService<DbItem, Item> service)
+        {
+            this.service = service;
+        }
 
         public ItemBLL()
         {
