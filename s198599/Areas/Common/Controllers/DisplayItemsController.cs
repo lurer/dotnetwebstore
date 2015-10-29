@@ -10,7 +10,6 @@ using BLL;
 using BOL.Models;
 using BLL.BussinessObjectOperations;
 using s198599.Controllers;
-using BLL.ViewModels;
 
 namespace s198599.Areas.Common.Controllers
 {
@@ -21,17 +20,14 @@ namespace s198599.Areas.Common.Controllers
         // GET: Common/Item
         public ActionResult ListAll()
         {
-            var viewItems = new List<ItemViewPopulated>();
+            List<Item> domainItems = new List<Item>();
             try { 
-                var domainItems = new ItemBLL().GetList();
-                foreach (var item in domainItems)
-                    viewItems.Add(ItemViewConverter.convertToView(item));
-
-                return View(viewItems.AsEnumerable());
+                domainItems = new ItemBLL().GetList();
+                return View(domainItems.AsEnumerable());
             }
             catch (Exception)
             {
-                return SetSessionMessage(View(viewItems), SESSIONMESSAGE.FAIL, "We could not retrieve products from the database");
+                return SetSessionMessage(View(domainItems), SESSIONMESSAGE.FAIL, "We could not retrieve products from the database");
             }
             
 
@@ -50,7 +46,7 @@ namespace s198599.Areas.Common.Controllers
             {
                 return HttpNotFound();
             }
-            return View(ItemViewConverter.convertToView(item));
+            return View(item);
         }
 
         [HttpPost]

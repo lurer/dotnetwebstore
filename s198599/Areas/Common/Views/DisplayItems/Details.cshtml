@@ -1,4 +1,4 @@
-﻿@model BLL.ViewModels.ItemViewPopulated
+﻿@model BOL.Models.Item
 
 @{
     ViewBag.Title = "Details";
@@ -36,8 +36,8 @@
             <td>@Html.DisplayFor(model => model.Price)</td>
         </tr>
         <tr>
-            <td><strong>@Html.DisplayNameFor(model => model.SelectedCategoryName)</strong></td>
-            <td>@Html.DisplayFor(model => model.SelectedCategoryName)</td>
+            <td><strong>@Html.DisplayNameFor(model => model.Category)</strong></td>
+            <td id="catName">@Html.DisplayFor(model => model.Category)</td>
         </tr>
     </table>
     <div class="thumbnail-container">
@@ -48,3 +48,27 @@
     <a href="" onclick="buyItem(@Model.ItemID); return false;" class="btn btn-primary btn-sm">Buy</a>
     @Html.ActionLink("Back to List", "ListAll", "", htmlAttributes: new { @class = "btn btn-info btn-sm" })
 </p>
+
+<script>
+    $(function () {
+
+        $.ajax({
+            type: "GET",
+            cache: false,
+            url: '@Url.Action("getCategoryNameList", "ItemCategories", new {Area="Admin" })',
+            //url: 'ItemCategories/getCategoryNameList',
+            success: function (categoryList) {
+                for (var j = 0; j < categoryList.length; j++) {
+                    
+                    if ($('#catName').text() == categoryList[j].CategoryId) {
+                        $('#catName').text(categoryList[j].CategoryName);
+                        break;
+                    }
+                }
+            },
+            error: function (err) {
+                alert(JSON.stringify(err));
+            }
+        });
+    });
+</script>

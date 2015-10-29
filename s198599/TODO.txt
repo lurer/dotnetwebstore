@@ -1,4 +1,7 @@
 ﻿::: Status :::
+
+::Holder på med Item/Index. Må rydde i JQuery i forhold til å gjenbruke kode. Må fullfør Item-funksjoner
+
 Logging til db
 	- Har laget logging av tidspunkt av alle objekter, men ikke hvem som har gjort endringen og heller ikke historikk ut over siste endring.
 

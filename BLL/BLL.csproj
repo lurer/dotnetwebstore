@@ -65,7 +65,6 @@
     <Compile Include="BussinessObjectOperations\CategoryBLL.cs" />
     <Compile Include="BussinessObjectOperations\ComplexBLL.cs" />
     <Compile Include="BussinessObjectOperations\ItemBLL.cs" />
-    <Compile Include="ViewModels\ItemViewConverter.cs" />
     <Compile Include="BussinessObjectOperations\UserRoleBLL.cs" />
     <Compile Include="BussinessObjectOperations\UserBLL.cs" />
     <Compile Include="BussinessObjectOperations\InterfaceBLL.cs" />
@@ -76,7 +75,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingCartService\ShoppingCartManager.cs" />
     <Compile Include="Utilities\SessionMessage.cs" />
-    <Compile Include="ViewModels\ItemViewPopulated.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BOL\BOL.csproj">

@@ -1,4 +1,4 @@
-﻿@model BLL.ViewModels.ItemViewPopulated
+﻿@model BOL.Models.Item
 
 @{
     ViewBag.Title = "Create";
@@ -47,13 +47,15 @@
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SelectedCategory, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SelectedCategory, Model.Categories, new { htmlAttributes = new { @class = "form-control" } })
                 
-                @Html.ValidationMessageFor(model => model.SelectedCategory, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="Category" name="Category">
+
+                </select>
+                
+                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -81,3 +83,27 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $(function () {
+        
+        $.ajax({
+            type: "GET",
+            cache: false,
+            url: '@Url.Action("getCategoryNameList", "ItemCategories")',
+
+            success: function (categoryList) {
+                
+                var selectList = $('#Category');
+                for (var i = 0; i < categoryList.length; i++) {
+
+                    var line = "<option value=" + categoryList[i].CategoryId + ">" + categoryList[i].CategoryName + "</option>";
+                    selectList.append(line);
+                }
+            },
+            error: function (err) {
+                alert(JSON.stringify(err));
+            }
+        });
+    })
+</script>

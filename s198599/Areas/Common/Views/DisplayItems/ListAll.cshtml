@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BLL.ViewModels.ItemViewPopulated>
+﻿@model IEnumerable<BOL.Models.Item>
 
 @{
     ViewBag.Title = "Index";
@@ -15,7 +15,7 @@
 </script>
 
 <h2>Our products</h2>
-<table class="table">
+<table class="table" id="itemTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ItemCode)
@@ -30,7 +30,7 @@
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SelectedCategory)
+            @Html.DisplayNameFor(model => model.Category)
         </th>
         <th>
             
@@ -53,7 +53,7 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SelectedCategoryName)
+            <span id="@item.ItemID">@item.Category</span>
         </td>
         <td>
 
@@ -71,3 +71,28 @@
 </table>
 
 
+<script>
+    $(function () {
+
+        $.ajax({
+            type: "GET",
+            cache: false,
+            url: '@Url.Action("getCategoryNameList", "ItemCategories", new { Area = "Admin" })',
+            success: function (categoryList) {
+                
+                $('span', $('#itemTable')).each(function(){
+                    var catId = $(this).text();
+                    for (var j = 0; j < categoryList.length; j++) {
+                        if (catId == categoryList[j].CategoryId) {
+                            $(this).text(categoryList[j].CategoryName);
+                            break;
+                        }
+                    }
+                });
+            },
+            error: function (err) {
+                //alert(JSON.stringify(err));
+            }
+        });
+    });
+</script>

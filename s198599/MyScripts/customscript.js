@@ -1,4 +1,9 @@
-﻿//Fellesfunksjon for å oppdatere innholdet i handlekurver
+﻿
+
+
+
+
+//Fellesfunksjon for å oppdatere innholdet i handlekurver
 function updateBasket(myBasket) {
     var Items = myBasket["Items"];
     $('#numItemsInCart').text(" " + Items.length);
@@ -62,10 +67,10 @@ function buyItem(itemId) {
         cache: false,
         success: function (myBasket) {
             updateBasket(myBasket);
-            feedbackMessage("success", "The product is added to your shopping cart!");
+            feedbackMessage("SUCCESS", "The product is added to your shopping cart!");
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            feedbackMessage("fail", "Something went wrong. The Item is not added to your shopping cart!");
+            feedbackMessage("FAIL", "Something went wrong. The Item is not added to your shopping cart!");
         }
     });
 
@@ -81,7 +86,7 @@ function getUpdatedBasket(myurl) {
             updateBasket(myBasket);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            feedbackMessage("fail","Something went wrong. Your shopping cart is not updated");
+            feedbackMessage("FAIL","Something went wrong. Your shopping cart is not updated");
         }
     });
 
@@ -121,4 +126,123 @@ function display_order_detail_modal(orderJson) {
 
     modal.modal('show');
     
+}
+
+
+//////////////////////////////////////////////////////////////////////
+/////////    Item-metoder ///////////////
+//////////////////////////////////////////////////////////////////////
+
+
+
+
+
+function getCategories(itemList) {
+
+    $.ajax({
+        type: "GET",
+        cache: false,
+        //url: '@Url.Action("getCategoryNameList", "ItemCategories")',
+        url: 'ItemCategories/getCategoryNameList',
+        success: function (categoryList) {
+            writeItemListResult(itemList, categoryList);
+        },
+        error: function (err) {
+            feedbackMessage("FAIL", "The Category field might be inaccurate!");
+        }
+    });
+}
+
+function getItems() {
+
+    $.ajax({
+        type: "GET",
+        cache: false,
+        //url: '@Url.Action("GetItemsAsJson", "Item")',
+        url: 'Item/GetItemsAsJson',
+        success: function (itemList) {
+            getCategories(itemList);
+        },
+        error: function (err) {
+            feedbackMessage("FAIL", "We are so sorry, but the products could not be loaded from the database!");
+        }
+    });
+}
+
+function editItem(id) {
+    
+    window.location.href = 'Item/Edit/'+id;
+
+}
+
+function deleteItem(id) {
+    var form = $('#_AjaxAntiForgeryForm');
+    var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+    $.ajax({
+        type: "POST",
+        cache: false,
+        data: {
+            __RequestVerificationToken: token,
+            'id': id
+        },
+        //url: '@Url.Action("Delete", "Item")',
+        url: 'Item/Delete',
+        success: function () {
+            getItems();
+            feedbackMessage("SUCCESS", "The item is deleted from the database");
+        },
+        error: function (err) {
+            feedbackMessage("FAIL", "Something went wrong. We can not determine if the deletions was successful!");
+        }
+    })
+}
+
+
+
+
+function writeItemListResult(itemList, categoryList) {
+
+
+    var output = "";
+    output += "<table class='table'>";
+    output += "<tr>";
+    output += "<th>Item Code</th>";
+    output += "<th>Description</th>";
+    output += "<th>In stock</th>";
+    output += "<th>Price</th>";
+    output += "<th>Category</th>";
+    output += "<th>Image Path</th>";
+    output += "<th></th>";
+
+    output += "</tr>";
+    for (var i = 0; i < itemList.length; i++) {
+        output += "<tr>";
+        output += "<td>" + itemList[i].ItemCode + "</td>";
+        output += "<td>" + itemList[i].ItemDesc + "</td>";
+        output += "<td>" + itemList[i].InStock + "</td>";
+        output += "<td>" + itemList[i].Price + "</td>";
+        output += "<td>";
+        var name;
+        for (var j = 0; j < categoryList.length; j++) {
+            if (itemList[i].Category == categoryList[j].CategoryId) {
+                name = categoryList[j].CategoryName;
+                break;
+            }
+        }
+        output += name;
+        output += "</td>";
+        output += "<td>" + itemList[i].ImgPath + "</td>";
+        output += "<td>";
+        output += '<a href="" onclick="editItem(' + itemList[i].ItemID + '); return false;" class="btn btn-warning btn-sm linkBtnMargin">Edit</a>';
+        output += '<a href="" onclick="deleteItem(' + itemList[i].ItemID + '); return false;" class="btn btn-danger btn-sm linkBtnMargin">Delete</a>';
+
+
+        output += "</td>";
+        output += "</tr>";
+    }
+
+    output += "</table>";
+
+    $('#result').html(output);
 }
