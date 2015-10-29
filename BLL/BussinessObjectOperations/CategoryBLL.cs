@@ -24,10 +24,10 @@ namespace BLL.BussinessObjectOperations
             service = new CategoryService();
         }
 
-        public void Delete(int id)
+        public Boolean Delete(int id)
         { 
         
-            service.Delete(id);
+            return service.Delete(id);
         }
 
         public void Dispose()

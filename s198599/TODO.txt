@@ -1,7 +1,5 @@
 ﻿::: Status :::
 
-::Holder på med Item/Index. Må rydde i JQuery i forhold til å gjenbruke kode. Må fullfør Item-funksjoner
-
 Logging til db
 	- Har laget logging av tidspunkt av alle objekter, men ikke hvem som har gjort endringen og heller ikke historikk ut over siste endring.
 
@@ -34,7 +32,7 @@ DI og Unit test:
 	UserBLL:
 		getUserByEmail-metoden finnes bare i UserService, og ikke i IDataService-interfacet.
 	ItemControllerTest:
-		Er avhengig av ItemViewConverter som skaper problemer. Må høre med Tor.
+		
 
 
 ---------------------------------------------------------------------------------------------------------------------------------

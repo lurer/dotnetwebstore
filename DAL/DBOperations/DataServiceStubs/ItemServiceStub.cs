@@ -11,14 +11,31 @@ namespace DAL.DBOperations.DataServiceStubs
 {
     public class ItemServiceStub : IDataService<DbItem, Item>
     {
-        public void Delete(int id)
+        public Boolean Delete(int id)
         {
-            throw new NotImplementedException();
+            if (id == 1)
+                return true;
+            else
+                return false;
+
         }
 
         public Item GetById(int? id)
         {
-            throw new NotImplementedException();
+            var Item = new Item
+            {
+                ItemID = 1,
+                ItemCode = "DFGHJ",
+                ItemDesc = "Dette er et kjempebra produkt",
+                Category = 1,
+                ImgPath = "",
+                InStock = 5,
+                Price = 100
+            };
+
+            if (id == 99)
+                return null;
+            return Item;
         }
 
         public List<Item> GetList()
@@ -42,12 +59,22 @@ namespace DAL.DBOperations.DataServiceStubs
 
         public Item Insert(Item inObj)
         {
-            throw new NotImplementedException();
+            if (inObj.ItemDesc == "")
+                return null;
+            else
+                return inObj;
+
         }
 
         public Item Update(Item obj)
         {
-            throw new NotImplementedException();
+
+            if (obj == null)
+                return null;
+
+            obj.Price = 999;
+
+            return obj;
         }
     }
 }

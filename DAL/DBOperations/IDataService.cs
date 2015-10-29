@@ -8,7 +8,7 @@ namespace DAL.DBOperations
 {
     public interface IDataService<T, R> where T : class
     {
-        void Delete(int id);
+        Boolean Delete(int id);
 
         R GetById(int? id);
 

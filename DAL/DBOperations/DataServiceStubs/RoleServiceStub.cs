@@ -10,7 +10,7 @@ namespace DAL.DBOperations.DataServiceStubs
 {
     public class RoleServiceStub : IDataService<DbRole, Role>
     {
-        public void Delete(int id)
+        public Boolean Delete(int id)
         {
             throw new NotImplementedException();
         }

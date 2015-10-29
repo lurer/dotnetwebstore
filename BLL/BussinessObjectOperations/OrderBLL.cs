@@ -26,9 +26,9 @@ namespace BLL.BussinessObjectOperations
         }
 
 
-        public void Delete(int id)
+        public Boolean Delete(int id)
         {
-            service.Delete(id);
+            return service.Delete(id);
         }
 
         public void Dispose()

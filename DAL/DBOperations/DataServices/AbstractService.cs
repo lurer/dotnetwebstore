@@ -8,7 +8,7 @@ namespace DAL.DBOperations.DataServices
     public abstract class AbstractService<T, R> : IDataService<T,R> where T : class
     {
         
-        public void Delete(int id)
+        public Boolean Delete(int id)
         {
             using (var context = new DataContext())
             {
@@ -18,12 +18,16 @@ namespace DAL.DBOperations.DataServices
                     var dbObj = context.Set<T>().Find(id);
                     context.Set<T>().Remove(dbObj);
                     context.SaveChanges();
+                    return true;
                 }
                 catch (CustomDbException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+                    return false;
                 }
+                
             };
+            
         }
 
         public void Dispose()

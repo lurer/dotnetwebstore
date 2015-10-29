@@ -12,7 +12,7 @@ namespace BLL.BussinessObjectOperations
         T GetById(int? id);
         
         T Insert(T obj);
-        void Delete(int id);
+        Boolean Delete(int id);
         T Update(T obj);
 
     }

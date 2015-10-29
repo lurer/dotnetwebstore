@@ -10,7 +10,7 @@ namespace DAL.DBOperations.DataServiceStubs
 {
     public class OrderServiceStub : IDataService<DbOrder, Order>
     {
-        public void Delete(int id)
+        public Boolean Delete(int id)
         {
             throw new NotImplementedException();
         }

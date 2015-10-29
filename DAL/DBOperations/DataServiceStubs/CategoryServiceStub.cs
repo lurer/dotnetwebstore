@@ -11,7 +11,7 @@ namespace DAL.DBOperations.DataServiceStubs
 {
     public class CategoryServiceStub : IDataService<DbItemCategory, ItemCategory>
     {
-        public void Delete(int id)
+        public Boolean Delete(int id)
         {
             throw new NotImplementedException();
         }
