@@ -10,7 +10,7 @@ using System.Linq;
 using System.Net;
 using s198599.Controllers;
 
-namespace UnitTests
+namespace UnitTests.AdminTests
 {
     [TestClass]
     public class ItemControllerTest
@@ -19,7 +19,7 @@ namespace UnitTests
 
         //  Item/Index
         [TestMethod]
-        public void Index()
+        public void ItemList()
         {
 
             //Arrange

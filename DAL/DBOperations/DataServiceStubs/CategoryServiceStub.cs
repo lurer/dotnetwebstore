@@ -13,27 +13,55 @@ namespace DAL.DBOperations.DataServiceStubs
     {
         public Boolean Delete(int id)
         {
-            throw new NotImplementedException();
+            if (id == 1)
+                return true;
+            else
+                return false;
         }
 
         public ItemCategory GetById(int? id)
         {
-            throw new NotImplementedException();
+            var ItemCat = new ItemCategory
+            {
+                CategoryId = 1,
+                CategoryName = "TestCategory"
+            };
+
+            if (id == 99 | id == null)
+                return null;
+
+            return ItemCat;
         }
 
         public List<ItemCategory> GetList()
         {
-            throw new NotImplementedException();
+            List<ItemCategory> list = new List<ItemCategory>();
+            var ItemCat = new ItemCategory
+            {
+                CategoryId = 1,
+                CategoryName = "TestCategory"
+            };
+
+            list.Add(ItemCat);
+            list.Add(ItemCat);
+            list.Add(ItemCat);
+            return list;
         }
 
         public ItemCategory Insert(ItemCategory inObj)
         {
-            throw new NotImplementedException();
+            if (inObj.CategoryName == "")
+                return null;
+            else
+                return inObj;
         }
 
         public ItemCategory Update(ItemCategory obj)
         {
-            throw new NotImplementedException();
+            if (obj == null)
+                return null;
+            obj.CategoryName = "NewCategory";
+            return obj;
         }
     }
 }

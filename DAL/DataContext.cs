@@ -22,6 +22,7 @@ namespace DAL
         public DataContext() : base("name=DataContext")
         {
             Database.CreateIfNotExists();
+
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

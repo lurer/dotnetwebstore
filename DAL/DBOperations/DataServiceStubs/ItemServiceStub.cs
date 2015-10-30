@@ -33,7 +33,7 @@ namespace DAL.DBOperations.DataServiceStubs
                 Price = 100
             };
 
-            if (id == 99)
+            if (id == 99 | id == null)
                 return null;
             return Item;
         }

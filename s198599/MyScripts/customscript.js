@@ -186,7 +186,6 @@ function deleteItem(id) {
             __RequestVerificationToken: token,
             'id': id
         },
-        //url: '@Url.Action("Delete", "Item")',
         url: 'Item/Delete',
         success: function () {
             getItems();
