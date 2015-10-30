@@ -61,14 +61,5 @@ namespace s198599.Areas.Admin.Controllers
 
 
 
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                //db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

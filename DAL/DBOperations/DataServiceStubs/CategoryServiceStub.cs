@@ -50,7 +50,7 @@ namespace DAL.DBOperations.DataServiceStubs
 
         public ItemCategory Insert(ItemCategory inObj)
         {
-            if (inObj.CategoryName == "")
+            if (inObj.CategoryName == null)
                 return null;
             else
                 return inObj;

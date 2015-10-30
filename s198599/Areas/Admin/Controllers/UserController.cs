@@ -66,13 +66,7 @@ namespace s198599.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                try { 
-                    bll.Insert(User);
-                }
-                catch (Exception)
-                {
-                    return SetSessionMessage(View(), SESSIONMESSAGE.FAIL, "Sometjing went wrong with registration");
-                }
+                bll.Insert(User);
                 return RedirectToAction("Index");
             }
 
@@ -82,10 +76,7 @@ namespace s198599.Areas.Admin.Controllers
         // GET: User/Users/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             User User = bll.GetById(id);
             if (User == null)
             {
@@ -130,17 +121,11 @@ namespace s198599.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            bll.Delete(id);
-            return RedirectToAction("Index");
+            var deleteOK = bll.Delete(id);
+            if(deleteOK)
+                return RedirectToAction("Index");
+            return View();
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                //db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

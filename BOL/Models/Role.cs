@@ -16,7 +16,7 @@ namespace BOL.Models
         [Display(Name ="Role Id")]
         public string RoleStringId { get; set; }
 
-        [Required(ErrorMessage ="Please enter the name of the role, like Admin, Customer etc")]
+        [MinLength(3),Required(ErrorMessage ="Please enter the name of the role, like Admin, Customer etc")]
         [Display(Name ="Role name")]
         public string RoleName { get; set; }
     }

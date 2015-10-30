@@ -61,10 +61,7 @@ namespace s198599.Areas.Admin.Controllers
         // GET: Admin/Roles/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
             Role role = bll.GetById(id);
             if (role == null)
             {
@@ -108,17 +105,11 @@ namespace s198599.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            bll.Delete(id);
-            return RedirectToAction("Index");
+            var deletedOK = bll.Delete(id);
+            if(deletedOK)
+                return RedirectToAction("Index");
+            return View();
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                //db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

@@ -12,27 +12,42 @@ namespace DAL.DBOperations.DataServiceStubs
     {
         public Boolean Delete(int id)
         {
-            throw new NotImplementedException();
+            if (id != 1)
+                return false;
+            else
+                return true;
         }
 
         public Role GetById(int? id)
         {
-            throw new NotImplementedException();
+            if (id == 99 | id == null)
+                return null;
+            return new Role { RoleId = 1, RoleStringId = "C", RoleName = "Customer" };
         }
 
         public List<Role> GetList()
         {
-            throw new NotImplementedException();
+            var role = new Role { RoleId = 1, RoleStringId = "C", RoleName = "Customer" };
+            List<Role> list = new List<Role>();
+            list.Add(role);
+            list.Add(role);
+            list.Add(role);
+            return list;
         }
 
         public Role Insert(Role inObj)
         {
-            throw new NotImplementedException();
+            if (inObj.RoleName == "")
+                return null;
+            return inObj;
         }
 
         public Role Update(Role obj)
         {
-            throw new NotImplementedException();
+            if (obj == null)
+                return null;
+            obj.RoleName = "NewRole";
+            return obj;
         }
     }
 }

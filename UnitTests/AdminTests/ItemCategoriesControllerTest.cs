@@ -209,15 +209,6 @@ namespace UnitTests.AdminTests
         }
 
 
-        ////POST: /ItemCategories/GetCategoryName/5
-        //public void GetCategoryNameInvalidId()
-        //{
-        //    var controller = new ItemCategoriesController(new CategoryBLL(new CategoryServiceStub()));
-        //    var actionResult = controller.GetCategoryName(99);
-
-        //    Assert.IsNull(actionResult);
-        //}
-
 
         //GET: /ItemCategories/getCategoryNameList
         [TestMethod]
