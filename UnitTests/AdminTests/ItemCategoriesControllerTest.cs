@@ -3,11 +3,8 @@ using BOL.Models;
 using DAL.DBOperations.DataServiceStubs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using s198599.Areas.Admin.Controllers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace UnitTests.AdminTests
@@ -227,8 +224,12 @@ namespace UnitTests.AdminTests
             forventetListe.Add(ItemCat);
 
             var actionResult = controller.getCategoryNameList();
-
-            Assert.IsNotNull(actionResult.Data);
+            dynamic data = actionResult.Data;
+            for(var i = 0; i < forventetListe.Count; i++)
+            {
+                Assert.AreEqual(forventetListe[i].CategoryId, data[i].CategoryId);
+                Assert.AreEqual(forventetListe[i].CategoryName, data[i].CategoryName);
+            }
         }
 
     }

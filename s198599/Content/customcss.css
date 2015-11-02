@@ -32,6 +32,11 @@
     overflow: auto !important;
 }
 
+.small_thumbnail{
+        height: 35px !important;
+    overflow: auto !important;
+}
+
 .linkBtnMargin{
     margin-left: 10px;
 }

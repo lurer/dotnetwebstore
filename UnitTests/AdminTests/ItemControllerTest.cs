@@ -7,8 +7,7 @@ using System.Web.Mvc;
 using BOL.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using s198599.Controllers;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace UnitTests.AdminTests
 {
@@ -64,10 +63,40 @@ namespace UnitTests.AdminTests
         [TestMethod]
         public void GetItemsAsJson()
         {
+            //Arrange
             var controller = new ItemController(new ItemBLL(new ItemServiceStub()));
+
+            List<Item> forventetListe = new List<Item>();
+            var Item = new Item
+            {
+                ItemID = 1,
+                ItemCode = "DFGHJ",
+                ItemDesc = "Dette er et kjempebra produkt",
+                Category = 1,
+                ImgPath = "",
+                InStock = 5,
+                Price = 100
+            };
+            forventetListe.Add(Item);
+            forventetListe.Add(Item);
+            forventetListe.Add(Item);
+
+
+            //Act
             var resultat = controller.GetItemsAsJson() as JsonResult;
-            var jsonObject = resultat.Data;
-            Assert.IsNotNull(jsonObject);
+            dynamic data = resultat.Data;
+
+            //Assert
+            for(var i = 0; i < forventetListe.Count; i++)
+            {
+                Assert.AreEqual(forventetListe[i].ItemID, data[i].ItemID);
+                Assert.AreEqual(forventetListe[i].ItemCode, data[i].ItemCode);
+                Assert.AreEqual(forventetListe[i].ItemDesc, data[i].ItemDesc);
+                Assert.AreEqual(forventetListe[i].InStock, data[i].InStock);
+                Assert.AreEqual(forventetListe[i].ImgPath, data[i].ImgPath);
+                Assert.AreEqual(forventetListe[i].Category, data[i].Category);
+                Assert.AreEqual(forventetListe[i].Price, data[i].Price);
+            }
             
         }
 

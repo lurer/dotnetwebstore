@@ -13,17 +13,18 @@ namespace DAL.Utilities
     public class CustomDbException : EntityException
     {
         
-        static string SQLLOG = "App_Data/sql_error_log.txt";
+        static string SQLLOG = "sql_error_log.txt";
+        static string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
 
         public void logToFile(SEVERITY type, DateTime timeStamp, String msg)
         {
+            
             StringBuilder sb = new StringBuilder();
-            sb.Append(timeStamp.ToLongTimeString()).Append(": ").Append(type.ToString()).Append("\n");
-            sb.Append(msg).Append("\n\n");
+            sb.Append(timeStamp.ToLongTimeString()).Append(": ").Append(type.ToString()).Append(" ").Append(this.StackTrace);
 
             try
             {
-                StreamWriter sw = new StreamWriter(SQLLOG, true);
+                StreamWriter sw = new StreamWriter(path+"/"+SQLLOG, true);
                 sw.WriteLine(sb.ToString());
                 sw.Close();
             }

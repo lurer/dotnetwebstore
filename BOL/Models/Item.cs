@@ -10,7 +10,7 @@ namespace BOL.Models
     { 
         public int ItemID { get; set;}
 
-        [Required(ErrorMessage ="Item code is a 5 letter compact code"), StringLength(5)]
+        [Required, RegularExpression(@"^[A-ZÆØÅ]{5}$", ErrorMessage = "Item code is a 5 letter compact code")]
         [Display(Name ="Item code")]
         public string ItemCode { get; set; }
 

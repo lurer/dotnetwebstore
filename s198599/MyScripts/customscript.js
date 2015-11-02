@@ -202,6 +202,9 @@ function deleteItem(id) {
 
 function writeItemListResult(itemList, categoryList) {
 
+    var numItemsLow = 0;
+    var itemsLowInventory = [];
+
 
     var output = "";
     output += "<table class='table'>";
@@ -216,6 +219,11 @@ function writeItemListResult(itemList, categoryList) {
 
     output += "</tr>";
     for (var i = 0; i < itemList.length; i++) {
+        
+        if (itemList[i].InStock < 5) {
+            itemsLowInventory[numItemsLow++] = itemList[i];
+        }
+
         output += "<tr>";
         output += "<td>" + itemList[i].ItemCode + "</td>";
         output += "<td>" + itemList[i].ItemDesc + "</td>";
@@ -244,4 +252,8 @@ function writeItemListResult(itemList, categoryList) {
     output += "</table>";
 
     $('#result').html(output);
+
+    if (itemsLowInventory.length > 0) {
+        display_low_inventory_modal(itemsLowInventory);
+    }
 }

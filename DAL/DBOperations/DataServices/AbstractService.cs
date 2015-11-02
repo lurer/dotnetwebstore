@@ -16,9 +16,13 @@ namespace DAL.DBOperations.DataServices
                 try
                 {
                     var dbObj = context.Set<T>().Find(id);
-                    context.Set<T>().Remove(dbObj);
-                    context.SaveChanges();
-                    return true;
+                    if (dbObj != null)
+                    {
+                        context.Set<T>().Remove(dbObj);
+                        context.SaveChanges();
+                        return true;
+                    }
+                    return false;
                 }
                 catch (CustomDbException e)
                 {
@@ -44,6 +48,8 @@ namespace DAL.DBOperations.DataServices
                 try
                 {
                     var dbObj = context.Set<T>().Find(id);
+                    if (dbObj == null)
+                        return default(R);
                     return transFromDbToBusiness(dbObj);
                 }
                 catch (CustomDbException e)

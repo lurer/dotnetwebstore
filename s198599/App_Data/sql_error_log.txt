@@ -1,1 +1,2 @@
 ﻿
+11.59.27: ERROR    at DAL.DBOperations.DataServices.ItemService.Update(Item obj) in C:\Users\Espen\Documents\webapplikajoner\prosjekter\s198599\DAL\DBOperations\DataServices\ItemService.cs:line 45

@@ -1,13 +1,27 @@
 ﻿:::::::::::: For mappe2 ::::::::::::::
 
-Logging i database:
-	Logging til database skjer via overriding av SaveChanges i DataContext.cs. Hver av databasemodellene implementerer et interface kalt IAuditedEntity.cs.
-	Dette er en lånt løsning fra http://stackoverflow.com/questions/26355486/entity-framework-6-audit-track-changes
-	Det logges når en entitet blir opprettet og når den endres.
-Logging til fil:
-	Det er laget en CustomDbException som arver EntityException. Denne filen har en logToFile()-metode som skrive til loggfil. loggfilen ligger i App_Data-mappen.
-	Alle metoder som kontakter databasen på noen måte har en try/catch, der man catcher CustomDbException.
+Generell informasjon:
+- Det å avdekke potensielle UseCases til en nettbutikk er ganske vanskelig, med tanke på at vi vet at vi har liten tid på gjennomføring, og dermed ikke ønsker å
+ta høyde for mer funksjonalitet enn det vi kan implementere. Følgende punkter er jeg klar over at ikke er implementert, men det krever for mye ombygging av database og system
+for at jeg vil ta tiden med å implementere det. Jeg håper det er greit.
+	- Boolean true/false på objekter, om det er synlig/aktivert eller ikke. Jeg kan ikke slette objekter med avhengigheter fra databasen.
 
+Logging i database:
+	- Logging til database skjer via overriding av SaveChanges i DataContext.cs. Hver av databasemodellene implementerer et interface kalt IAuditedEntity.cs.
+	- Dette er en lånt løsning fra http://stackoverflow.com/questions/26355486/entity-framework-6-audit-track-changes
+	- Det logges når en entitet blir opprettet og når den endres.
+Logging til fil:
+	- Det er laget en CustomDbException som arver EntityException. Denne filen har en logToFile()-metode som skrive til loggfil. loggfilen ligger i App_Data-mappen.
+	- Alle metoder som kontakter databasen på noen måte har en try/catch, der man catcher CustomDbException.
+Enhetstester:
+	- Controllerne er laget så enkle som mulig slik at enhetstestene også blir enkle. Veldig mye av testene er like for alle controllerne. Jeg har i stedet
+	valgt å bruke Ajax/JQuery i websidene for å hente flere "enkle" objekter i stedet for å enhetsteste en kontroller med veldig komplekse objekter.
+Designvalg - teknisk:
+	- 	 
+
+Designvalg - Web og Javascript:
+	- 
+	
 
 
 
