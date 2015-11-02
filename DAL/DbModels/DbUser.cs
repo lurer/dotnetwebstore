@@ -21,7 +21,11 @@ namespace DAL.DbModels
         public virtual List<DbOrder> Orders { get; set; }
         public virtual DbPostAddress PostAddress { get; set; }
         public string RoleStringId { get; set; }
+
+        [ForeignKey("Role")]
         public int RoleId { get; set; }
+
+        public virtual DbRole Role { get; set; }
 
         public string CreatedBy { get; set; }
 

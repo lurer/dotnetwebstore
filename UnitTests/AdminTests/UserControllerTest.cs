@@ -7,6 +7,7 @@ using BOL.Models;
 using DAL.DBOperations.DataServiceStubs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using s198599.Areas.Admin.Controllers;
+using MvcContrib.TestHelper;
 
 namespace UnitTests.AdminTests
 {
@@ -265,7 +266,9 @@ namespace UnitTests.AdminTests
         [TestMethod]
         public void DeleteInvalidId()
         {
+            var SessionMock = new TestControllerBuilder();
             var controller = new UserController(new UserBLL(new UserServiceStub()));
+            SessionMock.InitializeController(controller);
             var actionResult = (ViewResult)controller.DeleteConfirmed(99);
             Assert.AreEqual(actionResult.ViewName, "");
         }

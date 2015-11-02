@@ -2,6 +2,7 @@
 using BOL.Models;
 using DAL.DBOperations.DataServiceStubs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MvcContrib.TestHelper;
 using s198599.Areas.Admin.Controllers;
 using System.Collections.Generic;
 using System.Linq;
@@ -188,7 +189,9 @@ namespace UnitTests.AdminTests
         [TestMethod]
         public void DeleteNotValidId()
         {
+            var SessionMock = new TestControllerBuilder();
             var controller = new ItemCategoriesController(new CategoryBLL(new CategoryServiceStub()));
+            SessionMock.InitializeController(controller);
             var actionResult = (RedirectToRouteResult)controller.DeleteConfirmed(99);
             Assert.AreEqual(actionResult.RouteName, "");
         }

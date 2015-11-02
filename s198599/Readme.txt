@@ -16,8 +16,9 @@ Logging til fil:
 Enhetstester:
 	- Controllerne er laget så enkle som mulig slik at enhetstestene også blir enkle. Veldig mye av testene er like for alle controllerne. Jeg har i stedet
 	valgt å bruke Ajax/JQuery i websidene for å hente flere "enkle" objekter i stedet for å enhetsteste en kontroller med veldig komplekse objekter.
+
 Designvalg - teknisk:
-	- 	 
+	- 
 
 Designvalg - Web og Javascript:
 	- 

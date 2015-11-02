@@ -8,6 +8,7 @@ using BOL.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CSharp.RuntimeBinder;
+using MvcContrib.TestHelper;
 
 namespace UnitTests.AdminTests
 {
@@ -335,7 +336,9 @@ namespace UnitTests.AdminTests
         [TestMethod]
         public void DeleteNotValidId()
         {
+            var SessionMock = new TestControllerBuilder();
             var controller = new ItemController(new ItemBLL(new ItemServiceStub()));
+            SessionMock.InitializeController(controller);
             var actionResult = (ViewResult)controller.DeleteConfirmed(99);
 
             Assert.AreEqual(actionResult.ViewName, "");

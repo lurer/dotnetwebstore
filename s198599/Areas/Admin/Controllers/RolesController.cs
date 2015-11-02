@@ -108,7 +108,9 @@ namespace s198599.Areas.Admin.Controllers
             var deletedOK = bll.Delete(id);
             if(deletedOK)
                 return RedirectToAction("Index");
-            return View();
+            return SetSessionMessage(View(), SESSIONMESSAGE.FAIL,
+                "The role is being used by users. It can't be deleted");
+
         }
 
     }

@@ -124,7 +124,8 @@ namespace s198599.Areas.Admin.Controllers
             var deleteOK = bll.Delete(id);
             if(deleteOK)
                 return RedirectToAction("Index");
-            return View();
+            return SetSessionMessage(View(), SESSIONMESSAGE.FAIL,
+                "There is history related to this user. It can not ");
         }
 
     }
