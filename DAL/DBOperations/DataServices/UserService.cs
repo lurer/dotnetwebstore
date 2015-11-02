@@ -35,7 +35,7 @@ namespace DAL.DBOperations.DataServices
                     context.Users.Add(dbUser);
                     context.SaveChanges();
                 }
-                catch (CustomDbException e)
+                catch (DBUpdateException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }
@@ -61,7 +61,7 @@ namespace DAL.DBOperations.DataServices
                     context.Entry(dbUser).State = EntityState.Modified;
                     context.SaveChanges();
                 }
-                catch (CustomDbException e)
+                catch (DBUpdateException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }

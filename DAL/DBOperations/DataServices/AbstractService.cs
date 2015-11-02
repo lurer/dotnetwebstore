@@ -19,12 +19,17 @@ namespace DAL.DBOperations.DataServices
                     if (dbObj != null)
                     {
                         context.Set<T>().Remove(dbObj);
-                        context.SaveChanges();
+                        int result = context.SaveChanges();
+                        if (result == 0)
+                        {
+                            return false;
+                        }
+                            
                         return true;
                     }
                     return false;
                 }
-                catch (CustomDbException e)
+                catch (DBUpdateException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                     return false;
@@ -52,7 +57,7 @@ namespace DAL.DBOperations.DataServices
                         return default(R);
                     return transFromDbToBusiness(dbObj);
                 }
-                catch (CustomDbException e)
+                catch (DBUpdateException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }
@@ -77,7 +82,7 @@ namespace DAL.DBOperations.DataServices
                         busList.Add(transFromDbToBusiness(dbObj));
                     }
                 }
-                catch (CustomDbException e)
+                catch (DBUpdateException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }

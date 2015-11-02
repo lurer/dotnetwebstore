@@ -13,8 +13,14 @@ namespace DAL.DbModels
         public string ItemDesc { get; set; }
         public int InStock { get; set; }
         public double Price { get; set; }
+
+        [ForeignKey("DbCategory")]
         public int Category { get; set; }
         public string ImgPath { get; set; }
+
+
+        public virtual DbItemCategory DbCategory{ get; set; }
+
 
         public string CreatedBy { get; set; }
 

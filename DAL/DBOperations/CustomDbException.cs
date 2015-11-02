@@ -10,7 +10,7 @@ namespace DAL.Utilities
     public enum SEVERITY { INFO, WARNING, ERROR, SEVERE }
 
 
-    public class CustomDbException : EntityException
+    public class DBUpdateException : EntityException
     {
         
         static string SQLLOG = "sql_error_log.txt";

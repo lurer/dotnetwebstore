@@ -1,4 +1,5 @@
 ﻿using DAL.DbModels;
+using DAL.Utilities;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -28,6 +29,7 @@ namespace DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
         }
 
@@ -55,7 +57,16 @@ namespace DAL
                 modified.LastModifiedAt = now;
                 
             }
-            return base.SaveChanges();
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                
+                //e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
+            }
+            return 0;
         }
 
         

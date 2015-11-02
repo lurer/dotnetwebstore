@@ -22,7 +22,7 @@ namespace DAL.DBOperations.DataServices
                     context.Orders.Add(dbOrder);
                     context.SaveChanges();
                 }
-                catch (CustomDbException e)
+                catch (DBUpdateException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }
@@ -43,7 +43,7 @@ namespace DAL.DBOperations.DataServices
                     context.Entry(dbOrder).State = EntityState.Modified;
                     context.SaveChanges();
                 }
-                catch (CustomDbException e)
+                catch (DBUpdateException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }

@@ -17,8 +17,9 @@ namespace DAL.DBOperations.DataServices
                 {
                     context.Category.Add(dbCategory);
                     context.SaveChanges();
+
                 }
-                catch (CustomDbException e)
+                catch (DBUpdateException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }
@@ -39,7 +40,7 @@ namespace DAL.DBOperations.DataServices
                     context.Entry(dbCategory).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
                 }
-                catch (CustomDbException e)
+                catch (DBUpdateException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }

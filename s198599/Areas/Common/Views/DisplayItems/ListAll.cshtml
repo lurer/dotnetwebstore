@@ -57,7 +57,15 @@
         </td>
         <td>
 
-            <img src="@Url.Content(item.ImgPath)" class="img-thumbnail thumbnail" />
+            @if (item.ImgPath == null)
+            {
+                <img src="~/Content/Images/default.gif" class="img-thumbnail small_thumbnail" />
+            }
+            else
+            {
+                <img src="@Url.Content(item.ImgPath)" class="img-thumbnail thumbnail" />
+            }
+
 
         </td>
         <td>

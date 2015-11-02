@@ -27,7 +27,8 @@ namespace s198599.Areas.Common.Controllers
             }
             catch (Exception)
             {
-                return SetSessionMessage(View(domainItems), SESSIONMESSAGE.FAIL, "We could not retrieve products from the database");
+                return SetSessionMessage(View(domainItems), SESSIONMESSAGE.FAIL, 
+                    "We could not retrieve products from the database");
             }
             
 

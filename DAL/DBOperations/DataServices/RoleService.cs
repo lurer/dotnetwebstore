@@ -19,7 +19,7 @@ namespace DAL.DBOperations.DataServices
                     context.Roles.Add(dbRole);
                     context.SaveChanges();
                 }
-                catch (CustomDbException e)
+                catch (DBUpdateException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }
@@ -40,7 +40,7 @@ namespace DAL.DBOperations.DataServices
                     context.Entry(dbRole).State = EntityState.Modified;
                     context.SaveChanges();
                 }
-                catch (CustomDbException e)
+                catch (DBUpdateException e)
                 {
                     e.logToFile(SEVERITY.ERROR, DateTime.Now, e.Message);
                 }
