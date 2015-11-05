@@ -344,6 +344,48 @@ namespace UnitTests.AdminTests
             Assert.AreEqual(actionResult.ViewName, "");
         }
 
-        
+     
+        //POST: /Admin/Item/UpdateItemStock/5/10
+        [TestMethod]
+        public void UpdateItemStockValid()
+        {
+            var SessionMock = new TestControllerBuilder();
+            var controller = new ItemController(new ItemBLL(new ItemServiceStub()));
+            SessionMock.InitializeController(controller);
+
+            var actionResult = (RedirectToRouteResult)controller.UpdateItemStock(1, 10);
+
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(controller.Session["MsgType"], "SUCCESS");
+        }
+
+        //POST: /Admin/Item/UpdateItemStock/5/10
+        [TestMethod]
+        public void UpdateItemStockInvalidId()
+        {
+            var SessionMock = new TestControllerBuilder();
+            var controller = new ItemController(new ItemBLL(new ItemServiceStub()));
+            SessionMock.InitializeController(controller);
+
+            var actionResult = (RedirectToRouteResult)controller.UpdateItemStock(-2, 10);
+
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(controller.Session["MsgType"], "FAIL");
+        }
+
+
+        //POST: /Admin/Item/UpdateItemStock/5/10
+        [TestMethod]
+        public void UpdateItemStockReturnNullObject()
+        {
+            var SessionMock = new TestControllerBuilder();
+            var controller = new ItemController(new ItemBLL(new ItemServiceStub()));
+            SessionMock.InitializeController(controller);
+
+            var actionResult = (HttpNotFoundResult)controller.UpdateItemStock(99, 10);
+
+            Assert.AreEqual(actionResult.StatusCode, 404);
+            
+        }
     }
 }
