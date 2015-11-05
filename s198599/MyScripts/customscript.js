@@ -178,7 +178,7 @@ function editItem(id) {
 function deleteItem(id) {
     var form = $('#_AjaxAntiForgeryForm');
     var token = $('input[name="__RequestVerificationToken"]', form).val();
-
+    
     $.ajax({
         type: "POST",
         cache: false,
@@ -188,6 +188,7 @@ function deleteItem(id) {
         },
         url: 'Item/Delete',
         success: function () {
+            
             getItems();
             feedbackMessage("SUCCESS", "The item is deleted from the database");
         },
@@ -206,7 +207,7 @@ function writeItemListResult(itemList, categoryList) {
     var itemsLowInventory = [];
 
 
-    var output = "";
+    var output = "<br>";
     output += "<table class='table'>";
     output += "<tr>";
     output += "<th>Item Code</th>";

@@ -78,7 +78,7 @@ namespace s198599.Areas.Customer.Controllers
             {
                 var updatedUser = new UserBLL().Update(User);
                 if(updatedUser != null)
-                    return SetSessionMessage(RedirectToAction("Index"), SESSIONMESSAGE.SUCESS, "Your user account information is updated");
+                    return SetSessionMessage(RedirectToAction("Index"), SESSIONMESSAGE.SUCCESS, "Your user account information is updated");
             }
             return SetSessionMessage(View(User), SESSIONMESSAGE.FAIL, "Something went wrong. Please try again!");
         }

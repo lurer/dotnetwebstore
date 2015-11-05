@@ -70,7 +70,7 @@ namespace s198599.Areas.Security.Controllers
             if(updatedOrder == null)
                 SetSessionMessage(View(), SESSIONMESSAGE.FAIL, "Something went wrong. The order is not registered");
             myCart.EmptyCart();
-            return SetSessionMessage(RedirectToAction("ListAll", "DisplayItems", new { area = "Common" }), SESSIONMESSAGE.SUCESS, "The order is registered");
+            return SetSessionMessage(RedirectToAction("ListAll", "DisplayItems", new { area = "Common" }), SESSIONMESSAGE.SUCCESS, "The order is registered");
         }
 
 

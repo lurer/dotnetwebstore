@@ -20,3 +20,34 @@
         </div>
     </div>
 </div>
+
+<script>
+    function updateItemWithNewStock(id) {
+        var form = $('#_AjaxAntiForgeryForm');
+        var token = $('input[name="__RequestVerificationToken"]', form).val();
+        
+        $.ajax({
+            type: "POST",
+            cache: false,
+            data: {
+                __RequestVerificationToken: token,
+                itemId: id,
+                addStockWith : 10
+            },
+            url: 'Item/UpdateItemStock',
+            success: function () {
+                getItems();
+                var rowCount = $('.lowInventoryRow').length -1;
+
+                if (rowCount == 0) {
+                    $('#lowInventoryModal').modal('hide');
+                }
+                feedbackMessage("SUCCESS", "The item is updated");
+            },
+            error: function (err) {
+                feedbackMessage("FAIL", "Something went wrong. We can not determine if the update was successful!");
+            }
+        })
+    }
+
+</script>

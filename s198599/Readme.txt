@@ -21,7 +21,9 @@ Designvalg - teknisk:
 	- 
 
 Designvalg - Web og Javascript:
-	- 
+	- Administrasjon av produkter/items har automatisk "varsling" på produkter som det er få igjen av på lager.
+	Man får en modal som viser hvilke produkter dette gjelder og man får anledning til å "bestille" i et 10 nye.
+	I det man ikke har flere produkter igjen å bestille så forsvinner modalen.
 	
 
 

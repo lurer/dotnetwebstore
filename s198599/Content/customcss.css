@@ -32,8 +32,13 @@
     overflow: auto !important;
 }
 
+.medium_thumbnail{
+    height: 60px !important;
+    overflow: auto !important;
+}
+
 .small_thumbnail{
-        height: 35px !important;
+    height: 35px !important;
     overflow: auto !important;
 }
 

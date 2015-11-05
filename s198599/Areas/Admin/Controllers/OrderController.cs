@@ -38,6 +38,7 @@ namespace s198599.Areas.Admin.Controllers
             return View(bll.GetList());
         }
 
+
         // GET: Customer/Order/Details/5
         public ActionResult Details(int? id)
         {

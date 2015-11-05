@@ -1,4 +1,6 @@
-﻿<div id="orderDetailModal" class="modal fade">
+﻿
+
+<div id="orderDetailModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -25,3 +27,76 @@
         </div>
     </div>
 </div>
+
+<script src="~/MyScripts/customscript.js"></script>
+<script>
+
+
+    function orderDetails(id){
+        var myurl = "GetOrderDetail";
+
+        $.ajax({
+            url: myurl,
+            data: { 'id': id },
+            type: "post",
+            cache: false,
+            success: function (order) {
+                display_order_detail_modal(order);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                feedbackMessage("fail", "Can not load the details of this order.");
+            }
+        });
+    }
+
+
+    function populateOrderHistory(orders){
+        
+        var result = orders;
+        var output = "";
+        output += "<tr>";
+            output += "<th>Order number</th>";
+            output += "<th>Date ordered</th>";
+            output += "<th>Number of Items</th>";
+            output += "<th>Total price</th>";
+            output += "<th>Order detals</th>"
+        output += "</tr>";
+        for(var i = 0; i < result.length; i++){
+            output += "<tr>";
+                output += "<td>" + result[i].OrderNumber+"</td>";
+
+                var tmp = new Date(parseInt(result[i].DateTime.substr(6)));
+                var newDate = tmp.toUTCString();
+                output += "<td>" + newDate +"</td>";
+                output += "<td>" + result[i].Items.length +"</td>";
+                output += "<td> NOK " + result[i].OrderPriceTotal.toFixed(2)+"</td>";
+                output += "<td><a href='#' onclick=orderDetails(" + result[i].OrderNumber + ");return false; class='btn btn-xs btn-info'>Details";
+                output += "</td>";
+            output += "<tr>";
+        }
+        $('#myOrders').append(output);
+    }
+
+
+    $(function () {
+        var userId = @Model.UserID;
+        var myurl = "GetMyOrders";
+
+        $.ajax({
+            url: myurl,
+            data: { 'id': userId },
+            type: "post",
+            cache: false,
+            success: function (orders) {
+                
+                populateOrderHistory(orders);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                feedbackMessage("fail", "Can not load your order history. Please refresh the page");
+            }
+        });
+    });
+</script>
+
+<h4>Your order history:</h4>
+<table id="myOrders" class="table table-condensed table-striped"></table>

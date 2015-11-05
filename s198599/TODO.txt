@@ -1,7 +1,7 @@
 ﻿::: Status :::
-- Må passer på at det ikke kan slettes objekter som har avhengigheter. (Gi melding til bruker)
-- Må passe på at det ikke kastes exception ved feil i Id eller lignende.
 
+- Må passe på at det ikke kastes exception ved feil i Id eller lignende.
+- Bekreftelse på sletting
 
 
 I Admin-Area:
@@ -13,8 +13,7 @@ I Admin-Area:
 		- Må kunne aktivere/deaktivere kunde. Kan ikke slette kunde med kundehistorikk
 		- Bør Edit være mulig på andre brukere?
 		- Trenger man details? Hva skal det inneholde som ikke inneholdes i listen?
-	Items:
-		- Gi mulighet for å "plukke" bildesti, og ikke skrive stien manuelt.
+
 	ItemCategory:
 		- Kan ikke slette ItemCategory hvis det er i bruk av andre produkter.
 

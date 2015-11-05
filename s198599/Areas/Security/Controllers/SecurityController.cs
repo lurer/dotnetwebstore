@@ -29,7 +29,7 @@ namespace s198599.Areas.Security.Controllers
             if (ModelState.IsValid)
             {
                 new ComplexBLL().createUserAndUpdateRole(User);
-                return SetSessionMessage(RedirectToAction("Login", "Security", new { area = "Security" }), SESSIONMESSAGE.SUCESS, "Registration was successful");
+                return SetSessionMessage(RedirectToAction("Login", "Security", new { area = "Security" }), SESSIONMESSAGE.SUCCESS, "Registration was successful");
             }
             return View(User);
         }
@@ -53,18 +53,16 @@ namespace s198599.Areas.Security.Controllers
                     FormsAuthentication.SetAuthCookie(user.Email, false);
 
                     Session.Add("UserId", user.UserID);
-                    return SetSessionMessage(RedirectToAction("Index", "Home", new { area = "Common" }),SESSIONMESSAGE.SUCESS,"Login was successfull!");
+                    return SetSessionMessage(RedirectToAction("Index", "Home", new { area = "Common" }),SESSIONMESSAGE.SUCCESS,"Login was successfull!");
                 }
                 else
                 {
-                    //TempData["LoginMsg"] = "Login failed, please try again.";
                     return SetSessionMessage(View(user), SESSIONMESSAGE.FAIL, "You did not supply correct information. Please try again.");
                 }
             }
             catch (Exception)
             {
-                //TempData["LoginMsg"] = "Login failed " + e.Message;
-                return SetSessionMessage(RedirectToAction("Login"), SESSIONMESSAGE.SUCESS, "You are now logged in.");
+                return SetSessionMessage(RedirectToAction("Login"), SESSIONMESSAGE.SUCCESS, "You are now logged in.");
             }
         }
 
