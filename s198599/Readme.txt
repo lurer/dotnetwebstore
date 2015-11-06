@@ -1,10 +1,14 @@
 ﻿:::::::::::: For mappe2 ::::::::::::::
-
+Adminbruker: admin@online.no	Passord: admin123
 Generell informasjon:
 - Det å avdekke potensielle UseCases til en nettbutikk er ganske vanskelig, med tanke på at vi vet at vi har liten tid på gjennomføring, og dermed ikke ønsker å
 ta høyde for mer funksjonalitet enn det vi kan implementere. Følgende punkter er jeg klar over at ikke er implementert, men det krever for mye ombygging av database og system
 for at jeg vil ta tiden med å implementere det. Jeg håper det er greit.
 	- Boolean true/false på objekter, om det er synlig/aktivert eller ikke. Jeg kan ikke slette objekter med avhengigheter fra databasen.
+	- Custom Error sider. Dette skulle vært på plass, og det er ikke så vanskelig.
+	- Bedre "drilling" i data. Feks er Ordre-listen under Admin ganske sparsom og lite nyttig. Jeg har en TODO-liste med flere ting som har med brukbarhet å gjøre...
+	- Bekrefte sletting av Produkter, varer osv. Modal brukes i andre sammenhenger og er dokumentert at jeg kan. Det burde likevel vært med her...
+
 
 Logging i database:
 	- Logging til database skjer via overriding av SaveChanges i DataContext.cs. Hver av databasemodellene implementerer et interface kalt IAuditedEntity.cs.
@@ -18,7 +22,8 @@ Enhetstester:
 	valgt å bruke Ajax/JQuery i websidene for å hente flere "enkle" objekter i stedet for å enhetsteste en kontroller med veldig komplekse objekter.
 
 Designvalg - teknisk:
-	- 
+	- Det er ikke mulig å slette objekter som har avhengigheter. Altså Produkter som finnes i en Ordre kan ikke slettes. 
+	Egentlig Ville jeg hatt en skikkelig database på 3. normalform med fysiske tabeller på mange-til-mange relasjoner og full støtte for historikk, men dette er altså ikke prioritert.
 
 Designvalg - Web og Javascript:
 	- Administrasjon av produkter/items har automatisk "varsling" på produkter som det er få igjen av på lager.

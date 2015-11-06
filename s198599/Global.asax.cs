@@ -1,4 +1,5 @@
 ﻿using BLL.AuthenticationServices;
+using s198599.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,7 @@ namespace s198599
             GlobalFilters.Filters.Add(new AuthorizeAttribute());
             GlobalFilters.Filters.Add(new SessionInterceptor());
         }
+
+
     }
 }
